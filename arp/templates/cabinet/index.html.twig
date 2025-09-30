@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre Cabinet{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background: url('{{ asset('build/images/law.jpg') }}') no-repeat center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .cabinet-content {
+        background: rgba(255,255,255,0.72);
+        border-radius: 18px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+        padding: 2.5rem 1.5rem;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+</style>
+<div class="container">
+    <div class="cabinet-content">
+        <section class="container">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h1 class="display-5 fw-bold">Notre Cabinet</h1>
+                    <p class="lead">Expertise, confidentialité et accompagnement personnalisé</p>
+                </div>
+            </div>
+            <div class="row align-items-center mb-5">
+                <div class="col-md-7">
+                    <h2 class="h4">Présentation</h2>
+                    <p>
+                        Derrière chaque enquête, chaque dossier, il y a une histoire humaine. Celle du dirigeant du cabinet, passionné par la recherche de vérité et la protection des intérêts de ses clients.<br><br>
+                        Après avoir obtenu un <strong>diplôme professionnel d’enquêteur privé</strong> et une <strong>licence professionnelle sécurité des biens et des personnes</strong>, il a choisi de fonder son agence entre <strong>Marseille</strong> et <strong>Paris</strong>, pour offrir un accompagnement sur-mesure à tous ceux qui ont besoin d’aide, de preuves ou de réponses.<br><br>
+                        Son parcours atypique, mêlant <strong>direction d’agence d’enquêtes privées</strong>, <strong>data analyst / data scientist</strong> et <strong>technicien système & réseaux</strong>, lui permet d’aborder chaque mission avec une vision globale : du terrain à l’analyse numérique, de la filature à la cyber-enquête.<br><br>
+                        <a href="mailto:sne@bensops.com" class="link-primary">Contactez le dirigeant</a> pour un premier échange gratuit et confidentiel.<br><br>
+                        Notre cabinet s’appuie sur les meilleures pratiques internationales et un réseau de partenaires reconnus. Nous intervenons pour les particuliers, les entreprises et les professionnels du droit, en France et à l’étranger.<br><br>
+                        Chaque dossier commence par une écoute attentive, une analyse rigoureuse et la mise en place d’une stratégie adaptée : <a href="#services" class="link-secondary">enquêtes civiles</a>, <a href="#services" class="link-secondary">pénales</a>, <a href="#services" class="link-secondary">commerciales</a>, <a href="#services" class="link-secondary">cyber-enquêtes</a>…<br><br>
+                        Notre engagement : agir avec discrétion, efficacité et transparence, pour que chaque client retrouve la sérénité et la justice qu’il mérite.<br><br>
+                        <em>« Chaque mission est unique, chaque histoire compte. »</em>
+                    </p>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5">Nos Services</h3>
+                            <ul class="list-unstyled mb-0">
+                                <li>Enquêtes civiles</li>
+                                <li>Enquêtes pénales</li>
+                                <li>Enquêtes commerciales</li>
+                                <li>Cyber-enquêtes</li>
+                                <li>Conseil et accompagnement juridique</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5">Notre Équipe</h3>
+                            <ul class="list-unstyled mb-0">
+                                <li>Détectives privés agréés</li>
+                                <li>Juristes spécialisés</li>
+                                <li>Consultants en sécurité</li>
+                                <li>Experts en cyber-enquête</li>
+                                <li>Partenaires avocats et huissiers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <h2 class="h4">Contact & Coordonnées</h2>
+                    <ul class="list-unstyled">
+                        <li><strong>Adresse :</strong> Marseille / Paris</li>
+                        <li><strong>Téléphone :</strong> 04.65.57.41.76</li>
+                        <li><strong>Email :</strong> sne@bensops.com</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="mailto:sne@bensops.com" class="btn btn-primary btn-sm">Envoyer un email</a>
+                        <a href="tel:0465574176" class="btn btn-outline-secondary btn-sm ms-2">Appeler</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="h4">Horaires</h2>
+                    <ul class="list-unstyled">
+                        <li>Lundi - Dimanche : 9h00 - 21h00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-muted small">&copy; {{ "now"|date("Y") }} Cabinet d’enquêtes privées et juridiques. Tous droits réservés.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
