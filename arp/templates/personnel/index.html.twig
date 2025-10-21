@@ -1,20 +1,504 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PersonnelController!{% endblock %}
+{% block title %}Suspicion du personnel{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .personnel-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: linear-gradient(125deg, #030811 0%, #091831 45%, #031124 100%);
+        color: rgba(227, 236, 255, 0.92);
+        overflow: hidden;
+    }
+    .personnel-luxe::before,
+    .personnel-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.56;
+        pointer-events: none;
+    }
+    .personnel-luxe::before {
+        width: 600px;
+        height: 600px;
+        top: -210px;
+        left: -190px;
+        background: radial-gradient(circle, rgba(88, 150, 255, 0.35) 0%, rgba(88, 150, 255, 0) 70%);
+    }
+    .personnel-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(24, 219, 255, 0.32) 0%, rgba(24, 219, 255, 0) 70%);
+    }
+    .personnel-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .personnel-hero {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    .personnel-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(88, 150, 255, 0.38);
+        background: rgba(6, 24, 43, 0.72);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #a9c5ff;
+        margin-bottom: 1.6rem;
+    }
+    .personnel-hero h1 {
+        font-size: 3rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+    }
+    .personnel-hero p {
+        max-width: 780px;
+        margin: 0 auto 1rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(227, 236, 255, 0.76);
+    }
+    .personnel-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .personnel-metric {
+        background: rgba(3, 16, 30, 0.76);
+        border-radius: 20px;
+        border: 1px solid rgba(169, 197, 255, 0.2);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.45);
+    }
+    .personnel-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #a9c5ff;
+    }
+    .personnel-metric span {
+        font-size: 0.92rem;
+        color: rgba(227, 236, 255, 0.72);
+    }
+    .personnel-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.2rem;
+    }
+    .personnel-card {
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(7, 18, 37, 0.72));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
+    }
+    .personnel-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #8eb5ff;
+        margin-bottom: 1rem;
+    }
+    .personnel-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .personnel-card p,
+    .personnel-card li {
+        color: rgba(227, 236, 255, 0.8);
+        line-height: 1.75;
+    }
+    .personnel-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .personnel-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .personnel-scenario {
+        background: rgba(5, 18, 34, 0.76);
+        border-radius: 24px;
+        padding: 1.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
+        color: rgba(227, 236, 255, 0.78);
+    }
+    .personnel-scenario strong {
+        display: block;
+        font-size: 1.14rem;
+        color: #9bbdff;
+        margin-bottom: 0.5rem;
+    }
+    .personnel-assurance {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.32);
+        border: 1px solid rgba(169, 197, 255, 0.2);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .personnel-assurance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .personnel-assurance-item {
+        background: rgba(7, 20, 37, 0.74);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(227, 236, 255, 0.78);
+    }
+    .personnel-assurance-item h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #8eb5ff;
+        margin-bottom: 0.6rem;
+    }
+    .personnel-process {
+        margin: 3.6rem 0 3.3rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(3, 12, 26, 0.64);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
+    }
+    .personnel-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(227, 236, 255, 0.62);
+        margin-bottom: 2rem;
+    }
+    .personnel-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .personnel-step {
+        display: flex;
+        gap: 1.1rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .personnel-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(88, 150, 255, 0.28);
+        color: #9bbdff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .personnel-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .personnel-step-text {
+        color: rgba(227, 236, 255, 0.76);
+        line-height: 1.6;
+    }
+    .personnel-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .personnel-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(6, 18, 34, 0.74);
+        border: 1px solid rgba(169, 197, 255, 0.22);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
+    }
+    .personnel-proof-card h3 {
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #94baff;
+        margin-bottom: 0.7rem;
+    }
+    .personnel-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(88, 150, 255, 0.18), rgba(1, 5, 15, 0.65));
+        border: 1px solid rgba(169, 197, 255, 0.2);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+    }
+    .personnel-cta h3 {
+        font-size: 1.88rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .personnel-cta p {
+        color: rgba(227, 236, 255, 0.78);
+        margin-bottom: 0;
+    }
+    .personnel-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .personnel-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #9bbdff, #18dbff);
+        color: #041122;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(88, 150, 255, 0.45);
+    }
+    .personnel-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(169, 197, 255, 0.24);
+        background: rgba(3, 16, 30, 0.5);
+        color: #a9c5ff;
+        text-decoration: none;
+    }
+    .personnel-btn-primary:hover {
+        color: #041122;
+    }
+    .personnel-btn-secondary:hover {
+        color: #ffffff;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #0f1c2d !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #0f1c2d !important;
+    }
+    @media (max-width: 991px) {
+        .personnel-hero h1 {
+            font-size: 2.5rem;
+        }
+        .personnel-process {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .personnel-shell {
+            padding: 0 1rem;
+        }
+        .personnel-hero h1 {
+            font-size: 2.1rem;
+        }
+        .personnel-cta {
+            grid-template-columns: 1fr;
+        }
+        .personnel-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .personnel-btn-primary,
+        .personnel-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .personnel-metric,
+        .personnel-card,
+        .personnel-step,
+        .personnel-proof-card,
+        .personnel-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="personnel-luxe">
+    <div class="personnel-shell">
+        <header class="personnel-hero">
+            <span class="badge">Protection interne</span>
+            <h1>Investigations ciblées sur les comportements à risque du personnel</h1>
+            <p>Lorsqu’un cadre, un collaborateur clé ou une équipe soulève des doutes, nous intervenons avec la rigueur d’agences internationales reconnues pour établir des faits indiscutables.</p>
+            <p>Notre dispositif associe intelligence humaine, analyses digitales et procédures disciplinaires pour sécuriser votre gouvernance.</p>
+            <div class="personnel-metrics">
+                <div class="personnel-metric">
+                    <strong>95&nbsp;%</strong>
+                    <span>Des dossiers concluent à une décision RH éclairée</span>
+                </div>
+                <div class="personnel-metric">
+                    <strong>24/7</strong>
+                    <span>Cellule de suivi confidentielle et sécurisée</span>
+                </div>
+                <div class="personnel-metric">
+                    <strong>48&nbsp;h</strong>
+                    <span>Pour livrer un rapport flash après activation</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="personnel-grid">
+            <article class="personnel-card">
+                <h2>Analyse</h2>
+                <h3>Screening comportemental</h3>
+                <p>Approche multicritères :</p>
+                <ul>
+                    <li>Accès SI, logs, emails (dans le cadre légal), anomalies d’usage.</li>
+                    <li>Historique disciplinaire, entretiens ciblés, rumeurs internes.</li>
+                    <li>Indice de conflits d’intérêts, double activité, corruption potentielle.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/PersonnelController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/personnel/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="personnel-card">
+                <h2>Investigation</h2>
+                <h3>Dispositifs terrain & digitaux</h3>
+                <p>Actions discrètes :</p>
+                <ul>
+                    <li>Filatures, observations in situ, audit environnement de travail.</li>
+                    <li>Analyse OSINT, réseaux sociaux, dark web pour repérage fuites.</li>
+                    <li>Tests d’intégrité, opération client mystère interne.</li>
+                </ul>
+            </article>
+
+            <article class="personnel-card">
+                <h2>Résolution</h2>
+                <h3>Accompagnement RH & juridique</h3>
+                <p>Livrables premium :</p>
+                <ul>
+                    <li>Rapport horodaté, pièces jointes exploitables, témoignages.</li>
+                    <li>Stratégie disciplinaire, procédures prud’homales, pénales.</li>
+                    <li>Plan de remédiation : renforcement contrôle interne, prévention.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="personnel-scenarios" aria-label="Cas traités">
+            <article class="personnel-scenario">
+                <strong>Cadre dirigeant</strong>
+                <p>Identification d’une collusion fournisseur, sanction & sécurisation processus achats.</p>
+            </article>
+            <article class="personnel-scenario">
+                <strong>Réseau de vente</strong>
+                <p>Preuves de détournement de stocks, licenciement collectif et plaintes déposées.</p>
+            </article>
+            <article class="personnel-scenario">
+                <strong>Whistleblowing</strong>
+                <p>Enquête interne sous contrôle avocat, crédibilisation du signalement et correction.</p>
+            </article>
+        </section>
+
+        <section class="personnel-assurance" aria-label="Nos garanties">
+            <div class="personnel-assurance-grid">
+                <div class="personnel-assurance-item">
+                    <h3>Confidentialité totale</h3>
+                    <p>Process cloisonné, accès limité, restitution chiffrée.</p>
+                </div>
+                <div class="personnel-assurance-item">
+                    <h3>Cadre légal maîtrisé</h3>
+                    <p>Respect Code du travail, CNAPS, RGPD, consultation avocat dédié.</p>
+                </div>
+                <div class="personnel-assurance-item">
+                    <h3>Approche humaine</h3>
+                    <p>Gestion sensible, prévention risques psychosociaux, accompagnement des managers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="personnel-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="personnel-steps">
+                <div class="personnel-step">
+                    <div class="personnel-step-index">01</div>
+                    <div>
+                        <div class="personnel-step-title">Brief sécurisé</div>
+                        <div class="personnel-step-text">NDA, recueil des faits, cadrage avec service juridique.</div>
+                    </div>
+                </div>
+                <div class="personnel-step">
+                    <div class="personnel-step-index">02</div>
+                    <div>
+                        <div class="personnel-step-title">Collecte & veille</div>
+                        <div class="personnel-step-text">Analyse documentaire, interviews ciblées, détection signaux faibles.</div>
+                    </div>
+                </div>
+                <div class="personnel-step">
+                    <div class="personnel-step-index">03</div>
+                    <div>
+                        <div class="personnel-step-title">Opérations terrain</div>
+                        <div class="personnel-step-text">Surveillance discrète, tests intégrité, recoupement preuves.</div>
+                    </div>
+                </div>
+                <div class="personnel-step">
+                    <div class="personnel-step-index">04</div>
+                    <div>
+                        <div class="personnel-step-title">Restitution & actions</div>
+                        <div class="personnel-step-text">Rapport exécutif, accompagnement disciplinaire et judiciaire.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="personnel-proof" aria-label="Études de cas">
+            <article class="personnel-proof-card">
+                <h3>Banque privée</h3>
+                <p>Détection d’une fraude interne 1,4&nbsp;M€, renforcement KYC et rotation équipes.</p>
+            </article>
+            <article class="personnel-proof-card">
+                <h3>Industrie pharma</h3>
+                <p>Équipe R&D suspecte blanchie, climat social rétabli, charte déontologique revue.</p>
+            </article>
+            <article class="personnel-proof-card">
+                <h3>Logistique</h3>
+                <p>Réseau de revente repéré, arrestations en flagrance, pertes stoppées.</p>
+            </article>
+        </section>
+
+        <section class="personnel-cta" aria-label="Contact">
+            <div>
+                <h3>Confiez-nous votre enquête interne confidentielle</h3>
+                <p>Liaison directe avec direction juridique, restitution sous 5 jours ouvrés.</p>
+            </div>
+            <div class="personnel-cta-actions">
+                <a class="personnel-btn-primary" href="tel:0465574176">Hotline conformité : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="personnel-btn-secondary" href="{{ path('app_contact') }}">Programmer un brief confidentiel</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

@@ -54,7 +54,7 @@ class HeaderController extends AbstractController
             ],
             ['label' => 'TARIFS', 'link' => $this->generateUrl('app_tarif')],
             ['label' => 'CONTACTS', 'link' => $this->generateUrl('app_contact')],
-            ['label' => 'ARTICLES', 'link' => $this->generateUrl('app_article')],
+            ['label' => 'RESSOURCES', 'link' => $this->generateUrl('app_article')],
         ];
 
         return $this->render('base/header.html.twig', [

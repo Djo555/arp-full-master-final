@@ -258,14 +258,14 @@
                     </a>
                 </li>
 
-                {# ARTICLES #}
+                {# RESSOURCES #}
                 <li class="nav-item">
                     <a 
                         class="nav-link {% if app.request.get('_route') == 'app_article' %}active{% endif %}"
                         href="{{ path('app_article') }}"
                         {% if app.request.get('_route') == 'app_article' %}style="color: #FF6B00;"{% endif %}
                     >
-                        ARTICLES
+                        RESSOURCES
                     </a>
                 </li>
             </ul>

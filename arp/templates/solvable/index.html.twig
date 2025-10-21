@@ -1,20 +1,608 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SolvableController!{% endblock %}
+{% block title %}Enquête de solvabilité{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .solvable-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: radial-gradient(120% 120% at 10% -10%, #06151b 0%, #031014 60%, #02080c 100%);
+        color: rgba(222, 237, 245, 0.92);
+        overflow: hidden;
+    }
+    .solvable-luxe::before,
+    .solvable-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.6;
+        pointer-events: none;
+    }
+    .solvable-luxe::before {
+        width: 620px;
+        height: 620px;
+        top: -230px;
+        left: -210px;
+        background: radial-gradient(circle, rgba(18, 173, 147, 0.34) 0%, rgba(18, 173, 147, 0) 70%);
+    }
+    .solvable-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -170px;
+        background: radial-gradient(circle, rgba(243, 198, 104, 0.28) 0%, rgba(243, 198, 104, 0) 70%);
+    }
+    .solvable-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .solvable-hero {
+        text-align: center;
+        margin-bottom: 3.7rem;
+    }
+    .solvable-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 173, 147, 0.4);
+        background: rgba(3, 18, 22, 0.7);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #64f0d8;
+        margin-bottom: 1.6rem;
+    }
+    .solvable-hero h1 {
+        font-size: 3rem;
+        font-weight: 640;
+        color: #ffffff;
+        margin-bottom: 1.3rem;
+    }
+    .solvable-hero p {
+        max-width: 780px;
+        margin: 0 auto 0.9rem;
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: rgba(222, 237, 245, 0.75);
+    }
+    .solvable-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .solvable-metric {
+        background: rgba(3, 16, 20, 0.72);
+        border-radius: 20px;
+        border: 1px solid rgba(100, 240, 216, 0.16);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 32px 52px rgba(1, 5, 8, 0.48);
+    }
+    .solvable-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #64f0d8;
+    }
+    .solvable-metric span {
+        font-size: 0.92rem;
+        color: rgba(222, 237, 245, 0.68);
+    }
+    .solvable-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.4rem;
+    }
+    .solvable-card {
+        position: relative;
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(5, 22, 24, 0.7));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 50px rgba(0, 0, 0, 0.42);
+    }
+    .solvable-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #64f0d8;
+        margin-bottom: 1rem;
+    }
+    .solvable-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .solvable-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .solvable-card p,
+    .solvable-card li {
+        color: rgba(222, 237, 245, 0.78);
+        line-height: 1.75;
+    }
+    .solvable-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .solvable-scenario {
+        background: rgba(3, 14, 16, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        padding: 1.9rem;
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.45);
+    }
+    .solvable-scenario strong {
+        display: block;
+        font-size: 1.15rem;
+        color: #64f0d8;
+        margin-bottom: 0.6rem;
+    }
+    .solvable-signet {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.32);
+        border: 1px solid rgba(100, 240, 216, 0.18);
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.46);
+    }
+    .solvable-signet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .solvable-signet-item {
+        background: rgba(3, 14, 16, 0.7);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(222, 237, 245, 0.78);
+    }
+    .solvable-signet-item h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #64f0d8;
+        margin-bottom: 0.6rem;
+    }
+    .solvable-process {
+        margin: 3.6rem 0 3.4rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(0, 6, 8, 0.48);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.5);
+    }
+    .solvable-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(222, 237, 245, 0.62);
+        margin-bottom: 2rem;
+    }
+    .solvable-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .solvable-step {
+        display: flex;
+        gap: 1.2rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.38);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .solvable-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(243, 198, 104, 0.24);
+        color: #f3c668;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .solvable-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .solvable-step-text {
+        color: rgba(222, 237, 245, 0.75);
+        line-height: 1.6;
+    }
+    .solvable-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3.2rem;
+    }
+    .solvable-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(3, 16, 20, 0.72);
+        border: 1px solid rgba(100, 240, 216, 0.18);
+        box-shadow: 0 28px 48px rgba(0, 0, 0, 0.46);
+    }
+    .solvable-proof-card h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #64f0d8;
+        margin-bottom: 0.7rem;
+    }
+    .solvable-proof-card p {
+        color: rgba(222, 237, 245, 0.78);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    .solvable-legal {
+        margin: 3.4rem 0;
+        padding: 2.8rem 2.4rem;
+        border-radius: 30px;
+        background: linear-gradient(160deg, rgba(0, 10, 12, 0.78), rgba(5, 44, 48, 0.58));
+        border: 1px solid rgba(243, 198, 104, 0.26);
+        box-shadow: 0 38px 64px rgba(0, 0, 0, 0.52);
+    }
+    .solvable-legal-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 2.6rem;
+    }
+    .solvable-legal-highlight {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #64f0d8;
+    }
+    .solvable-legal-highlight::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: #64f0d8;
+        opacity: 0.7;
+    }
+    .solvable-legal-header h2 {
+        font-size: 2.1rem;
+        font-weight: 620;
+        color: #ffffff;
+    }
+    .solvable-legal-header p {
+        color: rgba(222, 237, 245, 0.75);
+        max-width: 780px;
+        line-height: 1.7;
+    }
+    .solvable-legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+    }
+    .solvable-legal-card {
+        padding: 1.9rem;
+        border-radius: 24px;
+        background: rgba(3, 16, 20, 0.82);
+        border: 1px solid rgba(243, 198, 104, 0.26);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.48);
+    }
+    .solvable-legal-card h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #f3c668;
+        margin-bottom: 0.6rem;
+    }
+    .solvable-legal-card p {
+        color: rgba(222, 237, 245, 0.78);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    .solvable-legal-footnote {
+        margin-top: 2.4rem;
+        font-size: 0.86rem;
+        color: rgba(222, 237, 245, 0.62);
+        line-height: 1.7;
+    }
+    .solvable-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(18, 173, 147, 0.18), rgba(0, 6, 8, 0.6));
+        border: 1px solid rgba(100, 240, 216, 0.2);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .solvable-cta h3 {
+        font-size: 1.9rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .solvable-cta p {
+        color: rgba(222, 237, 245, 0.75);
+        margin-bottom: 0;
+    }
+    .solvable-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .solvable-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #64f0d8, #12ad93);
+        color: #011819;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(18, 173, 147, 0.42);
+    }
+    .solvable-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(100, 240, 216, 0.24);
+        background: rgba(0, 6, 8, 0.45);
+        color: #64f0d8;
+        text-decoration: none;
+    }
+    .solvable-btn-primary:hover {
+        color: #011819;
+    }
+    .solvable-btn-secondary:hover {
+        color: #ffffff;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #0f2036 !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #0f2036 !important;
+    }
+    @media (max-width: 991px) {
+        .solvable-hero h1 {
+            font-size: 2.5rem;
+        }
+        .solvable-process {
+            padding: 2.4rem 1.9rem;
+        }
+        .solvable-legal {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .solvable-shell {
+            padding: 0 1rem;
+        }
+        .solvable-hero h1 {
+            font-size: 2.1rem;
+        }
+        .solvable-cta {
+            grid-template-columns: 1fr;
+        }
+        .solvable-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .solvable-btn-primary,
+        .solvable-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+        .solvable-legal {
+            padding: 2.1rem 1.5rem;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .solvable-metric,
+        .solvable-card,
+        .solvable-step,
+        .solvable-proof-card,
+        .solvable-legal-card,
+        .solvable-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="solvable-luxe">
+    <div class="solvable-shell">
+        <header class="solvable-hero">
+            <span class="badge">Risk intelligence</span>
+            <h1>Enquêtes de solvabilité premium</h1>
+            <p>Avant une procédure judiciaire, un investissement ou la signature d’un contrat, nous évaluons la capacité réelle d’un tiers à honorer ses engagements. Inspirés par les standards des agences leaders du secteur, nous analysons patrimoine, flux financiers et risques cachés.</p>
+            <p>Notre approche combine investigation terrain, data analytics et partenariats bancaires pour livrer un scoring fiable.</p>
+            <div class="solvable-metrics">
+                <div class="solvable-metric">
+                    <strong>48&nbsp;h</strong>
+                    <span>Pour livrer un pré-rapport flash</span>
+                </div>
+                <div class="solvable-metric">
+                    <strong>14&nbsp;j</strong>
+                    <span>Pour un rapport complet, annexes notariales et bancaires comprises</span>
+                </div>
+                <div class="solvable-metric">
+                    <strong>A+</strong>
+                    <span>Notation maximale pour nos procédures de compliance</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="solvable-grid">
+            <article class="solvable-card">
+                <h2>Stratégie</h2>
+                <h3>Cartographie patrimoniale</h3>
+                <p>Nous établissons un état des lieux précis :</p>
+                <ul>
+                    <li>Biens immobiliers, participations, véhicules haut de gamme, actifs financiers.</li>
+                    <li>Dettes, hypothèques, nantissements, procédures en cours.</li>
+                    <li>Analyse du train de vie et cohérence avec les revenus déclarés.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/SolvableController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/solvable/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="solvable-card">
+                <h2>Dispositifs</h2>
+                <h3>Investigations financières avancées</h3>
+                <p>Task-force dédiée :</p>
+                <ul>
+                    <li>Analystes financiers, experts OSINT, enquêteurs terrain.</li>
+                    <li>Partenariats notariaux, bancaires et huissiers pour vérifications officielles.</li>
+                    <li>Surveillance lifestyle, constats d’huissier, veille internationale.</li>
+                </ul>
+            </article>
+
+            <article class="solvable-card">
+                <h2>Restitution</h2>
+                <h3>Scoring solvabilité & scénarios</h3>
+                <p>Livrable en trois volets :</p>
+                <ul>
+                    <li>Analyse synthétique, score de solvabilité, rating de risques.</li>
+                    <li>Scénarios de recouvrement, leviers juridiques, recommandations.</li>
+                    <li>Annexes détaillées : extraits Kbis, hypothèques, relevés, attestations.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="solvable-scenarios" aria-label="Scénarios traités">
+            <article class="solvable-scenario">
+                <strong>Recouvrement de créance</strong>
+                <p>Vérification des biens saisissables, organisation d’actions conservatoires, estimation du délai de recouvrement.</p>
+            </article>
+            <article class="solvable-scenario">
+                <strong>Partenaire commercial</strong>
+                <p>Analyse financière complète d’une société cible, détection de signaux faibles (redressements, procédures collectives).</p>
+            </article>
+            <article class="solvable-scenario">
+                <strong>Débiteur en divorce</strong>
+                <p>Suivi d’actifs cachés, veille sur trust ou holdings familiales, preuve de solvabilité pour recalcul de pension.</p>
+            </article>
+        </section>
+
+        <section class="solvable-signet" aria-label="Nos garanties">
+            <div class="solvable-signet-grid">
+                <div class="solvable-signet-item">
+                    <h3>Conformité renforcée</h3>
+                    <p>Processus validés par juristes et compliance officers, respect strict RGPD & CNAPS.</p>
+                </div>
+                <div class="solvable-signet-item">
+                    <h3>Partenaires officiels</h3>
+                    <p>Réseau de notaires, huissiers, experts-comptables, banques privées pour preuves officielles.</p>
+                </div>
+                <div class="solvable-signet-item">
+                    <h3>Veille internationale</h3>
+                    <p>Capacité à investiguer dans 22 pays, accès bases de données offshore et sanctions internationales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="solvable-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="solvable-steps">
+                <div class="solvable-step">
+                    <div class="solvable-step-index">01</div>
+                    <div>
+                        <div class="solvable-step-title">Brief confidentiel</div>
+                        <div class="solvable-step-text">Analyse du dossier, signature du mandat, collecte des premiers éléments.</div>
+                    </div>
+                </div>
+                <div class="solvable-step">
+                    <div class="solvable-step-index">02</div>
+                    <div>
+                        <div class="solvable-step-title">Investigations croisées</div>
+                        <div class="solvable-step-text">Recoupement terrain / digital, extraction de données financières, vérifications officielles.</div>
+                    </div>
+                </div>
+                <div class="solvable-step">
+                    <div class="solvable-step-index">03</div>
+                    <div>
+                        <div class="solvable-step-title">Scoring & restitution</div>
+                        <div class="solvable-step-text">Notation solvabilité, matrices de risques, recommandations stratégiques.</div>
+                    </div>
+                </div>
+                <div class="solvable-step">
+                    <div class="solvable-step-index">04</div>
+                    <div>
+                        <div class="solvable-step-title">Suivi & actions</div>
+                        <div class="solvable-step-text">Mise en place des mesures conservatoires, assistance aux procédures judiciaires.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="solvable-proof" aria-label="Études de cas">
+            <article class="solvable-proof-card">
+                <h3>Recouvrement accéléré</h3>
+                <p>Identification d’un portefeuille immobilier caché. Saisie conservatoire, paiement obtenu en cinq semaines.</p>
+            </article>
+            <article class="solvable-proof-card">
+                <h3>Investissement sécurisé</h3>
+                <p>Audit d’une start-up, détection d’un passif social important. Investisseur se retire, perte évitée.</p>
+            </article>
+            <article class="solvable-proof-card">
+                <h3>Prestation compensatoire révisée</h3>
+                <p>Traçabilité d’actifs offshore, preuve de solvabilité réelle : revalorisation de la prestation au profit de notre cliente.</p>
+            </article>
+        </section>
+
+        <section class="solvable-legal" aria-label="Cadre légal des enquêtes de solvabilité">
+            <div class="solvable-legal-header">
+                <span class="solvable-legal-highlight">Cadre légal</span>
+                <h2>Investigations alignées sur le droit français</h2>
+                <p>Nos audits sont construits pour soutenir vos décisions judiciaires ou commerciales, en respectant strictement le Code civil, le Code des procédures civiles d’exécution et les exigences CNIL.</p>
+            </div>
+            <div class="solvable-legal-grid">
+                <article class="solvable-legal-card">
+                    <h3>Mesures conservatoires & saisies</h3>
+                    <p>Documentation conforme aux articles L111-1 et suivants du Code des procédures civiles d’exécution. Nous préparons constats, états patrimoniaux et preuves pour geler les actifs avant jugement.</p>
+                </article>
+                <article class="solvable-legal-card">
+                    <h3>Obligations du débiteur</h3>
+                    <p>Nos rapports démontrent, à la lumière des articles 2284 et 2285 du Code civil, la capacité réelle du débiteur à honorer ses engagements et renforcent vos demandes de pension, dommages-intérêts ou paiement.</p>
+                </article>
+                <article class="solvable-legal-card">
+                    <h3>Protection des données sensibles</h3>
+                    <p>Collecte, conservation et transfert des informations financières sont exécutés dans le respect du RGPD, de la loi Informatique et Libertés et du cadre CNAPS. Les éléments probatoires sont archivés sur infrastructures souveraines.</p>
+                </article>
+            </div>
+            <p class="solvable-legal-footnote">Chaque dossier intègre la traçabilité des sources (actes authentiques, extraits Kbis, hypothèques, attestations notariales) pour exploitation devant le juge de l’exécution, le tribunal de commerce ou le juge aux affaires familiales.</p>
+        </section>
+
+        <section class="solvable-cta" aria-label="Contact">
+            <div>
+                <h3>Mesurez la solvabilité avant d’engager vos ressources</h3>
+                <p>Consultation confidentielle sous 24&nbsp;h, rapport flash possible en 48&nbsp;h.</p>
+            </div>
+            <div class="solvable-cta-actions">
+                <a class="solvable-btn-primary" href="{{ path('app_contact') }}">Commander un audit de solvabilité</a>
+                <a class="solvable-btn-secondary" href="tel:0465574176">Hotline investisseurs : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

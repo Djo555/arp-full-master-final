@@ -2,102 +2,355 @@
 
 {% block title %}Notre Cabinet{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+{{ parent() }}
 <style>
-    body {
-        background: url('{{ asset('build/images/law.jpg') }}') no-repeat center center fixed;
-        background-size: cover;
-        background-attachment: fixed;
+    .cabinet-canvas {
+        position: relative;
+        padding: 5rem 0 5.5rem;
+        background: radial-gradient(circle at top left, #091b2f 0%, #041021 45%, #020710 100%);
+        overflow: hidden;
     }
-    .cabinet-content {
-        background: rgba(255,255,255,0.72);
+    .cabinet-canvas::before,
+    .cabinet-canvas::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(12px);
+        opacity: 0.48;
+        pointer-events: none;
+    }
+    .cabinet-canvas::before {
+        width: 560px;
+        height: 560px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.28) 0%, rgba(231, 88, 26, 0) 70%);
+        top: -220px;
+        right: -160px;
+    }
+    .cabinet-canvas::after {
+        width: 520px;
+        height: 520px;
+        background: radial-gradient(circle, rgba(80, 148, 255, 0.28) 0%, rgba(80, 148, 255, 0) 70%);
+        bottom: -200px;
+        left: -160px;
+    }
+    .cabinet-shell {
+        position: relative;
+        z-index: 1;
+        color: rgba(230, 239, 255, 0.9);
+    }
+    .cabinet-hero {
+        text-align: center;
+        max-width: 920px;
+        margin: 0 auto 3.6rem;
+    }
+    .cabinet-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.55rem 1.3rem;
+        border-radius: 999px;
+        border: 1px solid rgba(231, 88, 26, 0.45);
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.22), rgba(231, 88, 26, 0));
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #ffeadd;
+        margin-bottom: 1.6rem;
+    }
+    .cabinet-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .cabinet-hero p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: rgba(230, 239, 255, 0.78);
+        margin-bottom: 0.8rem;
+    }
+    .cabinet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.2rem;
+        margin-bottom: 3.2rem;
+    }
+    .cabinet-module {
+        position: relative;
+        padding: 2.3rem 2.1rem;
+        border-radius: 26px;
+        background: linear-gradient(200deg, rgba(255, 255, 255, 0.06), rgba(7, 28, 48, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 30px 46px rgba(0, 0, 0, 0.28);
+        overflow: hidden;
+    }
+    .cabinet-module::after {
+        content: '';
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.26) 0%, rgba(231, 88, 26, 0) 70%);
+        top: -70px;
+        right: -70px;
+        pointer-events: none;
+    }
+    .cabinet-module h2 {
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #ffbf99;
+        margin-bottom: 0.9rem;
+    }
+    .cabinet-module h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1rem;
+    }
+    .cabinet-text,
+    .cabinet-text li {
+        color: rgba(230, 239, 255, 0.82);
+        line-height: 1.75;
+    }
+    .cabinet-highlight {
+        margin-top: 1.4rem;
+        padding: 1.6rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.26);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cabinet-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2.1rem;
+    }
+    .cabinet-stat {
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 18px;
-        box-shadow: 0 4px 32px rgba(0,0,0,0.12);
-        padding: 2.5rem 1.5rem;
-        margin-top: 2.5rem;
-        margin-bottom: 2.5rem;
+        padding: 1.4rem 1.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: center;
+    }
+    .cabinet-stat strong {
+        display: block;
+        font-size: 1.8rem;
+        color: #ffffff;
+    }
+    .cabinet-list {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .cabinet-callouts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-top: 2.4rem;
+    }
+    .cabinet-callout {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cabinet-cta {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.8rem;
+        align-items: center;
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border-radius: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 2.6rem;
+        box-shadow: 0 32px 48px rgba(0, 0, 0, 0.3);
+    }
+    .cabinet-cta-info h3 {
+        font-size: 1.85rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1rem;
+    }
+    .cabinet-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .cabinet-cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        background: linear-gradient(120deg, #e7581a, #c08808);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+    }
+    .cabinet-cta-link:hover {
+        color: #fff;
+        box-shadow: 0 20px 34px rgba(231, 88, 26, 0.34);
+    }
+    .cabinet-cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.8rem 1.4rem;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.22);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #ffe5d0;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .cabinet-cta-secondary:hover {
+        color: #ffffff;
+    }
+    .cabinet-footer {
+        margin-top: 3.4rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: rgba(230, 239, 255, 0.6);
+    }
+        .footer-section {
+            background: transparent !important;
+            color: #0f2036 !important;
+        }
+        .footer-section .footer-legal,
+        .footer-section .footer-legal a {
+            color: #0f2036 !important;
+        }
+    @media (max-width: 575.98px) {
+        .cabinet-hero h1 {
+            font-size: 2.4rem;
+        }
+        .cabinet-grid {
+            gap: 1.7rem;
+        }
+        .cabinet-module {
+            padding: 2rem;
+        }
+        .cabinet-cta {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
-<div class="container">
-    <div class="cabinet-content">
-        <section class="container">
-            <div class="row mb-4">
-                <div class="col-12 text-center">
-                    <h1 class="display-5 fw-bold">Notre Cabinet</h1>
-                    <p class="lead">Expertise, confidentialité et accompagnement personnalisé</p>
-                </div>
-            </div>
-            <div class="row align-items-center mb-5">
-                <div class="col-md-7">
-                    <h2 class="h4">Présentation</h2>
-                    <p>
-                        Derrière chaque enquête, chaque dossier, il y a une histoire humaine. Celle du dirigeant du cabinet, passionné par la recherche de vérité et la protection des intérêts de ses clients.<br><br>
-                        Après avoir obtenu un <strong>diplôme professionnel d’enquêteur privé</strong> et une <strong>licence professionnelle sécurité des biens et des personnes</strong>, il a choisi de fonder son agence entre <strong>Marseille</strong> et <strong>Paris</strong>, pour offrir un accompagnement sur-mesure à tous ceux qui ont besoin d’aide, de preuves ou de réponses.<br><br>
-                        Son parcours atypique, mêlant <strong>direction d’agence d’enquêtes privées</strong>, <strong>data analyst / data scientist</strong> et <strong>technicien système & réseaux</strong>, lui permet d’aborder chaque mission avec une vision globale : du terrain à l’analyse numérique, de la filature à la cyber-enquête.<br><br>
-                        <a href="mailto:sne@bensops.com" class="link-primary">Contactez le dirigeant</a> pour un premier échange gratuit et confidentiel.<br><br>
-                        Notre cabinet s’appuie sur les meilleures pratiques internationales et un réseau de partenaires reconnus. Nous intervenons pour les particuliers, les entreprises et les professionnels du droit, en France et à l’étranger.<br><br>
-                        Chaque dossier commence par une écoute attentive, une analyse rigoureuse et la mise en place d’une stratégie adaptée : <a href="#services" class="link-secondary">enquêtes civiles</a>, <a href="#services" class="link-secondary">pénales</a>, <a href="#services" class="link-secondary">commerciales</a>, <a href="#services" class="link-secondary">cyber-enquêtes</a>…<br><br>
-                        Notre engagement : agir avec discrétion, efficacité et transparence, pour que chaque client retrouve la sérénité et la justice qu’il mérite.<br><br>
-                        <em>« Chaque mission est unique, chaque histoire compte. »</em>
-                    </p>
-                </div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="h5">Nos Services</h3>
-                            <ul class="list-unstyled mb-0">
-                                <li>Enquêtes civiles</li>
-                                <li>Enquêtes pénales</li>
-                                <li>Enquêtes commerciales</li>
-                                <li>Cyber-enquêtes</li>
-                                <li>Conseil et accompagnement juridique</li>
-                            </ul>
-                        </div>
+{% endblock %}
+
+{% block body %}
+<section class="cabinet-canvas">
+    <div class="container cabinet-shell">
+        <header class="cabinet-hero">
+            <span class="cabinet-badge">Cabinet BENSOPS</span>
+            <h1>Nous révélons la vérité, vous reprenez l’avantage</h1>
+            <p>Derrière chaque enquête se cache une histoire humaine. Notre dirigeant, diplômé en investigations privées, sécurité des biens et des personnes, a uni ses expertises de terrain et de data analyst pour créer un cabinet capable d’allier filature, intelligence numérique et stratégie juridique.</p>
+            <p>Implanté entre Marseille et Paris, le cabinet intervient en France et à l’international en s’appuyant sur un réseau de partenaires reconnus.</p>
+        </header>
+
+        <div class="cabinet-grid">
+            <article class="cabinet-module">
+                <h2>Vision</h2>
+                <h3>Une approche globale des enquêtes</h3>
+                <div class="cabinet-text">
+                    <p>Chaque dossier débute par une écoute approfondie, une analyse rigoureuse et la définition d’une stratégie proportionnée. Nous alternons missions de terrain, investigation numérique et accompagnement juridique pour protéger vos intérêts.</p>
+                    <div class="cabinet-highlight">
+                        <em>« Chaque mission est unique, chaque histoire compte. »</em>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="h5">Notre Équipe</h3>
-                            <ul class="list-unstyled mb-0">
-                                <li>Détectives privés agréés</li>
-                                <li>Juristes spécialisés</li>
-                                <li>Consultants en sécurité</li>
-                                <li>Experts en cyber-enquête</li>
-                                <li>Partenaires avocats et huissiers</li>
-                            </ul>
-                        </div>
+            </article>
+
+            <article class="cabinet-module" id="services">
+                <h2>Services</h2>
+                <h3>Domaines d’intervention</h3>
+                <div class="cabinet-text">
+                    <ul class="cabinet-list">
+                        <li>Enquêtes civiles et familiales</li>
+                        <li>Enquêtes pénales et appui aux avocats</li>
+                        <li>Enquêtes commerciales & concurrence</li>
+                        <li>Cyber-enquêtes & e-réputation</li>
+                        <li>Conseil, audits et accompagnement juridique</li>
+                    </ul>
+                </div>
+                <div class="cabinet-stats">
+                    <div class="cabinet-stat">
+                        <strong>6+</strong>
+                        <span>années d’expertise cumulée</span>
+                    </div>
+                    <div class="cabinet-stat">
+                        <strong>24h</strong>
+                        <span>pour un premier rapport de situation</span>
                     </div>
                 </div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <h2 class="h4">Contact & Coordonnées</h2>
-                    <ul class="list-unstyled">
+            </article>
+
+            <article class="cabinet-module">
+                <h2>Équipe</h2>
+                <h3>Compétences réunies</h3>
+                <div class="cabinet-text">
+                    <ul class="cabinet-list">
+                        <li>Détectives privés agréés CNAPS</li>
+                        <li>Juristes spécialisés en procédures civiles & pénales</li>
+                        <li>Experts cybersécurité et analystes data</li>
+                        <li>Consultants sûreté & gestion de crise</li>
+                        <li>Partenaires avocats, huissiers et experts judiciaires</li>
+                    </ul>
+                </div>
+                <div class="cabinet-callouts">
+                    <div class="cabinet-callout">
+                        <strong>Impartialité</strong><br>
+                        Investigations menées dans le respect strict du cadre légal français.
+                    </div>
+                    <div class="cabinet-callout">
+                        <strong>Confidentialité</strong><br>
+                        Traitement sécurisé des informations et rapport circonstancié.
+                    </div>
+                </div>
+            </article>
+
+            <article class="cabinet-module">
+                <h2>Implantation</h2>
+                <h3>Disponibilité & contact</h3>
+                <div class="cabinet-text">
+                    <ul class="cabinet-list">
                         <li><strong>Adresse :</strong> Marseille / Paris</li>
-                        <li><strong>Téléphone :</strong> 04.65.57.41.76</li>
-                        <li><strong>Email :</strong> sne@bensops.com</li>
-                    </ul>
-                    <div class="mt-3">
-                        <a href="mailto:sne@bensops.com" class="btn btn-primary btn-sm">Envoyer un email</a>
-                        <a href="tel:0465574176" class="btn btn-outline-secondary btn-sm ms-2">Appeler</a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h2 class="h4">Horaires</h2>
-                    <ul class="list-unstyled">
-                        <li>Lundi - Dimanche : 9h00 - 21h00</li>
+                        <li><strong>Téléphone :</strong> <a href="tel:0465574176" class="cabinet-cta-secondary"><i class="fas fa-phone"></i> 04.65.57.41.76</a></li>
+                        <li><strong>Email :</strong> <a href="mailto:sne@bensops.com" class="cabinet-cta-secondary"><i class="fas fa-envelope"></i> sne@bensops.com</a></li>
+                        <li><strong>Horaires :</strong> Lundi – Dimanche<br><strong>9h00 – 21h00</strong></li>
                     </ul>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="text-muted small">&copy; {{ "now"|date("Y") }} Cabinet d’enquêtes privées et juridiques. Tous droits réservés.</p>
+                <div class="cabinet-highlight">
+                    <p>Premier échange gratuit et confidentiel pour cadrer vos objectifs et définir la stratégie d’intervention.</p>
                 </div>
+            </article>
+        </div>
+
+        <div class="cabinet-cta">
+            <div class="cabinet-cta-info">
+                <h3>Confiez-nous votre dossier sensible</h3>
+                <p class="cabinet-text">Nos détectives analysent vos besoins, sécurisent les preuves et vous accompagnent jusqu’à la restitution juridique. Discutons de votre situation, où que vous soyez.</p>
             </div>
-        </section>
+            <div class="cabinet-cta-actions">
+                <a href="mailto:sne@bensops.com" class="cabinet-cta-link">
+                    <i class="fas fa-envelope"></i>
+                    Écrire au cabinet
+                </a>
+                <a href="tel:0465574176" class="cabinet-cta-secondary">
+                    <i class="fas fa-phone"></i>
+                    Ligne directe
+                </a>
+                <a href="{{ path('calendar') }}" class="cabinet-cta-secondary">
+                    <i class="fas fa-calendar-alt"></i>
+                    Programmer un rendez-vous
+                </a>
+            </div>
+        </div>
+
+        <footer class="cabinet-footer">
+            &copy; {{ "now"|date("Y") }} Cabinet d’enquêtes privées BENSOPS. Confidentialité et rigueur garanties.
+        </footer>
     </div>
-</div>
+</section>
 {% endblock %}

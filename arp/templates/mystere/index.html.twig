@@ -1,20 +1,504 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MystereController!{% endblock %}
+{% block title %}Opérations de client mystère{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .mystere-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: linear-gradient(130deg, #061321 0%, #101e44 45%, #0d1d35 100%);
+        color: rgba(231, 238, 255, 0.92);
+        overflow: hidden;
+    }
+    .mystere-luxe::before,
+    .mystere-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.58;
+        pointer-events: none;
+    }
+    .mystere-luxe::before {
+        width: 600px;
+        height: 600px;
+        top: -210px;
+        left: -190px;
+        background: radial-gradient(circle, rgba(95, 142, 255, 0.34) 0%, rgba(95, 142, 255, 0) 70%);
+    }
+    .mystere-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(92, 247, 255, 0.32) 0%, rgba(92, 247, 255, 0) 70%);
+    }
+    .mystere-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .mystere-hero {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    .mystere-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(95, 142, 255, 0.38);
+        background: rgba(9, 30, 61, 0.74);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #a7c4ff;
+        margin-bottom: 1.6rem;
+    }
+    .mystere-hero h1 {
+        font-size: 3rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+    }
+    .mystere-hero p {
+        max-width: 780px;
+        margin: 0 auto 1rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(231, 238, 255, 0.76);
+    }
+    .mystere-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .mystere-metric {
+        background: rgba(5, 21, 40, 0.78);
+        border-radius: 20px;
+        border: 1px solid rgba(167, 196, 255, 0.22);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.45);
+    }
+    .mystere-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #8ebaff;
+    }
+    .mystere-metric span {
+        font-size: 0.92rem;
+        color: rgba(231, 238, 255, 0.72);
+    }
+    .mystere-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.2rem;
+    }
+    .mystere-card {
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(9, 28, 56, 0.72));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
+    }
+    .mystere-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #8ebaff;
+        margin-bottom: 1rem;
+    }
+    .mystere-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .mystere-card p,
+    .mystere-card li {
+        color: rgba(231, 238, 255, 0.8);
+        line-height: 1.75;
+    }
+    .mystere-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .mystere-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .mystere-scenario {
+        background: rgba(7, 26, 52, 0.76);
+        border-radius: 24px;
+        padding: 1.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
+        color: rgba(231, 238, 255, 0.78);
+    }
+    .mystere-scenario strong {
+        display: block;
+        font-size: 1.14rem;
+        color: #90bcff;
+        margin-bottom: 0.5rem;
+    }
+    .mystere-assurance {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.32);
+        border: 1px solid rgba(167, 196, 255, 0.22);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .mystere-assurance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .mystere-assurance-item {
+        background: rgba(8, 30, 57, 0.76);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(231, 238, 255, 0.78);
+    }
+    .mystere-assurance-item h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #8ebaff;
+        margin-bottom: 0.6rem;
+    }
+    .mystere-process {
+        margin: 3.6rem 0 3.3rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(4, 17, 36, 0.66);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
+    }
+    .mystere-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(231, 238, 255, 0.62);
+        margin-bottom: 2rem;
+    }
+    .mystere-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .mystere-step {
+        display: flex;
+        gap: 1.1rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .mystere-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(95, 142, 255, 0.28);
+        color: #90bcff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .mystere-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .mystere-step-text {
+        color: rgba(231, 238, 255, 0.76);
+        line-height: 1.6;
+    }
+    .mystere-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .mystere-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(6, 24, 48, 0.78);
+        border: 1px solid rgba(167, 196, 255, 0.24);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
+    }
+    .mystere-proof-card h3 {
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #8fbaff;
+        margin-bottom: 0.7rem;
+    }
+    .mystere-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(95, 142, 255, 0.18), rgba(3, 11, 25, 0.66));
+        border: 1px solid rgba(167, 196, 255, 0.22);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+    }
+    .mystere-cta h3 {
+        font-size: 1.88rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .mystere-cta p {
+        color: rgba(231, 238, 255, 0.78);
+        margin-bottom: 0;
+    }
+    .mystere-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .mystere-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #8fbaff, #5cf7ff);
+        color: #04122b;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(95, 142, 255, 0.45);
+    }
+    .mystere-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(167, 196, 255, 0.24);
+        background: rgba(5, 21, 40, 0.5);
+        color: #a7c4ff;
+        text-decoration: none;
+    }
+    .mystere-btn-primary:hover {
+        color: #04122b;
+    }
+    .mystere-btn-secondary:hover {
+        color: #ffffff;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #0b1324 !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #0b1324 !important;
+    }
+    @media (max-width: 991px) {
+        .mystere-hero h1 {
+            font-size: 2.5rem;
+        }
+        .mystere-process {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .mystere-shell {
+            padding: 0 1rem;
+        }
+        .mystere-hero h1 {
+            font-size: 2.1rem;
+        }
+        .mystere-cta {
+            grid-template-columns: 1fr;
+        }
+        .mystere-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .mystere-btn-primary,
+        .mystere-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .mystere-metric,
+        .mystere-card,
+        .mystere-step,
+        .mystere-proof-card,
+        .mystere-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="mystere-luxe">
+    <div class="mystere-shell">
+        <header class="mystere-hero">
+            <span class="badge">Expérience client</span>
+            <h1>Programmes client mystère sur-mesure pour maisons premium</h1>
+            <p>Retail luxe, hospitality, banque privée : capturez la réalité terrain avec une précision chirurgicale. Nos enquêteurs incarnent vos personas haut de gamme pour évaluer l’exécution de votre promesse marque.</p>
+            <p>Méthodologie inspirée des meilleurs cabinets UX et des standards Forbes Travel Guide.</p>
+            <div class="mystere-metrics">
+                <div class="mystere-metric">
+                    <strong>4,8/5</strong>
+                    <span>Satisfaction client moyenne post-plan d’action</span>
+                </div>
+                <div class="mystere-metric">
+                    <strong>12</strong>
+                    <span>Personas haut de gamme développés et incarnés</span>
+                </div>
+                <div class="mystere-metric">
+                    <strong>50&nbsp;pays</strong>
+                    <span>Couverture réseau d’enquêteurs certifiés</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="mystere-grid">
+            <article class="mystere-card">
+                <h2>Design</h2>
+                <h3>Scénarisation premium</h3>
+                <p>Nous co-construisons :</p>
+                <ul>
+                    <li>Parcours clients inspirés de vos standards CRM et chartes d’accueil.</li>
+                    <li>Grilles d’évaluation sur 120 critères (service, ventes, ambiance).</li>
+                    <li>Protocoles KPI : NPS, effort client, taux de conversion réel.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/MystereController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/mystere/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="mystere-card">
+                <h2>Immersion</h2>
+                <h3>Agents mystères formés</h3>
+                <p>Mise en scène authentique :</p>
+                <ul>
+                    <li>Briefs détaillés, répétitions, alignement dress-code et attitude.</li>
+                    <li>Enregistrements audio/vidéo discret, feedback à chaud.</li>
+                    <li>Intégration de scénarios omni-canaux (digital, téléphone, physique).</li>
+                </ul>
+            </article>
+
+            <article class="mystere-card">
+                <h2>Restitution</h2>
+                <h3>Dashboard exécutif</h3>
+                <p>Livrables actionnables :</p>
+                <ul>
+                    <li>Plateforme sécurisée, replay anonymisé, scoring dynamique.</li>
+                    <li>Plan d’actions hiérarchisé, benchmark intra-réseau.</li>
+                    <li>Coaching managers, workshops expérience client.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="mystere-scenarios" aria-label="Scénarios traités">
+            <article class="mystere-scenario">
+                <strong>Boutiques flagship</strong>
+                <p>Evaluation cross-canal, mesure de personalisation, recommandations luxe.</p>
+            </article>
+            <article class="mystere-scenario">
+                <strong>Hôtellerie 5*</strong>
+                <p>Tests check-in, spa, conciergerie, rapport complet type Leading Hotels.</p>
+            </article>
+            <article class="mystere-scenario">
+                <strong>Retail financier</strong>
+                <p>Analyse conformité et excellence relationnelle dans agences premium.</p>
+            </article>
+        </section>
+
+        <section class="mystere-assurance" aria-label="Nos garanties">
+            <div class="mystere-assurance-grid">
+                <div class="mystere-assurance-item">
+                    <h3>Agents certifiés</h3>
+                    <p>Audition rigoureuse, formation continue, NDA renforcé.</p>
+                </div>
+                <div class="mystere-assurance-item">
+                    <h3>Cadre légal</h3>
+                    <p>Processus CNAPS, respect vie privée, conformité RGPD.</p>
+                </div>
+                <div class="mystere-assurance-item">
+                    <h3>Insights exploitables</h3>
+                    <p>Rapports multi-format, recommandations prêtes à implémenter.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mystere-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="mystere-steps">
+                <div class="mystere-step">
+                    <div class="mystere-step-index">01</div>
+                    <div>
+                        <div class="mystere-step-title">Brief brand</div>
+                        <div class="mystere-step-text">Immersion ADN marque, définition objectifs et KPI.</div>
+                    </div>
+                </div>
+                <div class="mystere-step">
+                    <div class="mystere-step-index">02</div>
+                    <div>
+                        <div class="mystere-step-title">Design parcours</div>
+                        <div class="mystere-step-text">Création scénarios, questionnaires, alignement compliance.</div>
+                    </div>
+                </div>
+                <div class="mystere-step">
+                    <div class="mystere-step-index">03</div>
+                    <div>
+                        <div class="mystere-step-title">Opérations terrain</div>
+                        <div class="mystere-step-text">Visites anonymes, captations, reporting instantané.</div>
+                    </div>
+                </div>
+                <div class="mystere-step">
+                    <div class="mystere-step-index">04</div>
+                    <div>
+                        <div class="mystere-step-title">Restitution & coaching</div>
+                        <div class="mystere-step-text">Ateliers managers, suivi performance, itérations trimestrielles.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mystere-proof" aria-label="Études de cas">
+            <article class="mystere-proof-card">
+                <h3>Maison de joaillerie</h3>
+                <p>Amélioration upsell +18&nbsp;% après coaching basé sur nos missions.</p>
+            </article>
+            <article class="mystere-proof-card">
+                <h3>Resort ultra-luxe</h3>
+                <p>Obtention d’une 5e clé Forbes grâce aux recommandations déployées.</p>
+            </article>
+            <article class="mystere-proof-card">
+                <h3>Banque patrimoniale</h3>
+                <p>Hausse NPS de 12 points et conformité renforcée aux scripts MiFID.</p>
+            </article>
+        </section>
+
+        <section class="mystere-cta" aria-label="Contact">
+            <div>
+                <h3>Lancez votre programme client mystère premium</h3>
+                <p>Déploiement sous 3 semaines, dashboard temps réel, accompagnement CX.</p>
+            </div>
+            <div class="mystere-cta-actions">
+                <a class="mystere-btn-primary" href="tel:0465574176">Hotline CX : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="mystere-btn-secondary" href="{{ path('app_contact') }}">Réserver un atelier d’idéation</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

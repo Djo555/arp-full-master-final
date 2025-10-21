@@ -1,20 +1,603 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GardeController!{% endblock %}
+{% block title %}Enquête garde d'enfant{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .garde-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: linear-gradient(135deg, #0a1f1c 0%, #0d2926 48%, #081f1d 100%);
+        color: rgba(230, 244, 239, 0.92);
+        overflow: hidden;
+    }
+    .garde-luxe::before,
+    .garde-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.58;
+        pointer-events: none;
+    }
+    .garde-luxe::before {
+        width: 600px;
+        height: 600px;
+        top: -210px;
+        left: -190px;
+        background: radial-gradient(circle, rgba(96, 214, 192, 0.36) 0%, rgba(96, 214, 192, 0) 70%);
+    }
+    .garde-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(44, 169, 196, 0.34) 0%, rgba(44, 169, 196, 0) 70%);
+    }
+    .garde-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .garde-hero {
+        text-align: center;
+        margin-bottom: 3.6rem;
+    }
+    .garde-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(96, 214, 192, 0.42);
+        background: rgba(7, 36, 30, 0.72);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #a7f1df;
+        margin-bottom: 1.6rem;
+    }
+    .garde-hero h1 {
+        font-size: 2.9rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.3rem;
+    }
+    .garde-hero p {
+        max-width: 760px;
+        margin: 0 auto 0.9rem;
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: rgba(230, 244, 239, 0.75);
+    }
+    .garde-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .garde-metric {
+        background: rgba(10, 31, 28, 0.75);
+        border-radius: 20px;
+        border: 1px solid rgba(100, 240, 216, 0.16);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 22px 40px rgba(10, 31, 28, 0.35);
+    }
+    .garde-metric strong {
+        display: block;
+        font-size: 1.85rem;
+        color: #64f0d8;
+    }
+    .garde-metric span {
+        font-size: 0.92rem;
+        color: rgba(230, 244, 239, 0.68);
+    }
+    .garde-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.2rem;
+    }
+    .garde-card {
+        position: relative;
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(13, 41, 38, 0.65));
+        border: 1px solid rgba(100, 240, 216, 0.12);
+        box-shadow: 0 32px 48px rgba(0, 0, 0, 0.35);
+    }
+    .garde-card h2 {
+        font-size: 0.92rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #64f0d8;
+        margin-bottom: 1rem;
+    }
+    .garde-card h3 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .garde-card p,
+    .garde-card li {
+        color: rgba(230, 244, 239, 0.78);
+        line-height: 1.75;
+    }
+    .garde-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .garde-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .garde-scenario {
+        background: rgba(13, 41, 38, 0.6);
+        border: 1px solid rgba(100, 240, 216, 0.15);
+        border-radius: 24px;
+        padding: 1.9rem;
+        box-shadow: 0 26px 42px rgba(0, 0, 0, 0.35);
+    }
+    .garde-scenario strong {
+        display: block;
+        font-size: 1.15rem;
+        color: #64f0d8;
+        margin-bottom: 0.6rem;
+    }
+    .garde-process {
+        margin: 3.8rem 0;
+        padding: 2.8rem 2.3rem;
+        border-radius: 28px;
+        background: rgba(13, 41, 38, 0.86);
+        border: 1px solid rgba(100, 240, 216, 0.12);
+        color: rgba(230, 244, 239, 0.9);
+        box-shadow: 0 32px 54px rgba(10, 31, 28, 0.38);
+    }
+    .garde-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(100, 240, 216, 0.62);
+        margin-bottom: 2rem;
+    }
+    .garde-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .garde-step {
+        display: flex;
+        gap: 1.2rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(7, 16, 38, 0.42);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .garde-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(100, 240, 216, 0.2);
+        color: #64f0d8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .garde-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .garde-step-text {
+        color: rgba(236, 242, 255, 0.78);
+        line-height: 1.6;
+    }
+    .garde-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3.4rem;
+    }
+    .garde-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(100, 240, 216, 0.1);
+        box-shadow: 0 26px 45px rgba(0, 0, 0, 0.28);
+        color: rgba(230, 244, 239, 0.82);
+    }
+    .garde-proof-card h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #64f0d8;
+        margin-bottom: 0.7rem;
+    }
+    .garde-legal {
+        margin: 3.4rem 0;
+        padding: 2.9rem 2.3rem;
+        border-radius: 28px;
+        background: rgba(13, 41, 38, 0.9);
+        border: 1px solid rgba(100, 240, 216, 0.16);
+        box-shadow: 0 30px 48px rgba(10, 31, 28, 0.36);
+    }
+    .garde-legal-intro {
+        max-width: 820px;
+        margin-bottom: 2.4rem;
+    }
+    .garde-legal-intro h2 {
+        font-size: 2rem;
+        font-weight: 640;
+        color: #ffffff;
+        margin-bottom: 0.9rem;
+    }
+    .garde-legal-intro p {
+        color: rgba(230, 244, 239, 0.78);
+        line-height: 1.75;
+    }
+    .garde-legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.7rem;
+    }
+    .garde-legal-card {
+        padding: 2.1rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(100, 240, 216, 0.12);
+        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.32);
+        color: rgba(230, 244, 239, 0.78);
+    }
+    .garde-legal-card h3 {
+        font-size: 1.18rem;
+        font-weight: 610;
+        color: #64f0d8;
+        margin-bottom: 0.7rem;
+    }
+    .garde-legal-card p {
+        margin-bottom: 0.9rem;
+        line-height: 1.65;
+    }
+    .garde-legal-list {
+        padding-left: 1.1rem;
+        margin: 0;
+        color: rgba(230, 244, 239, 0.72);
+        line-height: 1.6;
+    }
+    .garde-legal-footnote {
+        margin-top: 2.4rem;
+        padding: 1.9rem 2rem;
+        border-radius: 22px;
+        background: rgba(100, 240, 216, 0.1);
+        border: 1px solid rgba(100, 240, 216, 0.28);
+        color: rgba(230, 244, 239, 0.78);
+        line-height: 1.65;
+    }
+    .garde-signet {
+        margin: 3.2rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 24px;
+        background: rgba(13, 41, 38, 0.6);
+        border: 1px solid rgba(100, 240, 216, 0.12);
+        box-shadow: 0 24px 45px rgba(10, 31, 28, 0.34);
+    }
+    .garde-signet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .garde-signet-item {
+        background: rgba(13, 41, 38, 0.7);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(100, 240, 216, 0.1);
+        color: rgba(230, 244, 239, 0.78);
+    }
+    .garde-signet-item h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #64f0d8;
+        margin-bottom: 0.6rem;
+    }
+    .garde-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(100, 240, 216, 0.12), rgba(13, 41, 38, 0.6));
+        border: 1px solid rgba(100, 240, 216, 0.16);
+        box-shadow: 0 32px 52px rgba(10, 31, 28, 0.38);
+    }
+    .garde-cta h3 {
+        font-size: 1.85rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .garde-cta p {
+        color: rgba(230, 244, 239, 0.78);
+        margin-bottom: 0;
+    }
+    .garde-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .garde-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #64f0d8, #3fd9c8);
+        color: #0a1f1c;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 24px 40px rgba(100, 240, 216, 0.3);
+    }
+    .garde-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(100, 240, 216, 0.24);
+        background: rgba(100, 240, 216, 0.08);
+        color: #64f0d8;
+        text-decoration: none;
+    }
+    .garde-btn-primary:hover,
+    .garde-btn-secondary:hover {
+        color: #0a1f1c;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #0f2036 !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #0f2036 !important;
+    }
+    @media (max-width: 991px) {
+        .garde-hero h1 {
+            font-size: 2.4rem;
+        }
+        .garde-process {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .garde-shell {
+            padding: 0 1rem;
+        }
+        .garde-hero h1 {
+            font-size: 2.1rem;
+        }
+        .garde-legal {
+            padding: 2.2rem 1.6rem;
+        }
+        .garde-cta {
+            grid-template-columns: 1fr;
+        }
+        .garde-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .garde-btn-primary,
+        .garde-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .garde-metric,
+        .garde-card,
+        .garde-step,
+        .garde-proof-card,
+        .garde-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="garde-luxe">
+    <div class="garde-shell">
+        <header class="garde-hero">
+            <span class="badge">Protection familiale</span>
+            <h1>Enquêtes garde d'enfant pour familles hautement exposées</h1>
+            <p>Nous sécurisons la garde de vos enfants dans les contextes de séparation les plus sensibles. Inspirés par les protocoles de référence des agences haut de gamme internationales, nous croisons filatures, évaluations comportementales et intelligence numérique.</p>
+            <p>Chaque mission est pilotée par un directeur d’enquête dédié, en liaison directe avec votre avocat, pédopsychiatre ou médiateur familial.</p>
+            <div class="garde-metrics">
+                <div class="garde-metric">
+                    <strong>48&nbsp;h</strong>
+                    <span>Déploiement d’un dispositif de surveillance sur mesure</span>
+                </div>
+                <div class="garde-metric">
+                    <strong>92%</strong>
+                    <span>De nos rapports intégrés aux conclusions du juge aux affaires familiales</span>
+                </div>
+                <div class="garde-metric">
+                    <strong>15</strong>
+                    <span>Experts psycho-social, cybersécurité et protection rapprochée mobilisables</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="garde-grid">
+            <article class="garde-card">
+                <h2>Stratégie</h2>
+                <h3>Comprendre la dynamique familiale réelle</h3>
+                <p>Nos détectives recueillent des éléments objectifs pour documenter :</p>
+                <ul>
+                    <li>Comportements incompatibles avec l’intérêt de l’enfant (addictions, compagnies à risque, absences récurrentes).</li>
+                    <li>Respect des décisions judiciaires, horaires de garde et obligations éducatives.</li>
+                    <li>Situation matérielle et environnementale : logement, sécurité, fréquentations.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/GardeController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/garde/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="garde-card">
+                <h2>Dispositifs</h2>
+                <h3>Investigations discrètes et éthiques</h3>
+                <p>Nous adaptons le protocole à la sensibilité de votre dossier :</p>
+                <ul>
+                    <li>Filatures discrètes, proxys vidéo, surveillances OSINT et e-réputation.</li>
+                    <li>Auditions de témoins, recueil d’attestations circonstanciées.</li>
+                    <li>Collaboration avec professionnels de santé et travailleurs sociaux agréés.</li>
+                </ul>
+            </article>
+
+            <article class="garde-card">
+                <h2>Restitution</h2>
+                <h3>Rapports probatoires et accompagnement audience</h3>
+                <p>Nous préparons vos audiences et négociations :</p>
+                <ul>
+                    <li>Rapports horodatés, photographies géolocalisées, annexes certifiées.</li>
+                    <li>Briefing avec votre avocat, simulations d’audience, présence possible en qualité de témoin.</li>
+                    <li>Suivi post-décision pour vérifier l’exécution des mesures prononcées.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="garde-scenarios" aria-label="Scénarios traités">
+            <article class="garde-scenario">
+                <strong>Soupçon de maltraitance ou désintérêt parental</strong>
+                <p>Documentation de négligence, absentéisme scolaire, propos dénigrants, exposition à des dangers matériels ou psychologiques.</p>
+            </article>
+            <article class="garde-scenario">
+                <strong>Délocalisation non autorisée</strong>
+                <p>Surveillance logistique, suivi de déplacements internationaux, attestations pour faire respecter les interdictions de sortie du territoire.</p>
+            </article>
+            <article class="garde-scenario">
+                <strong>Aliénation parentale</strong>
+                <p>Collecte de preuves de manipulations, enregistrements légaux des échanges, structuration d’un dossier rétablissant la vérité auprès du juge.</p>
+            </article>
+        </section>
+
+        <section class="garde-legal" aria-label="Cadre juridique garde d'enfant">
+            <div class="garde-legal-intro">
+                <h2>Cadre juridique BENSOPS pour la garde et les droits de visite</h2>
+                <p>Après une séparation, définir résidence, droit de visite et hébergement nécessite un pilotage juridique millimétré. BENSOPS traduit les obligations du Code civil en plan d’action protecteur, qu’il s’agisse de confirmer une garde alternée, de sécuriser une garde exclusive ou de faire respecter un droit de visite.</p>
+            </div>
+            <div class="garde-legal-grid">
+                <article class="garde-legal-card">
+                    <h3>Garde, visite & hébergement</h3>
+                    <p>Lorsque la résidence alternée n’est pas retenue, le parent non gardien bénéficie d’un droit de visite, souvent assorti d’un hébergement (week-ends alternés, moitié des vacances). Ces modalités peuvent se dérouler au domicile, chez l’autre parent sous supervision ou en espace médiatisé.</p>
+                    <p>Nous évaluons la conformité du cadre d’accueil : sobriété, stabilité, présence de tiers fiables et adaptation aux besoins de l’enfant.</p>
+                </article>
+                <article class="garde-legal-card">
+                    <h3>Autorité parentale & article 373-2</h3>
+                    <p>La séparation ne remet pas en cause l’autorité parentale : chaque parent doit maintenir des liens avec l’enfant et respecter ceux de l’autre. Seuls des motifs graves (danger, désintérêt, condamnations) permettent d’en limiter l’exercice.</p>
+                    <ul class="garde-legal-list">
+                        <li>Protocole judiciaire : convention homologuée ou décision du juge aux affaires familiales.</li>
+                        <li>Pension alimentaire possible même en garde alternée en cas de forte disparité de revenus.</li>
+                        <li>Centres de visites médiatisées ou tiers de confiance si l’intérêt de l’enfant l’exige.</li>
+                    </ul>
+                </article>
+                <article class="garde-legal-card">
+                    <h3>Modifications & déménagements</h3>
+                    <p>Toute évolution (déménagement, nouvel enfant, perte d’emploi) peut justifier une révision. Les parents peuvent s’accorder et faire homologuer l’avenant ou saisir le JAF en cas de désaccord. Une enquête sociale ou médiation peut être ordonnée.</p>
+                    <p>Notre task-force vérifie la réalité des « faits nouveaux » et documente les distances, temps de trajet, disponibilité effective des parents.</p>
+                </article>
+                <article class="garde-legal-card">
+                    <h3>Non-respect & sanctions</h3>
+                    <p>Refuser de remettre l’enfant ou le soustraire au droit de visite constitue un délit de non-représentation (article 227-5 du Code pénal : 1 an d’emprisonnement et 15&nbsp;000&nbsp;€). Retenir l’enfant à l’étranger ou au-delà de cinq jours aggrave les peines.</p>
+                    <p>Nous produisons les preuves horodatées nécessaires à la plainte ou à l’exécution forcée, et retraçons l’itinéraire du parent défaillant.</p>
+                </article>
+            </div>
+            <div class="garde-legal-footnote">
+                <strong>Mission BENSOPS :</strong> nos détectives agréés CNAPS recueillent preuves de maltraitance, négligence ou non-respect des décisions, assistent vos avocats pour obtenir garde exclusive, modification des droits ou sanctions adaptées, et localisent un parent en fuite pour restaurer la relation parent-enfant.
+            </div>
+        </section>
+
+        <section class="garde-signet" aria-label="Nos garanties">
+            <div class="garde-signet-grid">
+                <div class="garde-signet-item">
+                    <h3>Procédure conforme JAF</h3>
+                    <p>Respect strict du Code civil, des règles CNAPS et du cadre fixé par vos conseils. Conservation des preuves dans un coffre-fort numérique chiffré.</p>
+                </div>
+                <div class="garde-signet-item">
+                    <h3>Comité parental & experts</h3>
+                    <p>Coordination avec pédopsychiatres, éducateurs spécialisés et médiateurs agréés pour sécuriser chaque échange avec l’enfant.</p>
+                </div>
+                <div class="garde-signet-item">
+                    <h3>Veille continue 24/7</h3>
+                    <p>Alertes en temps réel, hotline confidentielle et possibilité de déclencher une équipe de crise de nuit comme de jour.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="garde-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="garde-steps">
+                <div class="garde-step">
+                    <div class="garde-step-index">01</div>
+                    <div>
+                        <div class="garde-step-title">Brief confidentiel</div>
+                        <div class="garde-step-text">Entretien sécurisé avec vous et votre avocat pour comprendre l’environnement familial et les points de vigilance.</div>
+                    </div>
+                </div>
+                <div class="garde-step">
+                    <div class="garde-step-index">02</div>
+                    <div>
+                        <div class="garde-step-title">Plan de surveillance</div>
+                        <div class="garde-step-text">Sélection d’agents, planification des filatures, mise en place d’indicateurs de risque et d’un calendrier de reporting.</div>
+                    </div>
+                </div>
+                <div class="garde-step">
+                    <div class="garde-step-index">03</div>
+                    <div>
+                        <div class="garde-step-title">Restitution probatoire</div>
+                        <div class="garde-step-text">Rapport circonstancié, annexes légales, préparation de l’argumentaire avec vos conseils.</div>
+                    </div>
+                </div>
+                <div class="garde-step">
+                    <div class="garde-step-index">04</div>
+                    <div>
+                        <div class="garde-step-title">Suivi de décision</div>
+                        <div class="garde-step-text">Veille post-jugement, contrôle du respect des droits de visite et des obligations fixées par le tribunal.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="garde-proof" aria-label="Études de cas">
+            <article class="garde-proof-card">
+                <h3>Réattribution de garde exclusive</h3>
+                <p>Détection de négligences quotidiennes, attestation des voisins, rapport psychologique coordonné : garde transférée au parent protecteur en six semaines.</p>
+            </article>
+            <article class="garde-proof-card">
+                <h3>Blocage d’une expatriation forcée</h3>
+                <p>Surveillance des réservations de billets, collaboration avec un détective partenaire à Dubaï, assignation sur pièces ayant empêché le départ.</p>
+            </article>
+            <article class="garde-proof-card">
+                <h3>Preuve d’aliénation parentale</h3>
+                <p>Analyse d’échanges numériques, constitution d’un dossier vidéo chronologique et témoignages corroborants : médiation ordonnée par le juge.</p>
+            </article>
+        </section>
+
+        <section class="garde-cta" aria-label="Contact">
+            <div>
+                <h3>Protégeons vos enfants, avec méthode et discrétion</h3>
+                <p>Nous intervenons partout en France et à l’international grâce à notre réseau d’agents agréés. Premier entretien confidentiel sans engagement.</p>
+            </div>
+            <div class="garde-cta-actions">
+                <a class="garde-btn-primary" href="{{ path('app_contact') }}">Demander un audit de situation</a>
+                <a class="garde-btn-secondary" href="tel:0465574176">Hotline parents : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

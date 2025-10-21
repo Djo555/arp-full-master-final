@@ -1,20 +1,612 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VolsController!{% endblock %}
+{% block title %}Détection des vols internes{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .vols-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: linear-gradient(135deg, #120d03 0%, #2b2106 48%, #140c02 100%);
+        color: rgba(246, 235, 213, 0.92);
+        overflow: hidden;
+    }
+    .vols-luxe::before,
+    .vols-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.58;
+        pointer-events: none;
+    }
+    .vols-luxe::before {
+        width: 600px;
+        height: 600px;
+        top: -210px;
+        left: -190px;
+        background: radial-gradient(circle, rgba(247, 196, 90, 0.36) 0%, rgba(247, 196, 90, 0) 70%);
+    }
+    .vols-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(204, 147, 49, 0.32) 0%, rgba(204, 147, 49, 0) 70%);
+    }
+    .vols-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .vols-hero {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    .vols-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(247, 196, 90, 0.42);
+        background: rgba(41, 28, 9, 0.72);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #fcdca0;
+        margin-bottom: 1.6rem;
+    }
+    .vols-hero h1 {
+        font-size: 3rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+    }
+    .vols-hero p {
+        max-width: 780px;
+        margin: 0 auto 1rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(246, 235, 213, 0.78);
+    }
+    .vols-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .vols-metric {
+        background: rgba(33, 23, 8, 0.78);
+        border-radius: 20px;
+        border: 1px solid rgba(252, 220, 160, 0.22);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.45);
+    }
+    .vols-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #fcdca0;
+    }
+    .vols-metric span {
+        font-size: 0.92rem;
+        color: rgba(246, 235, 213, 0.72);
+    }
+    .vols-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.2rem;
+    }
+    .vols-card {
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(34, 22, 8, 0.72));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
+    }
+    .vols-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #f7c45a;
+        margin-bottom: 1rem;
+    }
+    .vols-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .vols-card p,
+    .vols-card li {
+        color: rgba(246, 235, 213, 0.82);
+        line-height: 1.75;
+    }
+    .vols-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .vols-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .vols-scenario {
+        background: rgba(36, 24, 9, 0.78);
+        border-radius: 24px;
+        padding: 1.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
+        color: rgba(246, 235, 213, 0.78);
+    }
+    .vols-scenario strong {
+        display: block;
+        font-size: 1.14rem;
+        color: #f9cf72;
+        margin-bottom: 0.5rem;
+    }
+    .vols-assurance {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.32);
+        border: 1px solid rgba(252, 220, 160, 0.24);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .vols-assurance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .vols-assurance-item {
+        background: rgba(36, 25, 9, 0.76);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(246, 235, 213, 0.78);
+    }
+    .vols-assurance-item h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #f7c45a;
+        margin-bottom: 0.6rem;
+    }
+    .vols-process {
+        margin: 3.6rem 0 3.3rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(25, 17, 6, 0.66);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
+    }
+    .vols-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(246, 235, 213, 0.62);
+        margin-bottom: 2rem;
+    }
+    .vols-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .vols-step {
+        display: flex;
+        gap: 1.1rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .vols-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(247, 196, 90, 0.28);
+        color: #f9cf72;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .vols-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .vols-step-text {
+        color: rgba(246, 235, 213, 0.76);
+        line-height: 1.6;
+    }
+    .vols-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .vols-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(36, 24, 9, 0.78);
+        border: 1px solid rgba(252, 220, 160, 0.24);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
+    }
+    .vols-proof-card h3 {
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #f9cf72;
+        margin-bottom: 0.7rem;
+    }
+    .vols-proof-card p {
+        color: rgba(246, 235, 213, 0.82);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    .vols-legal {
+        margin: 3.4rem 0;
+        padding: 2.8rem 2.4rem;
+        border-radius: 30px;
+        background: linear-gradient(165deg, rgba(30, 21, 7, 0.88), rgba(44, 32, 10, 0.64));
+        border: 1px solid rgba(247, 196, 90, 0.24);
+        box-shadow: 0 38px 64px rgba(0, 0, 0, 0.55);
+    }
+    .vols-legal-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 2.6rem;
+    }
+    .vols-legal-highlight {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #f7c45a;
+    }
+    .vols-legal-highlight::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: #f7c45a;
+        opacity: 0.7;
+    }
+    .vols-legal-header h2 {
+        font-size: 2.05rem;
+        font-weight: 620;
+        color: #ffffff;
+    }
+    .vols-legal-header p {
+        color: rgba(246, 235, 213, 0.8);
+        max-width: 780px;
+        line-height: 1.7;
+    }
+    .vols-legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .vols-legal-card {
+        padding: 1.9rem;
+        border-radius: 24px;
+        background: rgba(36, 25, 9, 0.82);
+        border: 1px solid rgba(247, 196, 90, 0.24);
+        box-shadow: 0 30px 54px rgba(0, 0, 0, 0.5);
+    }
+    .vols-legal-card h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #fcdca0;
+        margin-bottom: 0.6rem;
+    }
+    .vols-legal-card p {
+        color: rgba(246, 235, 213, 0.78);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    .vols-legal-footnote {
+        margin-top: 2.4rem;
+        font-size: 0.86rem;
+        color: rgba(246, 235, 213, 0.68);
+        line-height: 1.7;
+    }
+    .vols-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(247, 196, 90, 0.18), rgba(9, 6, 2, 0.66));
+        border: 1px solid rgba(252, 220, 160, 0.24);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+    }
+    .vols-cta h3 {
+        font-size: 1.88rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .vols-cta p {
+        color: rgba(246, 235, 213, 0.78);
+        margin-bottom: 0;
+    }
+    .vols-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .vols-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #f9cf72, #c69331);
+        color: #2f1c05;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(204, 147, 49, 0.45);
+    }
+    .vols-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(252, 220, 160, 0.28);
+        background: rgba(33, 23, 8, 0.5);
+        color: #fcdca0;
+        text-decoration: none;
+    }
+    .vols-btn-primary:hover {
+        color: #2f1c05;
+    }
+    .vols-btn-secondary:hover {
+        color: #ffffff;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #241a08 !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #241a08 !important;
+    }
+    @media (max-width: 991px) {
+        .vols-hero h1 {
+            font-size: 2.5rem;
+        }
+        .vols-process {
+            padding: 2.4rem 1.9rem;
+        }
+        .vols-legal {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .vols-shell {
+            padding: 0 1rem;
+        }
+        .vols-hero h1 {
+            font-size: 2.1rem;
+        }
+        .vols-cta {
+            grid-template-columns: 1fr;
+        }
+        .vols-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .vols-btn-primary,
+        .vols-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+        .vols-legal {
+            padding: 2.1rem 1.5rem;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .vols-metric,
+        .vols-card,
+        .vols-step,
+        .vols-proof-card,
+        .vols-legal-card,
+        .vols-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="vols-luxe">
+    <div class="vols-shell">
+        <header class="vols-hero">
+            <span class="badge">Protection des actifs</span>
+            <h1>Éradiquez les vols internes avec une cellule dédiée haut de gamme</h1>
+            <p>Inventaires qui s’évaporent, manipulations de caisses, détournement logistique : nous combinons audits technologiques, investigations terrain et analyses comportementales pour produire des preuves irréfutables.</p>
+            <p>Approche inspirée des meilleures pratiques internationales de loss prevention.</p>
+            <div class="vols-metrics">
+                <div class="vols-metric">
+                    <strong>-45&nbsp;%</strong>
+                    <span>De shrinkage moyen dans les 6 mois suivant nos interventions</span>
+                </div>
+                <div class="vols-metric">
+                    <strong>72&nbsp;h</strong>
+                    <span>Pour identifier le mode opératoire dominant</span>
+                </div>
+                <div class="vols-metric">
+                    <strong>1,2&nbsp;M€</strong>
+                    <span>Moyenne des actifs sécurisés par mission sur 3 ans</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="vols-grid">
+            <article class="vols-card">
+                <h2>Diagnostic</h2>
+                <h3>Audit supply & cash</h3>
+                <p>Analyse approfondie :</p>
+                <ul>
+                    <li>Cartographie des flux sensibles, KPI shrinkage, zones d’ombre.</li>
+                    <li>Examen vidéosurveillance, contrôles d’accès, IoT logistique.</li>
+                    <li>Entretiens ciblés, scoring intégrité, croisement badge/ERP.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/VolsController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/vols/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="vols-card">
+                <h2>Investigation</h2>
+                <h3>Opérations terrain & data</h3>
+                <p>Moyens déployés :</p>
+                <ul>
+                    <li>Surveillance discrète, rotations d’agents, marquage de marchandises.</li>
+                    <li>Analyse transactions, caisse noire, rapprochement comptable.</li>
+                    <li>Tests d’intrusion, infiltration interne, capteurs dissimulés.</li>
+                </ul>
+            </article>
+
+            <article class="vols-card">
+                <h2>Résolution</h2>
+                <h3>Action corrective & juridique</h3>
+                <p>Livrables premium :</p>
+                <ul>
+                    <li>Rapport probatoire, preuves vidéo, témoignages signés.</li>
+                    <li>Accompagnement dépôt plainte, gestion disciplinaire.</li>
+                    <li>Plan de sécurisation, formation équipes, technologies anti-vol.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="vols-scenarios" aria-label="Cas traités">
+            <article class="vols-scenario">
+                <strong>Plateforme logistique</strong>
+                <p>Démantèlement d’une fraude nocturne orchestrée, coopération gendarmerie.</p>
+            </article>
+            <article class="vols-scenario">
+                <strong>Retail luxe</strong>
+                <p>Identification d’un réseau de caissiers complices, pertes stoppées, image préservée.</p>
+            </article>
+            <article class="vols-scenario">
+                <strong>Production industrielle</strong>
+                <p>Détection siphonnage matières premières, procédures renforcées, responsables sanctionnés.</p>
+            </article>
+        </section>
+
+        <section class="vols-assurance" aria-label="Nos garanties">
+            <div class="vols-assurance-grid">
+                <div class="vols-assurance-item">
+                    <h3>Discrétion absolue</h3>
+                    <p>Interventions hors horaires, protections identités, restitution chiffrée.</p>
+                </div>
+                <div class="vols-assurance-item">
+                    <h3>Cadre légal maîtrisé</h3>
+                    <p>CNAPS, RGPD, conformité droit du travail et vidéosurveillance.</p>
+                </div>
+                <div class="vols-assurance-item">
+                    <h3>Retour sur investissement</h3>
+                    <p>Plan ROI détaillé, suivi KPI shrinkage, support assurance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="vols-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="vols-steps">
+                <div class="vols-step">
+                    <div class="vols-step-index">01</div>
+                    <div>
+                        <div class="vols-step-title">Activation</div>
+                        <div class="vols-step-text">Brief codir, accords syndicaux si nécessaire, périmètre validé.</div>
+                    </div>
+                </div>
+                <div class="vols-step">
+                    <div class="vols-step-index">02</div>
+                    <div>
+                        <div class="vols-step-title">Audit & analyse</div>
+                        <div class="vols-step-text">Diagnostic data, site survey, détection failles.</div>
+                    </div>
+                </div>
+                <div class="vols-step">
+                    <div class="vols-step-index">03</div>
+                    <div>
+                        <div class="vols-step-title">Opérations</div>
+                        <div class="vols-step-text">Surveillance ciblée, infiltration, traçabilité produits.</div>
+                    </div>
+                </div>
+                <div class="vols-step">
+                    <div class="vols-step-index">04</div>
+                    <div>
+                        <div class="vols-step-title">Restitution</div>
+                        <div class="vols-step-text">Rapport, accompagnement juridique, plan anti-vol durable.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vols-proof" aria-label="Études de cas">
+            <article class="vols-proof-card">
+                <h3>Supply chain internationale</h3>
+                <p>Réseau de revente démantelé, 2,4&nbsp;M€ de marchandises récupérées.</p>
+            </article>
+            <article class="vols-proof-card">
+                <h3>Grande distribution</h3>
+                <p>Lutte shrinkage multi-sites, baisse 52&nbsp;% en 4 mois, label assurance obtenu.</p>
+            </article>
+            <article class="vols-proof-card">
+                <h3>Manufacturing</h3>
+                <p>Vols récurrents de composants, capteurs RFID installés, responsables sanctionnés.</p>
+            </article>
+        </section>
+
+        <section class="vols-legal" aria-label="Cadre légal des vols internes">
+            <div class="vols-legal-header">
+                <span class="vols-legal-highlight">Cadre juridique</span>
+                <h2>Constituez un dossier indiscutable avant plainte ou licenciement</h2>
+                <p>BENSOPS sécurise vos décisions en s’appuyant sur le Code pénal, le Code du travail et la jurisprudence récente. Nos rapports détaillent la faute, le préjudice et le mode opératoire pour enclencher sanctions disciplinaires, dépôts de plainte ou actions civiles.</p>
+            </div>
+            <div class="vols-legal-grid">
+                <article class="vols-legal-card">
+                    <h3>Vol & abus de confiance</h3>
+                    <p>Qualification des faits selon les articles 311-1 (vol) et 314-1 (abus de confiance) du Code pénal. Nous documentons circonstances aggravantes, complicité interne/externe et impact financier pour soutenir la procédure pénale.</p>
+                </article>
+                <article class="vols-legal-card">
+                    <h3>De la suspicion à la preuve</h3>
+                    <p>Filatures, infiltrations, achats-tests, balises GPS ou contrôles de caisse sont conduits dans un cadre légal strict, proportionné au préjudice pressenti. Chaîne de preuve préservée pour exploitation devant prud’hommes ou tribunaux correctionnels.</p>
+                </article>
+                <article class="vols-legal-card">
+                    <h3>Sanctions internes maîtrisées</h3>
+                    <p>Nous accompagnons les procédures disciplinaires en veillant au respect du Code du travail&nbsp;: convocation, entretien, notification. Les preuves récoltées justifient mise à pied conservatoire, licenciement pour faute grave ou poursuites civiles.</p>
+                </article>
+                <article class="vols-legal-card">
+                    <h3>Rôle du détective privé</h3>
+                    <p>Agents agréés CNAPS, interventions passives ou actives selon votre stratégie, coordination forces de l’ordre en flagrant délit. Les rapports BENSOPS sont recevables en interne, auprès des assureurs et devant les juridictions pénales.</p>
+                </article>
+            </div>
+            <p class="vols-legal-footnote">Chaque mission intègre la traçabilité des sources, l’évaluation du manque à gagner (le vol interne représente jusqu’à 1&nbsp;% du CA dans certains secteurs) et la coordination éventuelle avec un commissaire de justice pour sceller les preuves. Objectif&nbsp;: mettre fin aux détournements et restaurer la confiance interne.</p>
+        </section>
+
+        <section class="vols-cta" aria-label="Contact">
+            <div>
+                <h3>Activez la cellule anti-vols internes</h3>
+                <p>Réponse immédiate, experts sécurité & data analytics dédiés.</p>
+            </div>
+            <div class="vols-cta-actions">
+                <a class="vols-btn-primary" href="tel:0465574176">Hotline actifs : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="vols-btn-secondary" href="{{ path('app_contact') }}">Programmer un audit de shrinkage</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

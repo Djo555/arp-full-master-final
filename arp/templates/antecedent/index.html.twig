@@ -1,20 +1,504 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AntecedentController!{% endblock %}
+{% block title %}Analyse des antécédents{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .antecedent-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: linear-gradient(125deg, #030712 0%, #0b1a38 45%, #041b31 100%);
+        color: rgba(230, 238, 255, 0.9);
+        overflow: hidden;
+    }
+    .antecedent-luxe::before,
+    .antecedent-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(48px);
+        opacity: 0.55;
+        pointer-events: none;
+    }
+    .antecedent-luxe::before {
+        width: 580px;
+        height: 580px;
+        top: -200px;
+        left: -170px;
+        background: radial-gradient(circle, rgba(84, 184, 255, 0.35) 0%, rgba(84, 184, 255, 0) 70%);
+    }
+    .antecedent-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -150px;
+        background: radial-gradient(circle, rgba(120, 92, 255, 0.32) 0%, rgba(120, 92, 255, 0) 70%);
+    }
+    .antecedent-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .antecedent-hero {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    .antecedent-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(120, 92, 255, 0.38);
+        background: rgba(5, 16, 42, 0.72);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #a7bfff;
+        margin-bottom: 1.6rem;
+    }
+    .antecedent-hero h1 {
+        font-size: 3rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+    }
+    .antecedent-hero p {
+        max-width: 720px;
+        margin: 0 auto 1rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(230, 238, 255, 0.75);
+    }
+    .antecedent-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .antecedent-metric {
+        background: rgba(3, 9, 22, 0.75);
+        border-radius: 20px;
+        border: 1px solid rgba(167, 191, 255, 0.2);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.45);
+    }
+    .antecedent-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #b9ccff;
+    }
+    .antecedent-metric span {
+        font-size: 0.92rem;
+        color: rgba(230, 238, 255, 0.7);
+    }
+    .antecedent-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.2rem;
+    }
+    .antecedent-card {
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(7, 15, 36, 0.7));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
+    }
+    .antecedent-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #8ea7ff;
+        margin-bottom: 1rem;
+    }
+    .antecedent-card h3 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .antecedent-card p,
+    .antecedent-card li {
+        color: rgba(230, 238, 255, 0.78);
+        line-height: 1.75;
+    }
+    .antecedent-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .antecedent-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .antecedent-scenario {
+        background: rgba(5, 12, 33, 0.74);
+        border-radius: 24px;
+        padding: 1.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
+        color: rgba(230, 238, 255, 0.78);
+    }
+    .antecedent-scenario strong {
+        display: block;
+        font-size: 1.14rem;
+        color: #b9ccff;
+        margin-bottom: 0.5rem;
+    }
+    .antecedent-assurance {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.32);
+        border: 1px solid rgba(167, 191, 255, 0.2);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .antecedent-assurance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .antecedent-assurance-item {
+        background: rgba(7, 16, 38, 0.74);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(230, 238, 255, 0.78);
+    }
+    .antecedent-assurance-item h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #94adff;
+        margin-bottom: 0.6rem;
+    }
+    .antecedent-process {
+        margin: 3.6rem 0 3.3rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(2, 6, 18, 0.62);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
+    }
+    .antecedent-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(230, 238, 255, 0.62);
+        margin-bottom: 2rem;
+    }
+    .antecedent-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .antecedent-step {
+        display: flex;
+        gap: 1.1rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .antecedent-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(120, 92, 255, 0.26);
+        color: #a7bfff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .antecedent-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .antecedent-step-text {
+        color: rgba(230, 238, 255, 0.76);
+        line-height: 1.6;
+    }
+    .antecedent-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .antecedent-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(4, 12, 30, 0.72);
+        border: 1px solid rgba(167, 191, 255, 0.22);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
+    }
+    .antecedent-proof-card h3 {
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #a7bfff;
+        margin-bottom: 0.7rem;
+    }
+    .antecedent-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(120, 92, 255, 0.18), rgba(0, 5, 15, 0.6));
+        border: 1px solid rgba(167, 191, 255, 0.2);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+    }
+    .antecedent-cta h3 {
+        font-size: 1.85rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .antecedent-cta p {
+        color: rgba(230, 238, 255, 0.75);
+        margin-bottom: 0;
+    }
+    .antecedent-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .antecedent-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #91a6ff, #785cff);
+        color: #0d1033;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(120, 92, 255, 0.45);
+    }
+    .antecedent-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(167, 191, 255, 0.22);
+        background: rgba(3, 9, 22, 0.5);
+        color: #a7bfff;
+        text-decoration: none;
+    }
+    .antecedent-btn-primary:hover {
+        color: #0d1033;
+    }
+    .antecedent-btn-secondary:hover {
+        color: #ffffff;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #0e1628 !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #0e1628 !important;
+    }
+    @media (max-width: 991px) {
+        .antecedent-hero h1 {
+            font-size: 2.5rem;
+        }
+        .antecedent-process {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .antecedent-shell {
+            padding: 0 1rem;
+        }
+        .antecedent-hero h1 {
+            font-size: 2.1rem;
+        }
+        .antecedent-cta {
+            grid-template-columns: 1fr;
+        }
+        .antecedent-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .antecedent-btn-primary,
+        .antecedent-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .antecedent-metric,
+        .antecedent-card,
+        .antecedent-step,
+        .antecedent-proof-card,
+        .antecedent-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="antecedent-luxe">
+    <div class="antecedent-shell">
+        <header class="antecedent-hero">
+            <span class="badge">Due diligence exécutive</span>
+            <h1>Audit premium des antécédents et réputation</h1>
+                <p>Avant une acquisition, une joint-venture ou une nomination stratégique, sécurisez vos décisions grâce à une investigation 360° conforme aux standards des cabinets internationaux les plus exigeants.</p>
+            <p>Nous analysons le passé juridique, financier et réputationnel de vos partenaires, dirigeants ou fournisseurs en préservant confidentialité et conformité CNAPS.</p>
+            <div class="antecedent-metrics">
+                <div class="antecedent-metric">
+                    <strong>48&nbsp;h</strong>
+                    <span>Pour livrer un flash report de risques critiques</span>
+                </div>
+                <div class="antecedent-metric">
+                    <strong>36</strong>
+                    <span>Sources propriétaires et bases internationales exploitées</span>
+                </div>
+                <div class="antecedent-metric">
+                    <strong>22</strong>
+                    <span>Pays couverts par nos enquêteurs et analystes certifiés</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="antecedent-grid">
+            <article class="antecedent-card">
+                <h2>Couverture</h2>
+                <h3>Screening juridique & compliance</h3>
+                <p>Cartographie exhaustive :</p>
+                <ul>
+                    <li>Casier judiciaire, contentieux civils, sanctions administratives.</li>
+                    <li>Listes PEP, anti-corruption, sanctions OFAC et UE.</li>
+                    <li>Historique corporate : défaillances, conflits d’intérêts, liquidations.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/AntecedentController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/antecedent/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="antecedent-card">
+                <h2>Réputation</h2>
+                <h3>Veille média & intelligence digitale</h3>
+                <p>Analyse sémantique et sociale :</p>
+                <ul>
+                    <li>Presses locales et internationales, tribunaux, registres ouverts.</li>
+                    <li>Réseaux sociaux, deep web et forums sectoriels.</li>
+                    <li>Indice de confiance, trajectoire managériale, cohérence storytelling.</li>
+                </ul>
+            </article>
+
+            <article class="antecedent-card">
+                <h2>Consolidation</h2>
+                <h3>Reporting décisionnel</h3>
+                <p>Livrables premium :</p>
+                <ul>
+                    <li>Score de risque, matrices d’impacts, recommandations actionnables.</li>
+                    <li>Chronologie vérifiée, organigramme relationnel commenté.</li>
+                    <li>Dataroom sécurisée, traçabilité des sources, annexes certifiées.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="antecedent-scenarios" aria-label="Cas typiques">
+            <article class="antecedent-scenario">
+                <strong>M&A stratégique</strong>
+                <p>Validation d’un dirigeant cible avant closing, détection d’un litige dissimulé évitant une surtaxe de 8&nbsp;M€.</p>
+            </article>
+            <article class="antecedent-scenario">
+                <strong>Fournisseur critique</strong>
+                <p>Audit ESG et corruption pour un partenaire émergent, alignement avec vos chartes responsables.</p>
+            </article>
+            <article class="antecedent-scenario">
+                <strong>Recrutement top management</strong>
+                <p>Contrôle d’un CEO expatrié : faux diplôme repéré, plan de succession ajusté.</p>
+            </article>
+        </section>
+
+        <section class="antecedent-assurance" aria-label="Nos garanties">
+            <div class="antecedent-assurance-grid">
+                <div class="antecedent-assurance-item">
+                    <h3>Confidentialité absolue</h3>
+                    <p>Procédure ISO 27001, circuits cloisonnés, restitution chiffrée.</p>
+                </div>
+                <div class="antecedent-assurance-item">
+                    <h3>Compliance intégrale</h3>
+                    <p>Charte éthique, respect RGPD, conformité CNAPS et codes L.324-7.</p>
+                </div>
+                <div class="antecedent-assurance-item">
+                    <h3>Expertise sectorielle</h3>
+                    <p>Pôles dédiés finance, industrie, tech, santé, fédérant ex-magistrats et analystes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="antecedent-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="antecedent-steps">
+                <div class="antecedent-step">
+                    <div class="antecedent-step-index">01</div>
+                    <div>
+                        <div class="antecedent-step-title">Brief stratégique</div>
+                        <div class="antecedent-step-text">Définition du périmètre, clauses NDAs, calibrage budget/risques.</div>
+                    </div>
+                </div>
+                <div class="antecedent-step">
+                    <div class="antecedent-step-index">02</div>
+                    <div>
+                        <div class="antecedent-step-title">Collecte & recoupements</div>
+                        <div class="antecedent-step-text">Cross-check bases publiques, privées et interviews terrain discrètes.</div>
+                    </div>
+                </div>
+                <div class="antecedent-step">
+                    <div class="antecedent-step-index">03</div>
+                    <div>
+                        <div class="antecedent-step-title">Analyse & scoring</div>
+                        <div class="antecedent-step-text">Notation de risque, matrices ESG, validation juridique interne.</div>
+                    </div>
+                </div>
+                <div class="antecedent-step">
+                    <div class="antecedent-step-index">04</div>
+                    <div>
+                        <div class="antecedent-step-title">Restitution exécutive</div>
+                        <div class="antecedent-step-text">Présentation codir, livraison dossier numérique, plan d’actions.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="antecedent-proof" aria-label="Études de cas">
+            <article class="antecedent-proof-card">
+                <h3>Joint-venture Asie</h3>
+                <p>Découverte d’un réseau offshore sanctionné, pivot vers un partenaire alternatif, closing sécurisé.</p>
+            </article>
+            <article class="antecedent-proof-card">
+                <h3>Levée de fonds</h3>
+                <p>Profil fondateur clarifié, historique judiciaire apuré, confiance des investisseurs renforcée.</p>
+            </article>
+            <article class="antecedent-proof-card">
+                <h3>Appel d'offres public</h3>
+                <p>Certification d’intégrité économique, score compliance élevé, attribution décisive.</p>
+            </article>
+        </section>
+
+        <section class="antecedent-cta" aria-label="Contact">
+            <div>
+                <h3>Programmez votre due diligence confidentielle</h3>
+                <p>Comité restreint, circuits chiffrés, restitution en 5 jours ouvrés maximum.</p>
+            </div>
+            <div class="antecedent-cta-actions">
+                <a class="antecedent-btn-primary" href="tel:0465574176">Ligne directe Risk Desk : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="antecedent-btn-secondary" href="{{ path('app_contact') }}">Demander un devis sous NDA</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

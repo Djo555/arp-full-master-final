@@ -1,20 +1,504 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SecuriteController!{% endblock %}
+{% block title %}Conseils en sécurité{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .securite-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: linear-gradient(130deg, #050f12 0%, #0d272e 45%, #041821 100%);
+        color: rgba(226, 238, 239, 0.92);
+        overflow: hidden;
+    }
+    .securite-luxe::before,
+    .securite-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.58;
+        pointer-events: none;
+    }
+    .securite-luxe::before {
+        width: 620px;
+        height: 620px;
+        top: -210px;
+        left: -190px;
+        background: radial-gradient(circle, rgba(64, 214, 214, 0.34) 0%, rgba(64, 214, 214, 0) 70%);
+    }
+    .securite-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(255, 198, 93, 0.32) 0%, rgba(255, 198, 93, 0) 70%);
+    }
+    .securite-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .securite-hero {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    .securite-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(64, 214, 214, 0.38);
+        background: rgba(8, 32, 38, 0.72);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #a0ecec;
+        margin-bottom: 1.6rem;
+    }
+    .securite-hero h1 {
+        font-size: 3rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+    }
+    .securite-hero p {
+        max-width: 800px;
+        margin: 0 auto 1rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(226, 238, 239, 0.78);
+    }
+    .securite-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .securite-metric {
+        background: rgba(6, 26, 32, 0.78);
+        border-radius: 20px;
+        border: 1px solid rgba(160, 236, 236, 0.24);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.45);
+    }
+    .securite-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #a0ecec;
+    }
+    .securite-metric span {
+        font-size: 0.92rem;
+        color: rgba(226, 238, 239, 0.74);
+    }
+    .securite-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.2rem;
+    }
+    .securite-card {
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(17, 40, 46, 0.72));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
+    }
+    .securite-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #7ddede;
+        margin-bottom: 1rem;
+    }
+    .securite-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .securite-card p,
+    .securite-card li {
+        color: rgba(226, 238, 239, 0.82);
+        line-height: 1.75;
+    }
+    .securite-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .securite-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .securite-scenario {
+        background: rgba(10, 32, 37, 0.78);
+        border-radius: 24px;
+        padding: 1.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
+        color: rgba(226, 238, 239, 0.78);
+    }
+    .securite-scenario strong {
+        display: block;
+        font-size: 1.14rem;
+        color: #ffd68a;
+        margin-bottom: 0.5rem;
+    }
+    .securite-assurance {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.34);
+        border: 1px solid rgba(255, 198, 93, 0.24);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .securite-assurance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .securite-assurance-item {
+        background: rgba(12, 36, 42, 0.78);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(226, 238, 239, 0.78);
+    }
+    .securite-assurance-item h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #ffd68a;
+        margin-bottom: 0.6rem;
+    }
+    .securite-process {
+        margin: 3.6rem 0 3.3rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(6, 23, 28, 0.68);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
+    }
+    .securite-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(226, 238, 239, 0.64);
+        margin-bottom: 2rem;
+    }
+    .securite-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .securite-step {
+        display: flex;
+        gap: 1.1rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .securite-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(255, 198, 93, 0.3);
+        color: #ffd68a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .securite-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .securite-step-text {
+        color: rgba(226, 238, 239, 0.78);
+        line-height: 1.6;
+    }
+    .securite-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .securite-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(11, 34, 39, 0.78);
+        border: 1px solid rgba(255, 198, 93, 0.24);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
+    }
+    .securite-proof-card h3 {
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #ffd68a;
+        margin-bottom: 0.7rem;
+    }
+    .securite-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(64, 214, 214, 0.18), rgba(3, 11, 15, 0.68));
+        border: 1px solid rgba(160, 236, 236, 0.24);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+    }
+    .securite-cta h3 {
+        font-size: 1.88rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .securite-cta p {
+        color: rgba(226, 238, 239, 0.78);
+        margin-bottom: 0;
+    }
+    .securite-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .securite-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #7ee1e1, #ffd68a);
+        color: #072125;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(64, 214, 214, 0.45);
+    }
+    .securite-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(160, 236, 236, 0.24);
+        background: rgba(6, 26, 32, 0.5);
+        color: #a0ecec;
+        text-decoration: none;
+    }
+    .securite-btn-primary:hover {
+        color: #072125;
+    }
+    .securite-btn-secondary:hover {
+        color: #ffffff;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #0b181c !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #0b181c !important;
+    }
+    @media (max-width: 991px) {
+        .securite-hero h1 {
+            font-size: 2.5rem;
+        }
+        .securite-process {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .securite-shell {
+            padding: 0 1rem;
+        }
+        .securite-hero h1 {
+            font-size: 2.1rem;
+        }
+        .securite-cta {
+            grid-template-columns: 1fr;
+        }
+        .securite-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .securite-btn-primary,
+        .securite-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .securite-metric,
+        .securite-card,
+        .securite-step,
+        .securite-proof-card,
+        .securite-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="securite-luxe">
+    <div class="securite-shell">
+        <header class="securite-hero">
+            <span class="badge">Conseil stratégique</span>
+            <h1>Programme global de sécurité pour organisations exigeantes</h1>
+            <p>Nous concevons et pilotons votre sécurité intégrée : gouvernance, protection des sites, gestion de crise, cybersécurité, sûreté humaine. Un dispositif inspiré des standards G4S, Securitas Premium et Deloitte Risk Advisory.</p>
+            <p>Notre bureau d’études intervient en France et à l’international, avec un suivi opérationnel 24/7.</p>
+            <div class="securite-metrics">
+                <div class="securite-metric">
+                    <strong>150</strong>
+                    <span>Audits sécurité stratégiques conduits en 5 ans</span>
+                </div>
+                <div class="securite-metric">
+                    <strong>12&nbsp;h</strong>
+                    <span>Pour délivrer un plan d’action priorisé après audit</span>
+                </div>
+                <div class="securite-metric">
+                    <strong>96&nbsp;%</strong>
+                    <span>Clients renouvellent leur contrat de conseil annuel</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="securite-grid">
+            <article class="securite-card">
+                <h2>Audit</h2>
+                <h3>Cartographie des risques</h3>
+                <p>Nous analysons :</p>
+                <ul>
+                    <li>Systèmes de sûreté, périmètres, procédures d’accès, incidents passés.</li>
+                    <li>Organisation sécurité, compliance, culture prévention.</li>
+                    <li>Vulnérabilités SI, continuité d’activité, résilience logistique.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/SecuriteController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/securite/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="securite-card">
+                <h2>Design</h2>
+                <h3>Plan directeur sécurité</h3>
+                <p>Livrables exécutifs :</p>
+                <ul>
+                    <li>Blueprint sécurité intégrée, gouvernance, procédures, SLA.</li>
+                    <li>Architecture technologique : contrôle d’accès, VMS, IoT sécurité.</li>
+                    <li>Modélisation budgétaire, ROI, plan pluriannuel.</li>
+                </ul>
+            </article>
+
+            <article class="securite-card">
+                <h2>Opérations</h2>
+                <h3>Accompagnement terrain</h3>
+                <p>Support premium :</p>
+                <ul>
+                    <li>Supervision prestataires, audits inopinés, formation agents.</li>
+                    <li>Exercices de crise, simulations, retours d’expérience.</li>
+                    <li>Monitoring KPI, reporting comité de direction.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="securite-scenarios" aria-label="Scénarios traités">
+            <article class="securite-scenario">
+                <strong>Campus corporate</strong>
+                <p>Transformation sécurité globale, réduction incidents 60&nbsp;%, satisfaction collaborateurs.</p>
+            </article>
+            <article class="securite-scenario">
+                <strong>Site classé sensible</strong>
+                <p>Alignement plan Vigipirate, coordination forces publiques, audit positif.</p>
+            </article>
+            <article class="securite-scenario">
+                <strong>Évènement VIP</strong>
+                <p>Conception plan sûreté, protection personnalités, gestion flux premium.</p>
+            </article>
+        </section>
+
+        <section class="securite-assurance" aria-label="Nos garanties">
+            <div class="securite-assurance-grid">
+                <div class="securite-assurance-item">
+                    <h3>Neutralité</h3>
+                    <p>Conseil indépendant, sélection prestataires objective, reporting transparent.</p>
+                </div>
+                <div class="securite-assurance-item">
+                    <h3>Conformité</h3>
+                    <p>Respect CNAPS, RGPD, normes ISO 27001 & 22301, obligations ICPE.</p>
+                </div>
+                <div class="securite-assurance-item">
+                    <h3>Réactivité</h3>
+                    <p>Cellule veille 24/7, hotline crise, interventions d’urgence.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="securite-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="securite-steps">
+                <div class="securite-step">
+                    <div class="securite-step-index">01</div>
+                    <div>
+                        <div class="securite-step-title">Assessment</div>
+                        <div class="securite-step-text">Audit in situ, interviews, analyse documentaire, scoring risques.</div>
+                    </div>
+                </div>
+                <div class="securite-step">
+                    <div class="securite-step-index">02</div>
+                    <div>
+                        <div class="securite-step-title">Master plan</div>
+                        <div class="securite-step-text">Définition objectifs, roadmap sécurité, priorisation investissements.</div>
+                    </div>
+                </div>
+                <div class="securite-step">
+                    <div class="securite-step-index">03</div>
+                    <div>
+                        <div class="securite-step-title">Déploiement</div>
+                        <div class="securite-step-text">Pilotage projets, supervision, coordination prestataires.</div>
+                    </div>
+                </div>
+                <div class="securite-step">
+                    <div class="securite-step-index">04</div>
+                    <div>
+                        <div class="securite-step-title">Suivi & amélioration</div>
+                        <div class="securite-step-text">Reporting KPI, audits réguliers, mise à jour plan de crise.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="securite-proof" aria-label="Études de cas">
+            <article class="securite-proof-card">
+                <h3>Siège groupe CAC40</h3>
+                <p>Plan directeur sécurité, déploiement contrôle d’accès biométrique, ROI démontré.</p>
+            </article>
+            <article class="securite-proof-card">
+                <h3>Centre hospitalier</h3>
+                <p>Renforcement sûreté, formation équipes, baisse incidents graves 70&nbsp;%.</p>
+            </article>
+            <article class="securite-proof-card">
+                <h3>Data centers</h3>
+                <p>Certification TIA-942, continuité d’activité garantie, audits clients réussis.</p>
+            </article>
+        </section>
+
+        <section class="securite-cta" aria-label="Contact">
+            <div>
+                <h3>Planifiez votre audit sécurité confidentiel</h3>
+                <p>Disponibilité sous 72&nbsp;h, restitution stratégique, accompagnement opérationnel.</p>
+            </div>
+            <div class="securite-cta-actions">
+                <a class="securite-btn-primary" href="tel:0465574176">Hotline sécurité globale : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="securite-btn-secondary" href="{{ path('app_contact') }}">Demander un rendez-vous conseil</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

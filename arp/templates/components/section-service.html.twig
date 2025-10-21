@@ -6,7 +6,7 @@
 		<!-- Image -->
         	<div class="col-12 col-md-6 mb-4 mb-md-0 text-center">
 			<a href="http://127.0.0.1:8000/cabinet" class="d-inline-block img-card-wrap" aria-label="Accéder à la page Cabinet">
-				<img class="img-fluid img-card" src="{{ asset('build/images/card.jpg') }}" alt="logo services" />
+				<img src="{{ asset('build/images/card.jpg') }}" alt="Logo Card" class="img-card" style="max-width: 100%; height: auto;">
 			</a>
         	</div>
 
@@ -220,7 +220,10 @@
 			opacity: 0;
 			transform: translateY(0.15rem) scale(0.98);
 			transition: opacity 160ms ease, transform 160ms ease;
-			vertical-align: baseline;
+        	vertical-align: middle;
+        	line-height: 1.2;
+        	position: relative;
+        	top: -1px;
 		}
 
 		.service-item:hover .hover-note,
@@ -228,6 +231,14 @@
 			opacity: 1;
 			transform: translateY(0) scale(1);
 		}
+
+        /* Affichage permanent du badge sur mobile (<768px) */
+        @media (max-width: 767px) {
+            .service-item .hover-note {
+                opacity: 1 !important;
+                transform: translateY(0) scale(1) !important;
+            }
+        }
 
 
 

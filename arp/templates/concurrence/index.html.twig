@@ -1,20 +1,612 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConcurrenceController!{% endblock %}
+{% block title %}Détection de concurrence déloyale{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .concurrence-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: linear-gradient(135deg, #120308 0%, #2b0514 45%, #120517 100%);
+        color: rgba(248, 230, 237, 0.92);
+        overflow: hidden;
+    }
+    .concurrence-luxe::before,
+    .concurrence-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(48px);
+        opacity: 0.55;
+        pointer-events: none;
+    }
+    .concurrence-luxe::before {
+        width: 620px;
+        height: 620px;
+        top: -210px;
+        left: -190px;
+        background: radial-gradient(circle, rgba(255, 86, 119, 0.35) 0%, rgba(255, 86, 119, 0) 70%);
+    }
+    .concurrence-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(197, 70, 255, 0.32) 0%, rgba(197, 70, 255, 0) 70%);
+    }
+    .concurrence-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .concurrence-hero {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    .concurrence-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 86, 119, 0.38);
+        background: rgba(43, 9, 20, 0.72);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #ff9cb3;
+        margin-bottom: 1.6rem;
+    }
+    .concurrence-hero h1 {
+        font-size: 3rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+    }
+    .concurrence-hero p {
+        max-width: 760px;
+        margin: 0 auto 1rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(248, 230, 237, 0.75);
+    }
+    .concurrence-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .concurrence-metric {
+        background: rgba(23, 5, 12, 0.78);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 156, 179, 0.2);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.45);
+    }
+    .concurrence-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #ff9cb3;
+    }
+    .concurrence-metric span {
+        font-size: 0.92rem;
+        color: rgba(248, 230, 237, 0.7);
+    }
+    .concurrence-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.2rem;
+    }
+    .concurrence-card {
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(35, 8, 20, 0.7));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
+    }
+    .concurrence-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #ff89a8;
+        margin-bottom: 1rem;
+    }
+    .concurrence-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .concurrence-card p,
+    .concurrence-card li {
+        color: rgba(248, 230, 237, 0.8);
+        line-height: 1.75;
+    }
+    .concurrence-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .concurrence-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .concurrence-scenario {
+        background: rgba(27, 6, 14, 0.76);
+        border-radius: 24px;
+        padding: 1.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
+        color: rgba(248, 230, 237, 0.78);
+    }
+    .concurrence-scenario strong {
+        display: block;
+        font-size: 1.14rem;
+        color: #ff9db4;
+        margin-bottom: 0.5rem;
+    }
+    .concurrence-assurance {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.34);
+        border: 1px solid rgba(255, 156, 179, 0.22);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .concurrence-assurance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .concurrence-assurance-item {
+        background: rgba(28, 6, 16, 0.74);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(248, 230, 237, 0.78);
+    }
+    .concurrence-assurance-item h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #ff8cae;
+        margin-bottom: 0.6rem;
+    }
+    .concurrence-process {
+        margin: 3.6rem 0 3.3rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(19, 4, 11, 0.66);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
+    }
+    .concurrence-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(248, 230, 237, 0.62);
+        margin-bottom: 2rem;
+    }
+    .concurrence-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .concurrence-step {
+        display: flex;
+        gap: 1.1rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .concurrence-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(255, 86, 119, 0.28);
+        color: #ff9cb3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .concurrence-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .concurrence-step-text {
+        color: rgba(248, 230, 237, 0.76);
+        line-height: 1.6;
+    }
+    .concurrence-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .concurrence-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(26, 5, 14, 0.74);
+        border: 1px solid rgba(255, 156, 179, 0.24);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
+    }
+    .concurrence-proof-card h3 {
+        font-size: 1.18rem;
+        font-weight: 600;
+        color: #ff8daa;
+        margin-bottom: 0.7rem;
+    }
+    .concurrence-proof-card p {
+        color: rgba(248, 230, 237, 0.8);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    .concurrence-legal {
+        margin: 3.4rem 0;
+        padding: 2.8rem 2.4rem;
+        border-radius: 30px;
+        background: linear-gradient(165deg, rgba(16, 2, 10, 0.84), rgba(40, 6, 20, 0.62));
+        border: 1px solid rgba(255, 140, 174, 0.26);
+        box-shadow: 0 38px 64px rgba(0, 0, 0, 0.55);
+    }
+    .concurrence-legal-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 2.6rem;
+    }
+    .concurrence-legal-highlight {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #ff8daa;
+    }
+    .concurrence-legal-highlight::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: #ff8daa;
+        opacity: 0.7;
+    }
+    .concurrence-legal-header h2 {
+        font-size: 2.05rem;
+        font-weight: 620;
+        color: #ffffff;
+    }
+    .concurrence-legal-header p {
+        color: rgba(248, 230, 237, 0.78);
+        max-width: 780px;
+        line-height: 1.7;
+    }
+    .concurrence-legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .concurrence-legal-card {
+        padding: 1.9rem;
+        border-radius: 24px;
+        background: rgba(28, 6, 16, 0.82);
+        border: 1px solid rgba(255, 140, 174, 0.26);
+        box-shadow: 0 30px 54px rgba(0, 0, 0, 0.5);
+    }
+    .concurrence-legal-card h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #ff9cb3;
+        margin-bottom: 0.6rem;
+    }
+    .concurrence-legal-card p {
+        color: rgba(248, 230, 237, 0.78);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    .concurrence-legal-footnote {
+        margin-top: 2.4rem;
+        font-size: 0.86rem;
+        color: rgba(248, 230, 237, 0.65);
+        line-height: 1.7;
+    }
+    .concurrence-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(255, 86, 119, 0.18), rgba(8, 0, 6, 0.65));
+        border: 1px solid rgba(255, 156, 179, 0.22);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+    }
+    .concurrence-cta h3 {
+        font-size: 1.88rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .concurrence-cta p {
+        color: rgba(248, 230, 237, 0.78);
+        margin-bottom: 0;
+    }
+    .concurrence-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .concurrence-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #ff8fae, #c446ff);
+        color: #2b0412;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(255, 86, 119, 0.45);
+    }
+    .concurrence-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 156, 179, 0.26);
+        background: rgba(23, 5, 12, 0.5);
+        color: #ff9cb3;
+        text-decoration: none;
+    }
+    .concurrence-btn-primary:hover {
+        color: #2b0412;
+    }
+    .concurrence-btn-secondary:hover {
+        color: #ffffff;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #22030c !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #22030c !important;
+    }
+    @media (max-width: 991px) {
+        .concurrence-hero h1 {
+            font-size: 2.5rem;
+        }
+        .concurrence-process {
+            padding: 2.4rem 1.9rem;
+        }
+        .concurrence-legal {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .concurrence-shell {
+            padding: 0 1rem;
+        }
+        .concurrence-hero h1 {
+            font-size: 2.1rem;
+        }
+        .concurrence-cta {
+            grid-template-columns: 1fr;
+        }
+        .concurrence-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .concurrence-btn-primary,
+        .concurrence-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+        .concurrence-legal {
+            padding: 2.1rem 1.5rem;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .concurrence-metric,
+        .concurrence-card,
+        .concurrence-step,
+        .concurrence-proof-card,
+        .concurrence-legal-card,
+        .concurrence-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="concurrence-luxe">
+    <div class="concurrence-shell">
+        <header class="concurrence-hero">
+            <span class="badge">Corporate intelligence</span>
+            <h1>Déjouez la concurrence déloyale avant qu'elle n'érode vos parts de marché</h1>
+            <p>Nous détectons et documentons les pratiques illicites (détournement de clientèle, parasitisme, violation de clauses) en nous inspirant des meilleures méthodes d’agences internationales reconnues.</p>
+            <p>Notre task-force associe intelligence économique, investigation terrain et contre-mesures digitales pour préserver vos actifs stratégiques.</p>
+            <div class="concurrence-metrics">
+                <div class="concurrence-metric">
+                    <strong>15&nbsp;%</strong>
+                    <span>Parts de marché sauvegardées en moyenne après mission</span>
+                </div>
+                <div class="concurrence-metric">
+                    <strong>90&nbsp;j</strong>
+                    <span>Pour clore nos dossiers & obtenir mesures conservatoires</span>
+                </div>
+                <div class="concurrence-metric">
+                    <strong>40</strong>
+                    <span>Analyses OSINT & HUMINT croisées par dossier</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="concurrence-grid">
+            <article class="concurrence-card">
+                <h2>Veille</h2>
+                <h3>Cartographie des risques</h3>
+                <p>Nous isolons les signaux faibles :</p>
+                <ul>
+                    <li>Surveillance des prix, offres, réseaux commerciaux concurrents.</li>
+                    <li>Analyse contractuelle, clauses de non-concurrence & exclusivité.</li>
+                    <li>Monitorings brevets, dépôts de marques, contenus digitaux litigieux.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/ConcurrenceController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/concurrence/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="concurrence-card">
+                <h2>Investigation</h2>
+                <h3>Preuves matérielles</h3>
+                <p>Dispositifs ciblés :</p>
+                <ul>
+                    <li>Infiltration client mystère B2B, collecte d’offres commerciales.</li>
+                    <li>Interview fournisseurs, partenaires, ex-salariés.</li>
+                    <li>Surveillance discrète d’équipes terrain, captation photographique.</li>
+                </ul>
+            </article>
+
+            <article class="concurrence-card">
+                <h2>Résolution</h2>
+                <h3>Action légale & stratégique</h3>
+                <p>Accompagnement complet :</p>
+                <ul>
+                    <li>Dossier probatoire, preuves horodatées, affadavit traduits.</li>
+                    <li>Coordination avocats spécialisés, saisines en référé.</li>
+                    <li>Plan défensif : communication, sécurisation digitale, clauses renforcées.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="concurrence-scenarios" aria-label="Scénarios détectés">
+            <article class="concurrence-scenario">
+                <strong>Ex-salarié prédateur</strong>
+                <p>Preuves de détournement de base clients, condamnation avec astreinte 5&nbsp;k€/jour.</p>
+            </article>
+            <article class="concurrence-scenario">
+                <strong>Réseau franchisé</strong>
+                <p>Démonstration du non-respect de zone d’exclusivité, obtention de dommages-intérêts.</p>
+            </article>
+            <article class="concurrence-scenario">
+                <strong>Plateforme digitale</strong>
+                <p>Identification d’un scraping illégal, coupure API rapide, stratégie contentieux RGPD.</p>
+            </article>
+        </section>
+
+        <section class="concurrence-assurance" aria-label="Nos garanties">
+            <div class="concurrence-assurance-grid">
+                <div class="concurrence-assurance-item">
+                    <h3>Discrétion militaire</h3>
+                    <p>Opérations cloisonnées, cellules spécialisées par secteur, chaîne de preuves intégrité.</p>
+                </div>
+                <div class="concurrence-assurance-item">
+                    <h3>Cadre légal maîtrisé</h3>
+                    <p>Conformité droit commercial, CNAPS, RGPD et directives Sapin II.</p>
+                </div>
+                <div class="concurrence-assurance-item">
+                    <h3>Restitution stratégique</h3>
+                    <p>Brief codir, scénarios défensifs, recommandations contre-offensive.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="concurrence-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="concurrence-steps">
+                <div class="concurrence-step">
+                    <div class="concurrence-step-index">01</div>
+                    <div>
+                        <div class="concurrence-step-title">Brief stratégique</div>
+                        <div class="concurrence-step-text">Définition du périmètre, NDA, alignement avec vos conseils juridiques.</div>
+                    </div>
+                </div>
+                <div class="concurrence-step">
+                    <div class="concurrence-step-index">02</div>
+                    <div>
+                        <div class="concurrence-step-title">Veille & analyses</div>
+                        <div class="concurrence-step-text">Collecte data, OSINT, veille concurrentielle en continu.</div>
+                    </div>
+                </div>
+                <div class="concurrence-step">
+                    <div class="concurrence-step-index">03</div>
+                    <div>
+                        <div class="concurrence-step-title">Opérations terrain</div>
+                        <div class="concurrence-step-text">Infiltration, filature, recueil documenté des éléments probants.</div>
+                    </div>
+                </div>
+                <div class="concurrence-step">
+                    <div class="concurrence-step-index">04</div>
+                    <div>
+                        <div class="concurrence-step-title">Action</div>
+                        <div class="concurrence-step-text">Dossier juridique, dépôt plainte, accompagnement médiatique.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="concurrence-proof" aria-label="Études de cas">
+            <article class="concurrence-proof-card">
+                <h3>Industrie luxe</h3>
+                <p>Réseau parallèle identifié, 8 boutiques fermées, restitution de 3,2&nbsp;M€.</p>
+            </article>
+            <article class="concurrence-proof-card">
+                <h3>Tech B2B</h3>
+                <p>Traçage de fuite de code source, clause de non-sollicitation renforcée.</p>
+            </article>
+            <article class="concurrence-proof-card">
+                <h3>Agroalimentaire</h3>
+                <p>Repossession d’une marque détournée, campagne correctrice orchestrée.</p>
+            </article>
+        </section>
+
+        <section class="concurrence-legal" aria-label="Cadre légal de la concurrence déloyale">
+            <div class="concurrence-legal-header">
+                <span class="concurrence-legal-highlight">Cadre juridique</span>
+                <h2>Construisez un dossier irréprochable avant toute action</h2>
+                <p>BENSOPS appuie ses missions sur la jurisprudence française et l’article 1240 du Code civil. L’absence de loi spécifique impose d’apporter un faisceau de preuves incontestables pour démontrer la faute, le préjudice et le lien de causalité.</p>
+            </div>
+            <div class="concurrence-legal-grid">
+                <article class="concurrence-legal-card">
+                    <h3>Fondement & responsabilité</h3>
+                    <p>Nous établissons le terrain juridique de l’action sur l’article 1240 du Code civil et la jurisprudence constante. Cette base permet d’exiger réparation pour tout comportement fautif ayant généré un dommage concurrentiel.</p>
+                </article>
+                <article class="concurrence-legal-card">
+                    <h3>Assembler les preuves décisives</h3>
+                    <p>Nos équipes documentent simultanément la faute, le préjudice et la causalité : constats terrain, filatures, captures d’offres litigieuses, horodatage, conservation numérique souveraine, témoignages encadrés.</p>
+                </article>
+                <article class="concurrence-legal-card">
+                    <h3>Clause ou obligation de loyauté&nbsp;?</h3>
+                    <p>La clause de non-concurrence n’est pas un prérequis. Nous rappelons l’obligation de loyauté (article L1222-1 du Code du travail), applicable pendant et après le contrat. Nos rapports démontrent les manquements, même en l’absence de clause dédiée.</p>
+                </article>
+                <article class="concurrence-legal-card">
+                    <h3>Rôle du détective privé</h3>
+                    <p>BENSOPS agit comme tiers enquêteur certifié CNAPS : collecte des éléments, sécurisation de la chaîne de preuve, rédaction de rapports exploitables par vos avocats pour référés, actions en concurrence déloyale ou demandes indemnitaires.</p>
+                </article>
+            </div>
+            <p class="concurrence-legal-footnote">Les preuves constituées soutiennent vos demandes d’astreinte, de dommages-intérêts, de confiscation des supports fautifs et de publication judiciaire. Chaque mission inclut la traçabilité des sources pour une recevabilité maximale devant les tribunaux commerciaux et civils.</p>
+        </section>
+
+        <section class="concurrence-cta" aria-label="Contact">
+            <div>
+                <h3>Activez la cellule intelligence concurrentielle</h3>
+                <p>Réponse en moins d’1&nbsp;heure, cellule experte dédiée et reporting sécurisé.</p>
+            </div>
+            <div class="concurrence-cta-actions">
+                <a class="concurrence-btn-primary" href="tel:0465574176">Hotline urgence : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="concurrence-btn-secondary" href="{{ path('app_contact') }}">Planifier un brief stratégique</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}

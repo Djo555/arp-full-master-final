@@ -1,20 +1,680 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DisparueController!{% endblock %}
+{% block title %}Personnes disparues ou introuvables{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .disparue-luxe {
+        position: relative;
+        padding: 5rem 0 6rem;
+        background: radial-gradient(120% 120% at 0% 0%, #0a1020 0%, #050714 55%, #01030a 100%);
+        color: rgba(233, 237, 255, 0.88);
+        overflow: hidden;
+    }
+    .disparue-luxe::before,
+    .disparue-luxe::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(52px);
+        opacity: 0.55;
+        pointer-events: none;
+    }
+    .disparue-luxe::before {
+        width: 620px;
+        height: 620px;
+        top: -210px;
+        left: -180px;
+        background: radial-gradient(circle, rgba(73, 123, 233, 0.34) 0%, rgba(73, 123, 233, 0) 70%);
+    }
+    .disparue-luxe::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.32) 0%, rgba(231, 88, 26, 0) 70%);
+    }
+    .disparue-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .disparue-hero {
+        text-align: center;
+        margin-bottom: 3.8rem;
+    }
+    .disparue-hero .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(192, 136, 8, 0.5);
+        background: rgba(6, 12, 28, 0.7);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #c08808;
+        margin-bottom: 1.6rem;
+    }
+    .disparue-hero h1 {
+        font-size: 3rem;
+        font-weight: 650;
+        color: #ffffff;
+        margin-bottom: 1.3rem;
+    }
+    .disparue-hero p {
+        max-width: 780px;
+        margin: 0 auto 0.9rem;
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: rgba(233, 237, 255, 0.75);
+    }
+    .disparue-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: 2.4rem;
+    }
+    .disparue-metric {
+        background: rgba(5, 10, 24, 0.75);
+        border-radius: 20px;
+        border: 1px solid rgba(166, 195, 255, 0.18);
+        padding: 1.5rem 1.3rem;
+        text-align: center;
+        box-shadow: 0 34px 54px rgba(0, 0, 0, 0.46);
+    }
+    .disparue-metric strong {
+        display: block;
+        font-size: 1.9rem;
+        color: #c08808;
+    }
+    .disparue-metric span {
+        font-size: 0.92rem;
+        color: rgba(233, 237, 255, 0.68);
+    }
+    .disparue-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3.4rem;
+    }
+    .disparue-card {
+        position: relative;
+        padding: 2.3rem;
+        border-radius: 26px;
+        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(8, 14, 32, 0.68));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
+    }
+    .disparue-card h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #00437a;
+        margin-bottom: 1rem;
+    }
+    .disparue-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1.1rem;
+    }
+    .disparue-card ul {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+    }
+    .disparue-card p,
+    .disparue-card li {
+        color: rgba(233, 237, 255, 0.78);
+        line-height: 1.75;
+    }
+    .disparue-scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .disparue-scenario {
+        background: rgba(5, 12, 26, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        padding: 1.9rem;
+        box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
+    }
+    .disparue-scenario strong {
+        display: block;
+        font-size: 1.15rem;
+        color: #e7581a;
+        margin-bottom: 0.6rem;
+    }
+    .disparue-signet {
+        margin: 3.3rem 0;
+        padding: 2.6rem 2.2rem;
+        border-radius: 26px;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(166, 195, 255, 0.2);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
+    }
+    .disparue-signet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .disparue-signet-item {
+        background: rgba(6, 14, 28, 0.72);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(233, 237, 255, 0.78);
+    }
+    .disparue-signet-item h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #00437a;
+        margin-bottom: 0.6rem;
+    }
+    .disparue-process {
+        margin: 3.6rem 0 3.4rem;
+        padding: 2.8rem 2.4rem;
+        border-radius: 28px;
+        background: rgba(2, 6, 14, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
+    }
+    .disparue-process h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.85rem;
+        color: rgba(233, 237, 255, 0.6);
+        margin-bottom: 2rem;
+    }
+    .disparue-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .disparue-step {
+        display: flex;
+        gap: 1.2rem;
+        padding: 1.6rem 1.4rem;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.38);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .disparue-step-index {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(0, 67, 122, 0.35);
+        color: #e7581a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .disparue-step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+    }
+    .disparue-step-text {
+        color: rgba(233, 237, 255, 0.75);
+        line-height: 1.6;
+    }
+    .disparue-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 3.2rem;
+    }
+    .disparue-proof-card {
+        padding: 2rem;
+        border-radius: 24px;
+        background: rgba(5, 10, 24, 0.74);
+        border: 1px solid rgba(166, 195, 255, 0.2);
+        box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
+    }
+    .disparue-proof-card h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #00437a;
+        margin-bottom: 0.6rem;
+    }
+    .disparue-legal {
+        margin: 3.6rem 0;
+        padding: 3.2rem 2.6rem;
+        border-radius: 32px;
+        background: radial-gradient(140% 140% at 10% -20%, rgba(73, 123, 233, 0.18) 0%, rgba(3, 6, 16, 0.82) 55%, rgba(1, 3, 10, 0.9) 100%);
+        border: 1px solid rgba(166, 195, 255, 0.22);
+        box-shadow: 0 42px 68px rgba(0, 0, 0, 0.55);
+    }
+    .disparue-legal-intro {
+        max-width: 860px;
+        margin-bottom: 2.8rem;
+        text-align: center;
+    }
+    .disparue-legal-intro h2 {
+        font-size: 2.15rem;
+        font-weight: 660;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        letter-spacing: 0.02em;
+    }
+    .disparue-legal-intro p {
+        color: rgba(233, 237, 255, 0.82);
+        line-height: 1.8;
+        margin: 0 auto;
+    }
+    .disparue-legal-metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1.8rem;
+    }
+    .disparue-legal-metric {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 0.75rem 1.6rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(0, 67, 122, 0.24), rgba(4, 8, 20, 0.78));
+        border: 1px solid rgba(192, 136, 8, 0.45);
+        color: #c08808;
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
+    }
+    .disparue-legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.9rem;
+    }
+    .disparue-legal-card {
+        position: relative;
+        padding: 2.2rem 2.1rem;
+        border-radius: 24px;
+        background: linear-gradient(190deg, rgba(10, 16, 32, 0.9), rgba(4, 8, 20, 0.88));
+        border: 1px solid rgba(166, 195, 255, 0.18);
+        box-shadow: 0 30px 56px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+    .disparue-legal-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.22), rgba(0, 67, 122, 0.18));
+        opacity: 0.4;
+        pointer-events: none;
+    }
+    .disparue-legal-card h3 {
+        position: relative;
+        font-size: 1.22rem;
+        font-weight: 620;
+        color: #e7581a;
+        margin-bottom: 0.9rem;
+        letter-spacing: 0.01em;
+    }
+    .disparue-legal-card p {
+        position: relative;
+        color: rgba(233, 237, 255, 0.8);
+        line-height: 1.72;
+        margin-bottom: 1rem;
+    }
+    .disparue-legal-list {
+        position: relative;
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+    }
+    .disparue-legal-list li {
+        position: relative;
+        padding-left: 1.4rem;
+        margin-bottom: 0.55rem;
+        color: rgba(233, 237, 255, 0.78);
+        line-height: 1.6;
+    }
+    .disparue-legal-list li::before {
+        content: "";
+        position: absolute;
+        top: 0.55rem;
+        left: 0.3rem;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #e7581a;
+        box-shadow: 0 0 0 4px rgba(231, 88, 26, 0.2);
+    }
+    .disparue-legal-footnote {
+        margin-top: 3rem;
+        padding: 2rem 2.2rem;
+        border-radius: 24px;
+        background: linear-gradient(135deg, rgba(0, 67, 122, 0.28), rgba(8, 14, 32, 0.86));
+        border: 1px solid rgba(192, 136, 8, 0.38);
+        color: rgba(233, 237, 255, 0.85);
+        line-height: 1.78;
+        text-align: center;
+    }
+    .disparue-legal-footnote strong {
+        color: #c08808;
+    }
+    .disparue-cta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        align-items: center;
+        padding: 2.6rem 2.3rem;
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(73, 123, 233, 0.18), rgba(0, 3, 10, 0.62));
+        border: 1px solid rgba(166, 195, 255, 0.2);
+        box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+    }
+    .disparue-cta h3 {
+        font-size: 1.9rem;
+        font-weight: 620;
+        color: #ffffff;
+        margin-bottom: 0.6rem;
+    }
+    .disparue-cta p {
+        color: rgba(233, 237, 255, 0.75);
+        margin-bottom: 0;
+    }
+    .disparue-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .disparue-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.9rem;
+        border-radius: 999px;
+        background: linear-gradient(125deg, #e7581a, #c08808);
+        color: #1a1205;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 26px 48px rgba(231, 88, 26, 0.38);
+    }
+    .disparue-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 67, 122, 0.45);
+        background: rgba(5, 12, 26, 0.5);
+        color: #c08808;
+        text-decoration: none;
+    }
+    .disparue-btn-primary:hover {
+        color: #1a1205;
+    }
+    .disparue-btn-secondary:hover {
+        color: #e7581a;
+    }
+    .footer-section {
+        background: transparent !important;
+        color: #021b2f !important;
+    }
+    .footer-section .footer-legal,
+    .footer-section .footer-legal a {
+        color: #021b2f !important;
+    }
+    @media (max-width: 991px) {
+        .disparue-hero h1 {
+            font-size: 2.5rem;
+        }
+        .disparue-process {
+            padding: 2.4rem 1.9rem;
+        }
+    }
+    @media (max-width: 575px) {
+        .disparue-shell {
+            padding: 0 1rem;
+        }
+        .disparue-hero h1 {
+            font-size: 2.1rem;
+        }
+        .disparue-legal {
+            padding: 2.2rem 1.6rem;
+        }
+        .disparue-cta {
+            grid-template-columns: 1fr;
+        }
+        .disparue-cta-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .disparue-btn-primary,
+        .disparue-btn-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .disparue-metric,
+        .disparue-card,
+        .disparue-step,
+        .disparue-proof-card,
+        .disparue-cta {
+            transition: none !important;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section class="disparue-luxe">
+    <div class="disparue-shell">
+        <header class="disparue-hero">
+            <span class="badge">Recherche urgente</span>
+            <h1>Cellule premium pour personnes disparues</h1>
+            <p>Face à une disparition, la signature BENSOPS conjugue vitesse et discrétion. Notre task-force active simultanément filatures terrain, intelligence numérique et coordination institutionnelle pour rouvrir les chemins menant à la personne recherchée.</p>
+            <p>Nous opérons 24/7 en France et à l’international, avec un taux de résolution supérieur à 90&nbsp;% et une facturation conditionnée au succès.</p>
+            <div class="disparue-metrics">
+                <div class="disparue-metric">
+                    <strong>60&nbsp;min</strong>
+                    <span>Activation moyenne de la cellule d’urgence</span>
+                </div>
+                <div class="disparue-metric">
+                    <strong>90&nbsp;%</strong>
+                    <span>Enquêtes soldées positivement à ce jour</span>
+                </div>
+                <div class="disparue-metric">
+                    <strong>18</strong>
+                    <span>Pays couverts par notre réseau de correspondants</span>
+                </div>
+            </div>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="disparue-grid">
+            <article class="disparue-card">
+                <h2>Stratégie</h2>
+                <h3>Analyse du scénario de disparition</h3>
+                <p>Nous établissons les hypothèses prioritaires :</p>
+                <ul>
+                    <li>Fuite volontaire, enlèvement, accident, escroquerie ou manipulation.</li>
+                    <li>Cartographie des derniers mouvements : téléphonie, paiements, réseaux sociaux.</li>
+                    <li>Analyse des relations, conflits, menaces et zones d’influence.</li>
+                </ul>
+            </article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/arp/src/Controller/DisparueController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/arp/templates/disparue/index.html.twig</code></li>
-    </ul>
-</div>
+            <article class="disparue-card">
+                <h2>Dispositifs</h2>
+                <h3>Task-force dédiée 24/7</h3>
+                <p>Nos moyens combinent :</p>
+                <ul>
+                    <li>Équipes terrain (filatures, surveillance, interviews), drones autorisés, moyens nautiques.</li>
+                    <li>Analystes OSINT, géolocalisation, exploitation de caméras urbaines et données publiques.</li>
+                    <li>Coordination avec forces de l’ordre, consulats, compagnies aériennes et hôpitaux.</li>
+                </ul>
+            </article>
+
+            <article class="disparue-card">
+                <h2>Restitution</h2>
+                <h3>Cellule de crise et reporting continu</h3>
+                <p>Vous restez informé en temps réel :</p>
+                <ul>
+                    <li>Briefings quotidiens, rapport de situation sécurisé, cartographie dynamique.</li>
+                    <li>Recommandations d’action, assistance juridique, communication de crise.</li>
+                    <li>Accompagnement jusqu’au retour de la personne ou la clôture officielle.</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="disparue-scenarios" aria-label="Scénarios traités">
+            <article class="disparue-scenario">
+                <strong>Mineur en fugue</strong>
+                <p>Veille sociale, exploitation de réseaux, partenariat avec psychologues pour favoriser le retour volontaire.</p>
+            </article>
+            <article class="disparue-scenario">
+                <strong>Enlèvement ou séquestration</strong>
+                <p>Coordination police / gendarmerie, analyses téléphoniques, surveillance de lieux stratégiques.</p>
+            </article>
+            <article class="disparue-scenario">
+                <strong>Disparition à l'étranger</strong>
+                <p>Réseau de détectives agréés, vérification hôtels, transporteurs, relais consulaires et ONG.</p>
+            </article>
+        </section>
+
+        <section class="disparue-legal" aria-label="Cadre juridique BENSOPS">
+            <div class="disparue-legal-intro">
+                <h2>Recherche de personnes : expertise juridique BENSOPS</h2>
+                <p>Qu’il s’agisse d’un proche parti volontairement, d’un mineur vulnérable ou d’un débiteur introuvable, nos détectives privés délivrent un taux de réussite de 90&nbsp;% avec facturation uniquement en cas de résultat positif. Nous couplons intelligence humaine, technologie et maîtrise du cadre légal français et international.</p>
+            </div>
+            <div class="disparue-legal-metrics">
+                <span class="disparue-legal-metric">90&nbsp;% de dossiers résolus</span>
+                <span class="disparue-legal-metric">Facturation au succès</span>
+                <span class="disparue-legal-metric">Réseau terrain dans 18 pays</span>
+            </div>
+            <div class="disparue-legal-grid">
+                <article class="disparue-legal-card">
+                    <h3>Pourquoi engager la recherche&nbsp;?</h3>
+                    <p>Retrouver un proche, reconnecter une lignée familiale, sécuriser une succession ou localiser un débiteur : chaque mandat reçoit un protocole distinct, pensé comme une mission de haute couture.</p>
+                    <ul class="disparue-legal-list">
+                        <li>Réapparition d’un membre de la famille ou d’un ami pour renouer le dialogue.</li>
+                        <li>Identification d’ayants droit afin de fluidifier une succession ou une assurance-vie.</li>
+                        <li>Localisation d’un débiteur stratégique avant actions contentieuses.</li>
+                    </ul>
+                </article>
+                <article class="disparue-legal-card">
+                    <h3>Disparition et libertés individuelles</h3>
+                    <p>La liberté d’aller et venir (article 4 DDHC) autorise chacun à s’effacer. Les forces de l’ordre ne s’engagent qu’en cas de disparition inquiétante ou de mineur. Objectiver cette inquiétude devient alors décisif.</p>
+                    <p>Nos analystes qualifient le dossier (vulnérabilité, rupture de contact, menaces, antécédents médicaux) afin de convaincre les autorités ou de légitimer une intervention privée.</p>
+                </article>
+                <article class="disparue-legal-card">
+                    <h3>Disparition en France</h3>
+                    <p>Depuis la fin de la RIF (2013), seule l’acceptation d’un signalement par police ou gendarmerie ouvre l’inscription FPR et les enquêtes administratives ou judiciaires. L’absence de critères précis impose de bâtir un dossier irréprochable.</p>
+                    <ul class="disparue-legal-list">
+                        <li>En cas de refus, nous montons un dossier pour le procureur ou déclenchons nos propres recherches.</li>
+                        <li>Suivi des moyens publics : FPR, analyse des paiements, factures téléphoniques, auditions.</li>
+                        <li>Obtention du certificat de vaines recherches au-delà d’un an pour vos démarches.</li>
+                    </ul>
+                </article>
+                <article class="disparue-legal-card">
+                    <h3>Absence prolongée & statut civil</h3>
+                    <p>Quand la personne reste introuvable, nous orchestrons les démarches : présomption d’absence auprès du juge des contentieux, puis déclaration d’absence après dix ans (article 122 Code civil) pour enclencher succession et gestion patrimoniale.</p>
+                    <p>Nos juristes sélectionnent l’administrateur, sécurisent les biens et prévoient les modalités de restitution si la personne réapparaît.</p>
+                </article>
+                <article class="disparue-legal-card">
+                    <h3>Disparition à l’international</h3>
+                    <p>Lorsque la disparition survient à l’étranger, le ministère des Affaires étrangères peut alerter les autorités locales. Nous synchronisons cette action avec notre réseau de détectives agréés (18 pays) pour couvrir hôtels, transporteurs, hôpitaux, ONG et relais consulaires.</p>
+                    <p>Chaque démarche est recalée sur la procédure française pour éviter les zones grises et accélérer le retour.</p>
+                </article>
+                <article class="disparue-legal-card">
+                    <h3>Confidentialité et vie privée</h3>
+                    <p>L’article 9 du Code civil exige l’accord de la personne retrouvée avant toute transmission de coordonnées. Nous gérons cette séquence avec diplomatie et préparons le scénario de communication aux proches.</p>
+                    <p>Une fois la personne localisée, nous informons les autorités pour clore officiellement l’enquête et neutraliser tout risque juridique.</p>
+                </article>
+            </div>
+            <div class="disparue-legal-footnote">
+                <strong>Signature BENSOPS&nbsp;:</strong> OSINT avancée, bases internationales, partenariats consulaires, cellules psychologiques et agents de terrain coordonnés. Nos honoraires sont dus uniquement en cas de résultat positif. Nous pilotons chaque mission du signalement à la réapparition, en alignant communication, aspects juridiques et soutien des familles.
+            </div>
+        </section>
+
+        <section class="disparue-signet" aria-label="Nos garanties">
+            <div class="disparue-signet-grid">
+                <div class="disparue-signet-item">
+                    <h3>Réactivité extrême</h3>
+                    <p>Hotline 24/7, directeur de crise dédié, déploiement simultané de plusieurs équipes.</p>
+                </div>
+                <div class="disparue-signet-item">
+                    <h3>Cadre légal</h3>
+                    <p>Respect du droit français et international, coordination officielle et procédures CNAPS.</p>
+                </div>
+                <div class="disparue-signet-item">
+                    <h3>Discrétion & soutien</h3>
+                    <p>Communication maîtrisée, cellule psychologique, accompagnement des proches.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="disparue-process" aria-label="Méthodologie">
+            <h2>Cadre d'intervention</h2>
+            <div class="disparue-steps">
+                <div class="disparue-step">
+                    <div class="disparue-step-index">01</div>
+                    <div>
+                        <div class="disparue-step-title">Alerte & collecte</div>
+                        <div class="disparue-step-text">Brief express, collecte des preuves existantes, ouverture de l’espace de crise sécurisé.</div>
+                    </div>
+                </div>
+                <div class="disparue-step">
+                    <div class="disparue-step-index">02</div>
+                    <div>
+                        <div class="disparue-step-title">Déploiement</div>
+                        <div class="disparue-step-text">Activation des équipes terrain, exploitation data, diffusion de signalements ciblés.</div>
+                    </div>
+                </div>
+                <div class="disparue-step">
+                    <div class="disparue-step-index">03</div>
+                    <div>
+                        <div class="disparue-step-title">Tracking & recoupements</div>
+                        <div class="disparue-step-text">Veille 24/7, recoupement de pistes, interventions en coordination avec les autorités.</div>
+                    </div>
+                </div>
+                <div class="disparue-step">
+                    <div class="disparue-step-index">04</div>
+                    <div>
+                        <div class="disparue-step-title">Résolution & suivi</div>
+                        <div class="disparue-step-text">Retour à la famille, assistance juridique, accompagnement psychologique post-crise.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="disparue-proof" aria-label="Études de cas">
+            <article class="disparue-proof-card">
+                <h3>Fugue résolue en 36&nbsp;h</h3>
+                <p>Analyse réseaux sociaux, localisation d’un squat, intervention concertée avec la police : retour en sécurité.</p>
+            </article>
+            <article class="disparue-proof-card">
+                <h3>Disparition internationale</h3>
+                <p>Coordination consulaire, tracking bancaire, repérage dans un établissement médical en Espagne.</p>
+            </article>
+            <article class="disparue-proof-card">
+                <h3>Enlèvement déjoué</h3>
+                <p>Veille téléphonique, triangulation et intervention des forces spéciales sur site rural.</p>
+            </article>
+        </section>
+
+        <section class="disparue-cta" aria-label="Contact">
+            <div>
+                <h3>Contactez notre cellule d’urgence immédiatement</h3>
+                <p>Hotline 24/7, prise en charge immédiate, coordination avec les autorités.</p>
+            </div>
+            <div class="disparue-cta-actions">
+                <a class="disparue-btn-primary" href="tel:0465574176">Hotline immédiate : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="disparue-btn-secondary" href="{{ path('app_contact') }}">Ouvrir un dossier en ligne</a>
+            </div>
+        </section>
+    </div>
+</section>
 {% endblock %}
