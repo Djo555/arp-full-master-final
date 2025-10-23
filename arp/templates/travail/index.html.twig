@@ -8,8 +8,8 @@
     .travail-luxe {
         position: relative;
         padding: 5rem 0 6rem;
-        background: linear-gradient(130deg, #06121c 0%, #0b1d29 40%, #0e2536 100%);
-        color: rgba(233, 241, 255, 0.9);
+        background: radial-gradient(circle at top left, #091b2f 0%, #041021 45%, #020710 100%);
+        color: rgba(230, 239, 255, 0.9);
         overflow: hidden;
     }
     .travail-luxe::before,
@@ -17,23 +17,23 @@
         content: "";
         position: absolute;
         border-radius: 50%;
-        filter: blur(50px);
-        opacity: 0.6;
+        filter: blur(12px);
+        opacity: 0.48;
         pointer-events: none;
     }
     .travail-luxe::before {
-        width: 620px;
-        height: 620px;
-        top: -230px;
-        left: -210px;
-        background: radial-gradient(circle, rgba(49, 180, 205, 0.32) 0%, rgba(49, 180, 205, 0) 70%);
+        width: 560px;
+        height: 560px;
+        top: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.28) 0%, rgba(231, 88, 26, 0) 70%);
     }
     .travail-luxe::after {
-        width: 500px;
-        height: 500px;
-        bottom: -210px;
-        right: -170px;
-        background: radial-gradient(circle, rgba(244, 193, 102, 0.28) 0%, rgba(244, 193, 102, 0) 70%);
+        width: 520px;
+        height: 520px;
+        bottom: -200px;
+        left: -160px;
+        background: radial-gradient(circle, rgba(80, 148, 255, 0.28) 0%, rgba(80, 148, 255, 0) 70%);
     }
     .travail-shell {
         position: relative;
@@ -50,14 +50,14 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.5rem 1.4rem;
+        padding: 0.55rem 1.3rem;
         border-radius: 999px;
-        border: 1px solid rgba(49, 180, 205, 0.35);
-        background: rgba(9, 25, 36, 0.7);
+        border: 1px solid rgba(231, 88, 26, 0.45);
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.22), rgba(231, 88, 26, 0));
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-size: 0.75rem;
-        color: #7ee2f0;
+        color: #ffeadd;
         margin-bottom: 1.6rem;
     }
     .travail-hero h1 {
@@ -71,7 +71,7 @@
         margin: 0 auto 0.9rem;
         font-size: 1.08rem;
         line-height: 1.8;
-        color: rgba(233, 241, 255, 0.75);
+        color: rgba(230, 239, 255, 0.75);
     }
     .travail-metrics {
         display: grid;
@@ -80,9 +80,9 @@
         margin-top: 2.4rem;
     }
     .travail-metric {
-        background: rgba(9, 23, 36, 0.72);
+        background: rgba(10, 31, 28, 0.72);
         border-radius: 20px;
-        border: 1px solid rgba(126, 226, 240, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 1.5rem 1.3rem;
         text-align: center;
         box-shadow: 0 32px 50px rgba(2, 7, 12, 0.45);
@@ -90,7 +90,7 @@
     .travail-metric strong {
         display: block;
         font-size: 1.9rem;
-        color: #7ee2f0;
+        color: #ffffff;
     }
     .travail-grid {
         display: grid;
@@ -102,7 +102,7 @@
         position: relative;
         padding: 2.3rem;
         border-radius: 26px;
-        background: linear-gradient(205deg, rgba(255, 255, 255, 0.08), rgba(10, 27, 40, 0.65));
+        background: linear-gradient(200deg, rgba(255, 255, 255, 0.06), rgba(7, 28, 48, 0.6));
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 34px 48px rgba(0, 0, 0, 0.38);
     }
@@ -110,7 +110,7 @@
         font-size: 0.95rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #7ee2f0;
+        color: #ffbf99;
         margin-bottom: 1rem;
     }
     .travail-card h3 {
@@ -125,7 +125,7 @@
     }
     .travail-card p,
     .travail-card li {
-        color: rgba(233, 241, 255, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.75;
     }
     .travail-scenarios {
@@ -135,8 +135,8 @@
         margin-bottom: 3rem;
     }
     .travail-scenario {
-        background: rgba(6, 17, 26, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(13, 41, 38, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         padding: 1.9rem;
         box-shadow: 0 30px 50px rgba(0, 0, 0, 0.45);
@@ -144,22 +144,22 @@
     .travail-scenario strong {
         display: block;
         font-size: 1.15rem;
-        color: #7ee2f0;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .travail-process {
         margin: 3.8rem 0 3.5rem;
         padding: 2.9rem 2.4rem;
         border-radius: 28px;
-        background: rgba(1, 5, 10, 0.55);
-        border: 1px solid rgba(126, 226, 240, 0.16);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 36px 60px rgba(0, 0, 0, 0.42);
     }
     .travail-process h2 {
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 0.85rem;
-        color: rgba(233, 241, 255, 0.6);
+        color: rgba(231, 88, 26, 0.62);
         margin-bottom: 2rem;
     }
     .travail-steps {
@@ -179,8 +179,8 @@
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: rgba(244, 193, 102, 0.24);
-        color: #f4c166;
+        background: rgba(231, 88, 26, 0.22);
+        color: #ffbf99;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -193,7 +193,7 @@
         margin-bottom: 0.35rem;
     }
     .travail-step-text {
-        color: rgba(233, 241, 255, 0.72);
+        color: rgba(230, 239, 255, 0.72);
         line-height: 1.6;
     }
     .travail-proof {
@@ -206,21 +206,21 @@
         padding: 2rem;
         border-radius: 24px;
         background: rgba(6, 17, 26, 0.72);
-        border: 1px solid rgba(126, 226, 240, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
     }
     .travail-proof-card h3 {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #7ee2f0;
+        color: #ffbf99;
         margin-bottom: 0.7rem;
     }
     .travail-signet {
         margin: 3.3rem 0;
         padding: 2.6rem 2.2rem;
         border-radius: 26px;
-        background: rgba(3, 11, 18, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(13, 41, 38, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 34px 52px rgba(0, 0, 0, 0.4);
     }
     .travail-signet-grid {
@@ -229,16 +229,16 @@
         gap: 1.6rem;
     }
     .travail-signet-item {
-        background: rgba(9, 19, 30, 0.75);
+        background: rgba(13, 41, 38, 0.75);
         border-radius: 20px;
         padding: 1.8rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: rgba(233, 241, 255, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(230, 239, 255, 0.78);
     }
     .travail-signet-item h3 {
         font-size: 1.15rem;
         font-weight: 600;
-        color: #7ee2f0;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .travail-cta {
@@ -248,8 +248,8 @@
         align-items: center;
         padding: 2.6rem 2.3rem;
         border-radius: 28px;
-        background: linear-gradient(145deg, rgba(49, 180, 205, 0.12), rgba(4, 12, 20, 0.7));
-        border: 1px solid rgba(126, 226, 240, 0.18);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 34px 54px rgba(0, 0, 0, 0.42);
     }
     .travail-cta h3 {
@@ -259,7 +259,7 @@
         margin-bottom: 0.6rem;
     }
     .travail-cta p {
-        color: rgba(233, 241, 255, 0.75);
+        color: rgba(230, 239, 255, 0.75);
         margin-bottom: 0;
     }
     .travail-cta-actions {
@@ -273,12 +273,12 @@
         gap: 0.6rem;
         padding: 0.85rem 1.9rem;
         border-radius: 999px;
-        background: linear-gradient(125deg, #7ee2f0, #31b4cd);
-        color: #042230;
+        background: linear-gradient(120deg, #e7581a, #c08808);
+        color: #fff;
         font-weight: 600;
         letter-spacing: 0.05em;
         text-decoration: none;
-        box-shadow: 0 26px 46px rgba(49, 180, 205, 0.4);
+        box-shadow: 0 26px 46px rgba(231, 88, 26, 0.4);
     }
     .travail-btn-secondary {
         display: inline-flex;
@@ -286,13 +286,13 @@
         gap: 0.6rem;
         padding: 0.85rem 1.6rem;
         border-radius: 999px;
-        border: 1px solid rgba(126, 226, 240, 0.22);
-        background: rgba(4, 12, 20, 0.5);
-        color: #7ee2f0;
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        background: rgba(231, 88, 26, 0.08);
+        color: #ffbf99;
         text-decoration: none;
     }
     .travail-btn-primary:hover {
-        color: #042230;
+        color: #fff;
     }
     .travail-btn-secondary:hover {
         color: #ffffff;

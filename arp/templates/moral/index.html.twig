@@ -8,32 +8,32 @@
     .moral-luxe {
         position: relative;
         padding: 5rem 0 6rem;
-        background: linear-gradient(140deg, #ffffff 0%, #f7f9ff 40%, #eef2ff 100%);
+        background: radial-gradient(circle at top left, #091b2f 0%, #041021 45%, #020710 100%);
         overflow: hidden;
-        color: #081428;
+        color: rgba(230, 239, 255, 0.9);
     }
     .moral-luxe::before,
     .moral-luxe::after {
         content: "";
         position: absolute;
         border-radius: 50%;
-        filter: blur(50px);
-        opacity: 0.5;
+        filter: blur(12px);
+        opacity: 0.48;
         pointer-events: none;
     }
     .moral-luxe::before {
-        width: 520px;
-        height: 520px;
-        top: -230px;
-        left: -210px;
-        background: radial-gradient(circle, rgba(120, 176, 255, 0.28) 0%, rgba(120, 176, 255, 0) 70%);
+        width: 560px;
+        height: 560px;
+        top: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.28) 0%, rgba(231, 88, 26, 0) 70%);
     }
     .moral-luxe::after {
-        width: 480px;
-        height: 480px;
-        bottom: -220px;
-        right: -170px;
-        background: radial-gradient(circle, rgba(247, 197, 120, 0.24) 0%, rgba(247, 197, 120, 0) 70%);
+        width: 520px;
+        height: 520px;
+        bottom: -200px;
+        left: -160px;
+        background: radial-gradient(circle, rgba(80, 148, 255, 0.28) 0%, rgba(80, 148, 255, 0) 70%);
     }
     .moral-shell {
         position: relative;
@@ -50,20 +50,20 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.5rem 1.4rem;
+        padding: 0.55rem 1.3rem;
         border-radius: 999px;
-        border: 1px solid rgba(120, 176, 255, 0.35);
-        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(231, 88, 26, 0.45);
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.22), rgba(231, 88, 26, 0));
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-size: 0.75rem;
-        color: #365a99;
+        color: #ffeadd;
         margin-bottom: 1.6rem;
     }
     .moral-hero h1 {
         font-size: 2.9rem;
         font-weight: 640;
-        color: #031021;
+        color: #ffffff;
         margin-bottom: 1.3rem;
     }
     .moral-hero p {
@@ -71,7 +71,7 @@
         margin: 0 auto 0.9rem;
         font-size: 1.08rem;
         line-height: 1.8;
-        color: rgba(8, 20, 40, 0.72);
+        color: rgba(230, 239, 255, 0.75);
     }
     .moral-metrics {
         display: grid;
@@ -80,9 +80,9 @@
         margin-top: 2.4rem;
     }
     .moral-metric {
-        background: rgba(255, 255, 255, 0.92);
+        background: rgba(10, 31, 28, 0.75);
         border-radius: 20px;
-        border: 1px solid rgba(120, 176, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 1.5rem 1.3rem;
         text-align: center;
         box-shadow: 0 28px 46px rgba(36, 60, 104, 0.12);
@@ -90,11 +90,11 @@
     .moral-metric strong {
         display: block;
         font-size: 1.85rem;
-        color: #365a99;
+        color: #ffffff;
     }
     .moral-metric span {
         font-size: 0.92rem;
-        color: rgba(8, 20, 40, 0.65);
+        color: rgba(230, 239, 255, 0.68);
     }
     .moral-grid {
         display: grid;
@@ -106,21 +106,21 @@
         position: relative;
         padding: 2.3rem;
         border-radius: 26px;
-        background: linear-gradient(210deg, rgba(255, 255, 255, 0.86), rgba(237, 241, 255, 0.96));
-        border: 1px solid rgba(120, 176, 255, 0.14);
+        background: linear-gradient(200deg, rgba(255, 255, 255, 0.06), rgba(7, 28, 48, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 32px 48px rgba(28, 46, 88, 0.1);
     }
     .moral-card h2 {
         font-size: 0.95rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #365a99;
+        color: #ffbf99;
         margin-bottom: 1rem;
     }
     .moral-card h3 {
         font-size: 1.78rem;
         font-weight: 600;
-        color: #031021;
+        color: #ffffff;
         margin-bottom: 1.1rem;
     }
     .moral-card ul {
@@ -129,7 +129,7 @@
     }
     .moral-card p,
     .moral-card li {
-        color: rgba(8, 20, 40, 0.72);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.75;
     }
     .moral-scenarios {
@@ -139,8 +139,8 @@
         margin-bottom: 3rem;
     }
     .moral-scenario {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(120, 176, 255, 0.14);
+        background: rgba(13, 41, 38, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         padding: 1.9rem;
         box-shadow: 0 26px 42px rgba(36, 60, 104, 0.12);
@@ -148,15 +148,15 @@
     .moral-scenario strong {
         display: block;
         font-size: 1.15rem;
-        color: #365a99;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .moral-signet {
         margin: 3.3rem 0;
         padding: 2.6rem 2.2rem;
         border-radius: 24px;
-        background: rgba(8, 20, 40, 0.08);
-        border: 1px solid rgba(120, 176, 255, 0.14);
+        background: rgba(13, 41, 38, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 24px 40px rgba(36, 60, 104, 0.1);
     }
     .moral-signet-grid {
@@ -165,32 +165,32 @@
         gap: 1.6rem;
     }
     .moral-signet-item {
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(13, 41, 38, 0.7);
         border-radius: 20px;
         padding: 1.8rem;
-        border: 1px solid rgba(120, 176, 255, 0.18);
-        color: rgba(8, 20, 40, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(230, 239, 255, 0.78);
     }
     .moral-signet-item h3 {
         font-size: 1.15rem;
         font-weight: 600;
-        color: #365a99;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .moral-process {
         margin: 3.6rem 0 3.4rem;
         padding: 2.8rem 2.3rem;
         border-radius: 28px;
-        background: rgba(5, 16, 32, 0.82);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
         border: 1px solid rgba(255, 255, 255, 0.12);
-        color: rgba(233, 237, 255, 0.88);
+        color: rgba(230, 239, 255, 0.9);
         box-shadow: 0 32px 52px rgba(0, 0, 0, 0.24);
     }
     .moral-process h2 {
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 0.85rem;
-        color: rgba(233, 237, 255, 0.62);
+        color: rgba(231, 88, 26, 0.62);
         margin-bottom: 2rem;
     }
     .moral-steps {
@@ -210,8 +210,8 @@
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: rgba(247, 197, 120, 0.24);
-        color: #f3c769;
+        background: rgba(231, 88, 26, 0.22);
+        color: #ffbf99;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -224,7 +224,7 @@
         margin-bottom: 0.35rem;
     }
     .moral-step-text {
-        color: rgba(233, 237, 255, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.6;
     }
     .moral-proof {
@@ -236,15 +236,15 @@
     .moral-proof-card {
         padding: 2rem;
         border-radius: 24px;
-        background: rgba(255, 255, 255, 0.94);
-        border: 1px solid rgba(120, 176, 255, 0.14);
-        color: rgba(8, 20, 40, 0.78);
+        background: rgba(13, 41, 38, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(230, 239, 255, 0.78);
         box-shadow: 0 26px 42px rgba(36, 60, 104, 0.12);
     }
     .moral-proof-card h3 {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #365a99;
+        color: #ffbf99;
         margin-bottom: 0.7rem;
     }
     .moral-cta {
@@ -254,18 +254,18 @@
         align-items: center;
         padding: 2.6rem 2.3rem;
         border-radius: 28px;
-        background: linear-gradient(145deg, rgba(120, 176, 255, 0.16), rgba(255, 255, 255, 0.9));
-        border: 1px solid rgba(120, 176, 255, 0.18);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 32px 48px rgba(36, 60, 104, 0.12);
     }
     .moral-cta h3 {
         font-size: 1.85rem;
         font-weight: 620;
-        color: #031021;
+        color: #ffffff;
         margin-bottom: 0.6rem;
     }
     .moral-cta p {
-        color: rgba(8, 20, 40, 0.72);
+        color: rgba(230, 239, 255, 0.75);
         margin-bottom: 0;
     }
     .moral-cta-actions {
@@ -279,12 +279,12 @@
         gap: 0.6rem;
         padding: 0.85rem 1.9rem;
         border-radius: 999px;
-        background: linear-gradient(125deg, #365a99, #1f3766);
-        color: #ffffff;
+        background: linear-gradient(120deg, #e7581a, #c08808);
+        color: #fff;
         font-weight: 600;
         letter-spacing: 0.05em;
         text-decoration: none;
-        box-shadow: 0 24px 46px rgba(36, 60, 104, 0.3);
+        box-shadow: 0 24px 46px rgba(231, 88, 26, 0.3);
     }
     .moral-btn-secondary {
         display: inline-flex;
@@ -292,9 +292,9 @@
         gap: 0.6rem;
         padding: 0.85rem 1.6rem;
         border-radius: 999px;
-        border: 1px solid rgba(120, 176, 255, 0.2);
-        background: rgba(8, 20, 40, 0.06);
-        color: #365a99;
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        background: rgba(231, 88, 26, 0.08);
+        color: #ffbf99;
         text-decoration: none;
     }
     .moral-btn-primary:hover,

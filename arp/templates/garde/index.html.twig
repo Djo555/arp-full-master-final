@@ -8,8 +8,8 @@
     .garde-luxe {
         position: relative;
         padding: 5rem 0 6rem;
-        background: linear-gradient(135deg, #0a1f1c 0%, #0d2926 48%, #081f1d 100%);
-        color: rgba(230, 244, 239, 0.92);
+        background: radial-gradient(circle at top left, #091b2f 0%, #041021 45%, #020710 100%);
+        color: rgba(230, 239, 255, 0.9);
         overflow: hidden;
     }
     .garde-luxe::before,
@@ -17,23 +17,23 @@
         content: "";
         position: absolute;
         border-radius: 50%;
-        filter: blur(50px);
-        opacity: 0.58;
+        filter: blur(12px);
+        opacity: 0.48;
         pointer-events: none;
     }
     .garde-luxe::before {
-        width: 600px;
-        height: 600px;
-        top: -210px;
-        left: -190px;
-        background: radial-gradient(circle, rgba(96, 214, 192, 0.36) 0%, rgba(96, 214, 192, 0) 70%);
+        width: 560px;
+        height: 560px;
+        top: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.28) 0%, rgba(231, 88, 26, 0) 70%);
     }
     .garde-luxe::after {
         width: 520px;
         height: 520px;
-        bottom: -220px;
-        right: -160px;
-        background: radial-gradient(circle, rgba(44, 169, 196, 0.34) 0%, rgba(44, 169, 196, 0) 70%);
+        bottom: -200px;
+        left: -160px;
+        background: radial-gradient(circle, rgba(80, 148, 255, 0.28) 0%, rgba(80, 148, 255, 0) 70%);
     }
     .garde-shell {
         position: relative;
@@ -50,14 +50,14 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.5rem 1.4rem;
+        padding: 0.55rem 1.3rem;
         border-radius: 999px;
-        border: 1px solid rgba(96, 214, 192, 0.42);
-        background: rgba(7, 36, 30, 0.72);
+        border: 1px solid rgba(231, 88, 26, 0.45);
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.22), rgba(231, 88, 26, 0));
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-size: 0.75rem;
-        color: #a7f1df;
+        color: #ffeadd;
         margin-bottom: 1.6rem;
     }
     .garde-hero h1 {
@@ -71,7 +71,7 @@
         margin: 0 auto 0.9rem;
         font-size: 1.08rem;
         line-height: 1.8;
-        color: rgba(230, 244, 239, 0.75);
+        color: rgba(230, 239, 255, 0.78);
     }
     .garde-metrics {
         display: grid;
@@ -82,7 +82,7 @@
     .garde-metric {
         background: rgba(10, 31, 28, 0.75);
         border-radius: 20px;
-        border: 1px solid rgba(100, 240, 216, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 1.5rem 1.3rem;
         text-align: center;
         box-shadow: 0 22px 40px rgba(10, 31, 28, 0.35);
@@ -90,11 +90,11 @@
     .garde-metric strong {
         display: block;
         font-size: 1.85rem;
-        color: #64f0d8;
+        color: #ffffff;
     }
     .garde-metric span {
         font-size: 0.92rem;
-        color: rgba(230, 244, 239, 0.68);
+        color: rgba(230, 239, 255, 0.68);
     }
     .garde-grid {
         display: grid;
@@ -106,15 +106,15 @@
         position: relative;
         padding: 2.3rem;
         border-radius: 26px;
-        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(13, 41, 38, 0.65));
-        border: 1px solid rgba(100, 240, 216, 0.12);
+        background: linear-gradient(200deg, rgba(255, 255, 255, 0.06), rgba(7, 28, 48, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 32px 48px rgba(0, 0, 0, 0.35);
     }
     .garde-card h2 {
         font-size: 0.92rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 1rem;
     }
     .garde-card h3 {
@@ -125,7 +125,7 @@
     }
     .garde-card p,
     .garde-card li {
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.75;
     }
     .garde-card ul {
@@ -140,7 +140,7 @@
     }
     .garde-scenario {
         background: rgba(13, 41, 38, 0.6);
-        border: 1px solid rgba(100, 240, 216, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         padding: 1.9rem;
         box-shadow: 0 26px 42px rgba(0, 0, 0, 0.35);
@@ -148,23 +148,23 @@
     .garde-scenario strong {
         display: block;
         font-size: 1.15rem;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .garde-process {
         margin: 3.8rem 0;
         padding: 2.8rem 2.3rem;
         border-radius: 28px;
-        background: rgba(13, 41, 38, 0.86);
-        border: 1px solid rgba(100, 240, 216, 0.12);
-        color: rgba(230, 244, 239, 0.9);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(230, 239, 255, 0.9);
         box-shadow: 0 32px 54px rgba(10, 31, 28, 0.38);
     }
     .garde-process h2 {
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 0.85rem;
-        color: rgba(100, 240, 216, 0.62);
+        color: rgba(231, 88, 26, 0.62);
         margin-bottom: 2rem;
     }
     .garde-steps {
@@ -184,8 +184,8 @@
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: rgba(100, 240, 216, 0.2);
-        color: #64f0d8;
+        background: rgba(231, 88, 26, 0.22);
+        color: #ffbf99;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -198,7 +198,7 @@
         margin-bottom: 0.35rem;
     }
     .garde-step-text {
-        color: rgba(236, 242, 255, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.6;
     }
     .garde-proof {
@@ -211,22 +211,22 @@
         padding: 2rem;
         border-radius: 24px;
         background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(100, 240, 216, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 26px 45px rgba(0, 0, 0, 0.28);
-        color: rgba(230, 244, 239, 0.82);
+        color: rgba(230, 239, 255, 0.82);
     }
     .garde-proof-card h3 {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 0.7rem;
     }
     .garde-legal {
         margin: 3.4rem 0;
         padding: 2.9rem 2.3rem;
         border-radius: 28px;
-        background: rgba(13, 41, 38, 0.9);
-        border: 1px solid rgba(100, 240, 216, 0.16);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 30px 48px rgba(10, 31, 28, 0.36);
     }
     .garde-legal-intro {
@@ -240,7 +240,7 @@
         margin-bottom: 0.9rem;
     }
     .garde-legal-intro p {
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.75;
     }
     .garde-legal-grid {
@@ -252,14 +252,14 @@
         padding: 2.1rem;
         border-radius: 24px;
         background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(100, 240, 216, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 24px 40px rgba(0, 0, 0, 0.32);
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
     }
     .garde-legal-card h3 {
         font-size: 1.18rem;
         font-weight: 610;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 0.7rem;
     }
     .garde-legal-card p {
@@ -269,16 +269,16 @@
     .garde-legal-list {
         padding-left: 1.1rem;
         margin: 0;
-        color: rgba(230, 244, 239, 0.72);
+        color: rgba(230, 239, 255, 0.72);
         line-height: 1.6;
     }
     .garde-legal-footnote {
         margin-top: 2.4rem;
         padding: 1.9rem 2rem;
         border-radius: 22px;
-        background: rgba(100, 240, 216, 0.1);
-        border: 1px solid rgba(100, 240, 216, 0.28);
-        color: rgba(230, 244, 239, 0.78);
+        background: rgba(231, 88, 26, 0.1);
+        border: 1px solid rgba(231, 88, 26, 0.28);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.65;
     }
     .garde-signet {
@@ -298,13 +298,13 @@
         background: rgba(13, 41, 38, 0.7);
         border-radius: 20px;
         padding: 1.8rem;
-        border: 1px solid rgba(100, 240, 216, 0.1);
-        color: rgba(230, 244, 239, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(230, 239, 255, 0.78);
     }
     .garde-signet-item h3 {
         font-size: 1.15rem;
         font-weight: 600;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .garde-cta {
@@ -314,8 +314,8 @@
         align-items: center;
         padding: 2.6rem 2.3rem;
         border-radius: 28px;
-        background: linear-gradient(145deg, rgba(100, 240, 216, 0.12), rgba(13, 41, 38, 0.6));
-        border: 1px solid rgba(100, 240, 216, 0.16);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 32px 52px rgba(10, 31, 28, 0.38);
     }
     .garde-cta h3 {
@@ -325,7 +325,7 @@
         margin-bottom: 0.6rem;
     }
     .garde-cta p {
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         margin-bottom: 0;
     }
     .garde-cta-actions {
@@ -339,12 +339,12 @@
         gap: 0.6rem;
         padding: 0.85rem 1.9rem;
         border-radius: 999px;
-        background: linear-gradient(125deg, #64f0d8, #3fd9c8);
-        color: #0a1f1c;
+        background: linear-gradient(120deg, #e7581a, #c08808);
+        color: #fff;
         font-weight: 600;
         letter-spacing: 0.05em;
         text-decoration: none;
-        box-shadow: 0 24px 40px rgba(100, 240, 216, 0.3);
+        box-shadow: 0 24px 40px rgba(231, 88, 26, 0.3);
     }
     .garde-btn-secondary {
         display: inline-flex;
@@ -352,14 +352,14 @@
         gap: 0.6rem;
         padding: 0.85rem 1.6rem;
         border-radius: 999px;
-        border: 1px solid rgba(100, 240, 216, 0.24);
-        background: rgba(100, 240, 216, 0.08);
-        color: #64f0d8;
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        background: rgba(231, 88, 26, 0.08);
+        color: #ffbf99;
         text-decoration: none;
     }
     .garde-btn-primary:hover,
     .garde-btn-secondary:hover {
-        color: #0a1f1c;
+        color: #fff;
     }
     .footer-section {
         background: transparent !important;

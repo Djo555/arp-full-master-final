@@ -8,8 +8,8 @@
     .maladie-luxe {
         position: relative;
         padding: 5rem 0 6rem;
-        background: linear-gradient(130deg, #04130f 0%, #0a2c24 48%, #052d27 100%);
-        color: rgba(230, 244, 239, 0.92);
+        background: radial-gradient(120% 120% at 0% 0%, #0a1020 0%, #050714 55%, #01030a 100%);
+        color: rgba(230, 239, 255, 0.92);
         overflow: hidden;
     }
     .maladie-luxe::before,
@@ -17,23 +17,23 @@
         content: "";
         position: absolute;
         border-radius: 50%;
-        filter: blur(50px);
-        opacity: 0.58;
+        filter: blur(52px);
+        opacity: 0.55;
         pointer-events: none;
     }
     .maladie-luxe::before {
-        width: 600px;
-        height: 600px;
+        width: 620px;
+        height: 620px;
         top: -210px;
-        left: -190px;
-        background: radial-gradient(circle, rgba(96, 214, 192, 0.36) 0%, rgba(96, 214, 192, 0) 70%);
+        left: -180px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.34) 0%, rgba(231, 88, 26, 0) 70%);
     }
     .maladie-luxe::after {
         width: 520px;
         height: 520px;
         bottom: -220px;
         right: -160px;
-        background: radial-gradient(circle, rgba(44, 169, 196, 0.34) 0%, rgba(44, 169, 196, 0) 70%);
+        background: radial-gradient(circle, rgba(0, 67, 122, 0.32) 0%, rgba(0, 67, 122, 0) 70%);
     }
     .maladie-shell {
         position: relative;
@@ -52,12 +52,12 @@
         gap: 0.5rem;
         padding: 0.5rem 1.4rem;
         border-radius: 999px;
-        border: 1px solid rgba(96, 214, 192, 0.42);
-        background: rgba(7, 36, 30, 0.72);
+        border: 1px solid rgba(231, 88, 26, 0.5);
+        background: linear-gradient(135deg, rgba(231, 88, 26, 0.2), rgba(192, 136, 8, 0.12));
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-size: 0.75rem;
-        color: #a7f1df;
+        color: #ffbf99;
         margin-bottom: 1.6rem;
     }
     .maladie-hero h1 {
@@ -71,7 +71,7 @@
         margin: 0 auto 1rem;
         font-size: 1.04rem;
         line-height: 1.8;
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
     }
     .maladie-metrics {
         display: grid;
@@ -80,9 +80,9 @@
         margin-top: 2.4rem;
     }
     .maladie-metric {
-        background: rgba(4, 22, 18, 0.76);
+        background: rgba(10, 31, 28, 0.76);
         border-radius: 20px;
-        border: 1px solid rgba(167, 241, 223, 0.24);
+        border: 1px solid rgba(231, 88, 26, 0.18);
         padding: 1.5rem 1.3rem;
         text-align: center;
         box-shadow: 0 34px 54px rgba(0, 0, 0, 0.45);
@@ -90,11 +90,11 @@
     .maladie-metric strong {
         display: block;
         font-size: 1.9rem;
-        color: #9be9d4;
+        color: #ffffff;
     }
     .maladie-metric span {
         font-size: 0.92rem;
-        color: rgba(230, 244, 239, 0.72);
+        color: rgba(230, 239, 255, 0.72);
     }
     .maladie-grid {
         display: grid;
@@ -105,15 +105,15 @@
     .maladie-card {
         padding: 2.3rem;
         border-radius: 26px;
-        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(7, 26, 22, 0.72));
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(210deg, rgba(231, 88, 26, 0.08), rgba(10, 31, 28, 0.72));
+        border: 1px solid rgba(231, 88, 26, 0.12);
         box-shadow: 0 34px 52px rgba(0, 0, 0, 0.46);
     }
     .maladie-card h2 {
         font-size: 0.95rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #7ddfcc;
+        color: #ffbf99;
         margin-bottom: 1rem;
     }
     .maladie-card h3 {
@@ -124,7 +124,7 @@
     }
     .maladie-card p,
     .maladie-card li {
-        color: rgba(230, 244, 239, 0.8);
+        color: rgba(230, 239, 255, 0.8);
         line-height: 1.75;
     }
     .maladie-card ul {
@@ -138,25 +138,25 @@
         margin-bottom: 3rem;
     }
     .maladie-scenario {
-        background: rgba(6, 24, 20, 0.74);
+        background: rgba(13, 41, 38, 0.74);
         border-radius: 24px;
         padding: 1.9rem;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(231, 88, 26, 0.12);
         box-shadow: 0 32px 54px rgba(0, 0, 0, 0.48);
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
     }
     .maladie-scenario strong {
         display: block;
         font-size: 1.14rem;
-        color: #9fe7d7;
+        color: #ffbf99;
         margin-bottom: 0.5rem;
     }
     .maladie-assurance {
         margin: 3.3rem 0;
         padding: 2.6rem 2.2rem;
         border-radius: 26px;
-        background: rgba(0, 0, 0, 0.32);
-        border: 1px solid rgba(148, 236, 211, 0.24);
+        background: rgba(13, 41, 38, 0.6);
+        border: 1px solid rgba(231, 88, 26, 0.15);
         box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
     }
     .maladie-assurance-grid {
@@ -165,31 +165,31 @@
         gap: 1.6rem;
     }
     .maladie-assurance-item {
-        background: rgba(7, 28, 23, 0.74);
+        background: rgba(10, 31, 28, 0.74);
         border-radius: 20px;
         padding: 1.8rem;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        color: rgba(230, 244, 239, 0.78);
+        border: 1px solid rgba(231, 88, 26, 0.12);
+        color: rgba(230, 239, 255, 0.78);
     }
     .maladie-assurance-item h3 {
         font-size: 1.12rem;
         font-weight: 600;
-        color: #84e5d1;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .maladie-process {
         margin: 3.6rem 0 3.3rem;
         padding: 2.8rem 2.4rem;
         border-radius: 28px;
-        background: rgba(3, 15, 13, 0.64);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(140deg, rgba(7, 28, 48, 0.8), rgba(10, 31, 28, 0.75));
+        border: 1px solid rgba(231, 88, 26, 0.12);
         box-shadow: 0 36px 60px rgba(0, 0, 0, 0.52);
     }
     .maladie-process h2 {
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 0.85rem;
-        color: rgba(230, 244, 239, 0.64);
+        color: rgba(231, 88, 26, 0.62);
         margin-bottom: 2rem;
     }
     .maladie-steps {
@@ -202,15 +202,15 @@
         gap: 1.1rem;
         padding: 1.6rem 1.4rem;
         border-radius: 20px;
-        background: rgba(0, 0, 0, 0.36);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(13, 41, 38, 0.48);
+        border: 1px solid rgba(231, 88, 26, 0.12);
     }
     .maladie-step-index {
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: rgba(96, 214, 192, 0.28);
-        color: #8ee7d5;
+        background: rgba(231, 88, 26, 0.22);
+        color: #ffbf99;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -223,7 +223,7 @@
         margin-bottom: 0.35rem;
     }
     .maladie-step-text {
-        color: rgba(230, 244, 239, 0.76);
+        color: rgba(230, 239, 255, 0.76);
         line-height: 1.6;
     }
     .maladie-proof {
@@ -235,18 +235,18 @@
     .maladie-proof-card {
         padding: 2rem;
         border-radius: 24px;
-        background: rgba(6, 24, 20, 0.74);
-        border: 1px solid rgba(148, 236, 211, 0.24);
+        background: rgba(13, 41, 38, 0.74);
+        border: 1px solid rgba(231, 88, 26, 0.15);
         box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
     }
     .maladie-proof-card h3 {
         font-size: 1.18rem;
         font-weight: 600;
-        color: #88e5d3;
+        color: #ffbf99;
         margin-bottom: 0.7rem;
     }
     .maladie-proof-card p {
-        color: rgba(230, 244, 239, 0.8);
+        color: rgba(230, 239, 255, 0.8);
         line-height: 1.7;
         margin-bottom: 0;
     }
@@ -254,8 +254,8 @@
         margin: 3.4rem 0;
         padding: 2.8rem 2.4rem;
         border-radius: 30px;
-        background: linear-gradient(165deg, rgba(3, 16, 13, 0.84), rgba(6, 35, 29, 0.64));
-        border: 1px solid rgba(136, 229, 211, 0.24);
+        background: linear-gradient(165deg, rgba(10, 31, 28, 0.84), rgba(13, 41, 38, 0.64));
+        border: 1px solid rgba(231, 88, 26, 0.18);
         box-shadow: 0 38px 64px rgba(0, 0, 0, 0.55);
     }
     .maladie-legal-header {
@@ -271,13 +271,13 @@
         font-size: 0.95rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
-        color: #88e5d3;
+        color: #ffbf99;
     }
     .maladie-legal-highlight::before {
         content: "";
         width: 28px;
         height: 2px;
-        background: #88e5d3;
+        background: #ffbf99;
         opacity: 0.7;
     }
     .maladie-legal-header h2 {
@@ -286,7 +286,7 @@
         color: #ffffff;
     }
     .maladie-legal-header p {
-        color: rgba(230, 244, 239, 0.8);
+        color: rgba(230, 239, 255, 0.8);
         max-width: 780px;
         line-height: 1.7;
     }
@@ -298,25 +298,25 @@
     .maladie-legal-card {
         padding: 1.9rem;
         border-radius: 24px;
-        background: rgba(6, 27, 23, 0.82);
-        border: 1px solid rgba(136, 229, 211, 0.24);
+        background: rgba(13, 41, 38, 0.82);
+        border: 1px solid rgba(231, 88, 26, 0.15);
         box-shadow: 0 30px 54px rgba(0, 0, 0, 0.5);
     }
     .maladie-legal-card h3 {
         font-size: 1.12rem;
         font-weight: 600;
-        color: #9fe7d7;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .maladie-legal-card p {
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.7;
         margin-bottom: 0;
     }
     .maladie-legal-footnote {
         margin-top: 2.4rem;
         font-size: 0.86rem;
-        color: rgba(230, 244, 239, 0.68);
+        color: rgba(230, 239, 255, 0.68);
         line-height: 1.7;
     }
     .maladie-cta {
@@ -326,8 +326,8 @@
         align-items: center;
         padding: 2.6rem 2.3rem;
         border-radius: 28px;
-        background: linear-gradient(145deg, rgba(96, 214, 192, 0.18), rgba(0, 9, 7, 0.64));
-        border: 1px solid rgba(148, 236, 211, 0.24);
+        background: linear-gradient(145deg, rgba(231, 88, 26, 0.12), rgba(10, 31, 28, 0.6));
+        border: 1px solid rgba(231, 88, 26, 0.15);
         box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
     }
     .maladie-cta h3 {
@@ -337,7 +337,7 @@
         margin-bottom: 0.6rem;
     }
     .maladie-cta p {
-        color: rgba(230, 244, 239, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         margin-bottom: 0;
     }
     .maladie-cta-actions {
@@ -351,12 +351,12 @@
         gap: 0.6rem;
         padding: 0.85rem 1.9rem;
         border-radius: 999px;
-        background: linear-gradient(125deg, #8fe8d6, #44bfb3);
-        color: #062421;
+        background: linear-gradient(120deg, #e7581a, #c08808);
+        color: #ffffff;
         font-weight: 600;
         letter-spacing: 0.05em;
         text-decoration: none;
-        box-shadow: 0 26px 48px rgba(72, 214, 192, 0.45);
+        box-shadow: 0 26px 48px rgba(231, 88, 26, 0.32);
     }
     .maladie-btn-secondary {
         display: inline-flex;
@@ -364,13 +364,13 @@
         gap: 0.6rem;
         padding: 0.85rem 1.6rem;
         border-radius: 999px;
-        border: 1px solid rgba(148, 236, 211, 0.26);
-        background: rgba(4, 22, 18, 0.5);
-        color: #9de8d6;
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        background: rgba(231, 88, 26, 0.08);
+        color: #ffbf99;
         text-decoration: none;
     }
     .maladie-btn-primary:hover {
-        color: #062421;
+        color: #ffffff;
     }
     .maladie-btn-secondary:hover {
         color: #ffffff;

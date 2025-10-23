@@ -8,8 +8,8 @@
     .solvable-luxe {
         position: relative;
         padding: 5rem 0 6rem;
-        background: radial-gradient(120% 120% at 10% -10%, #06151b 0%, #031014 60%, #02080c 100%);
-        color: rgba(222, 237, 245, 0.92);
+        background: radial-gradient(circle at top left, #091b2f 0%, #041021 45%, #020710 100%);
+        color: rgba(230, 239, 255, 0.9);
         overflow: hidden;
     }
     .solvable-luxe::before,
@@ -17,23 +17,23 @@
         content: "";
         position: absolute;
         border-radius: 50%;
-        filter: blur(50px);
-        opacity: 0.6;
+        filter: blur(12px);
+        opacity: 0.48;
         pointer-events: none;
     }
     .solvable-luxe::before {
-        width: 620px;
-        height: 620px;
-        top: -230px;
-        left: -210px;
-        background: radial-gradient(circle, rgba(18, 173, 147, 0.34) 0%, rgba(18, 173, 147, 0) 70%);
+        width: 560px;
+        height: 560px;
+        top: -220px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.28) 0%, rgba(231, 88, 26, 0) 70%);
     }
     .solvable-luxe::after {
         width: 520px;
         height: 520px;
-        bottom: -220px;
-        right: -170px;
-        background: radial-gradient(circle, rgba(243, 198, 104, 0.28) 0%, rgba(243, 198, 104, 0) 70%);
+        bottom: -200px;
+        left: -160px;
+        background: radial-gradient(circle, rgba(80, 148, 255, 0.28) 0%, rgba(80, 148, 255, 0) 70%);
     }
     .solvable-shell {
         position: relative;
@@ -50,14 +50,14 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.5rem 1.4rem;
+        padding: 0.55rem 1.3rem;
         border-radius: 999px;
-        border: 1px solid rgba(18, 173, 147, 0.4);
-        background: rgba(3, 18, 22, 0.7);
+        border: 1px solid rgba(231, 88, 26, 0.45);
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.22), rgba(231, 88, 26, 0));
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-size: 0.75rem;
-        color: #64f0d8;
+        color: #ffeadd;
         margin-bottom: 1.6rem;
     }
     .solvable-hero h1 {
@@ -71,7 +71,7 @@
         margin: 0 auto 0.9rem;
         font-size: 1.08rem;
         line-height: 1.8;
-        color: rgba(222, 237, 245, 0.75);
+        color: rgba(230, 239, 255, 0.75);
     }
     .solvable-metrics {
         display: grid;
@@ -80,9 +80,9 @@
         margin-top: 2.4rem;
     }
     .solvable-metric {
-        background: rgba(3, 16, 20, 0.72);
+        background: rgba(10, 31, 28, 0.72);
         border-radius: 20px;
-        border: 1px solid rgba(100, 240, 216, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 1.5rem 1.3rem;
         text-align: center;
         box-shadow: 0 32px 52px rgba(1, 5, 8, 0.48);
@@ -90,11 +90,11 @@
     .solvable-metric strong {
         display: block;
         font-size: 1.9rem;
-        color: #64f0d8;
+        color: #ffffff;
     }
     .solvable-metric span {
         font-size: 0.92rem;
-        color: rgba(222, 237, 245, 0.68);
+        color: rgba(230, 239, 255, 0.68);
     }
     .solvable-grid {
         display: grid;
@@ -106,7 +106,7 @@
         position: relative;
         padding: 2.3rem;
         border-radius: 26px;
-        background: linear-gradient(210deg, rgba(255, 255, 255, 0.08), rgba(5, 22, 24, 0.7));
+        background: linear-gradient(200deg, rgba(255, 255, 255, 0.06), rgba(7, 28, 48, 0.6));
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 34px 50px rgba(0, 0, 0, 0.42);
     }
@@ -114,7 +114,7 @@
         font-size: 0.95rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 1rem;
     }
     .solvable-card h3 {
@@ -129,7 +129,7 @@
     }
     .solvable-card p,
     .solvable-card li {
-        color: rgba(222, 237, 245, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.75;
     }
     .solvable-scenarios {
@@ -139,8 +139,8 @@
         margin-bottom: 3rem;
     }
     .solvable-scenario {
-        background: rgba(3, 14, 16, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(13, 41, 38, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         padding: 1.9rem;
         box-shadow: 0 30px 52px rgba(0, 0, 0, 0.45);
@@ -148,15 +148,15 @@
     .solvable-scenario strong {
         display: block;
         font-size: 1.15rem;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .solvable-signet {
         margin: 3.3rem 0;
         padding: 2.6rem 2.2rem;
         border-radius: 26px;
-        background: rgba(0, 0, 0, 0.32);
-        border: 1px solid rgba(100, 240, 216, 0.18);
+        background: rgba(13, 41, 38, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 34px 54px rgba(0, 0, 0, 0.46);
     }
     .solvable-signet-grid {
@@ -165,23 +165,23 @@
         gap: 1.6rem;
     }
     .solvable-signet-item {
-        background: rgba(3, 14, 16, 0.7);
+        background: rgba(13, 41, 38, 0.7);
         border-radius: 20px;
         padding: 1.8rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: rgba(222, 237, 245, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(230, 239, 255, 0.78);
     }
     .solvable-signet-item h3 {
         font-size: 1.15rem;
         font-weight: 600;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .solvable-process {
         margin: 3.6rem 0 3.4rem;
         padding: 2.8rem 2.4rem;
         border-radius: 28px;
-        background: rgba(0, 6, 8, 0.48);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 36px 60px rgba(0, 0, 0, 0.5);
     }
@@ -189,7 +189,7 @@
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 0.85rem;
-        color: rgba(222, 237, 245, 0.62);
+        color: rgba(231, 88, 26, 0.62);
         margin-bottom: 2rem;
     }
     .solvable-steps {
@@ -209,8 +209,8 @@
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: rgba(243, 198, 104, 0.24);
-        color: #f3c668;
+        background: rgba(231, 88, 26, 0.22);
+        color: #ffbf99;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -223,7 +223,7 @@
         margin-bottom: 0.35rem;
     }
     .solvable-step-text {
-        color: rgba(222, 237, 245, 0.75);
+        color: rgba(230, 239, 255, 0.75);
         line-height: 1.6;
     }
     .solvable-proof {
@@ -235,18 +235,18 @@
     .solvable-proof-card {
         padding: 2rem;
         border-radius: 24px;
-        background: rgba(3, 16, 20, 0.72);
-        border: 1px solid rgba(100, 240, 216, 0.18);
+        background: rgba(13, 41, 38, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 28px 48px rgba(0, 0, 0, 0.46);
     }
     .solvable-proof-card h3 {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #64f0d8;
+        color: #ffbf99;
         margin-bottom: 0.7rem;
     }
     .solvable-proof-card p {
-        color: rgba(222, 237, 245, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.7;
         margin-bottom: 0;
     }
@@ -254,8 +254,8 @@
         margin: 3.4rem 0;
         padding: 2.8rem 2.4rem;
         border-radius: 30px;
-        background: linear-gradient(160deg, rgba(0, 10, 12, 0.78), rgba(5, 44, 48, 0.58));
-        border: 1px solid rgba(243, 198, 104, 0.26);
+        background: linear-gradient(160deg, rgba(7, 36, 62, 0.78), rgba(5, 28, 48, 0.58));
+        border: 1px solid rgba(231, 88, 26, 0.2);
         box-shadow: 0 38px 64px rgba(0, 0, 0, 0.52);
     }
     .solvable-legal-header {
@@ -271,13 +271,13 @@
         font-size: 0.95rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
-        color: #64f0d8;
+        color: #ffbf99;
     }
     .solvable-legal-highlight::before {
         content: "";
         width: 28px;
         height: 2px;
-        background: #64f0d8;
+        background: #ffbf99;
         opacity: 0.7;
     }
     .solvable-legal-header h2 {
@@ -286,7 +286,7 @@
         color: #ffffff;
     }
     .solvable-legal-header p {
-        color: rgba(222, 237, 245, 0.75);
+        color: rgba(230, 239, 255, 0.75);
         max-width: 780px;
         line-height: 1.7;
     }
@@ -298,25 +298,25 @@
     .solvable-legal-card {
         padding: 1.9rem;
         border-radius: 24px;
-        background: rgba(3, 16, 20, 0.82);
-        border: 1px solid rgba(243, 198, 104, 0.26);
+        background: rgba(13, 41, 38, 0.82);
+        border: 1px solid rgba(231, 88, 26, 0.2);
         box-shadow: 0 30px 52px rgba(0, 0, 0, 0.48);
     }
     .solvable-legal-card h3 {
         font-size: 1.15rem;
         font-weight: 600;
-        color: #f3c668;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .solvable-legal-card p {
-        color: rgba(222, 237, 245, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.7;
         margin-bottom: 0;
     }
     .solvable-legal-footnote {
         margin-top: 2.4rem;
         font-size: 0.86rem;
-        color: rgba(222, 237, 245, 0.62);
+        color: rgba(230, 239, 255, 0.62);
         line-height: 1.7;
     }
     .solvable-cta {
@@ -326,8 +326,8 @@
         align-items: center;
         padding: 2.6rem 2.3rem;
         border-radius: 28px;
-        background: linear-gradient(145deg, rgba(18, 173, 147, 0.18), rgba(0, 6, 8, 0.6));
-        border: 1px solid rgba(100, 240, 216, 0.2);
+        background: linear-gradient(145deg, rgba(231, 88, 26, 0.12), rgba(10, 31, 28, 0.6));
+        border: 1px solid rgba(231, 88, 26, 0.15);
         box-shadow: 0 34px 56px rgba(0, 0, 0, 0.5);
     }
     .solvable-cta h3 {
@@ -337,7 +337,7 @@
         margin-bottom: 0.6rem;
     }
     .solvable-cta p {
-        color: rgba(222, 237, 245, 0.75);
+        color: rgba(230, 239, 255, 0.75);
         margin-bottom: 0;
     }
     .solvable-cta-actions {
@@ -351,12 +351,12 @@
         gap: 0.6rem;
         padding: 0.85rem 1.9rem;
         border-radius: 999px;
-        background: linear-gradient(125deg, #64f0d8, #12ad93);
-        color: #011819;
+        background: linear-gradient(120deg, #e7581a, #c08808);
+        color: #ffffff;
         font-weight: 600;
         letter-spacing: 0.05em;
         text-decoration: none;
-        box-shadow: 0 26px 48px rgba(18, 173, 147, 0.42);
+        box-shadow: 0 26px 48px rgba(231, 88, 26, 0.32);
     }
     .solvable-btn-secondary {
         display: inline-flex;
@@ -364,13 +364,13 @@
         gap: 0.6rem;
         padding: 0.85rem 1.6rem;
         border-radius: 999px;
-        border: 1px solid rgba(100, 240, 216, 0.24);
-        background: rgba(0, 6, 8, 0.45);
-        color: #64f0d8;
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        background: rgba(231, 88, 26, 0.08);
+        color: #ffbf99;
         text-decoration: none;
     }
     .solvable-btn-primary:hover {
-        color: #011819;
+        color: #ffffff;
     }
     .solvable-btn-secondary:hover {
         color: #ffffff;

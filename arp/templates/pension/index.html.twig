@@ -8,8 +8,8 @@
     .pension-luxe {
         position: relative;
         padding: 5rem 0 6rem;
-        background: radial-gradient(120% 120% at 5% -10%, #1a0f07 0%, #3d1a0a 55%, #1a0f07 100%);
-        color: rgba(255, 240, 230, 0.92);
+        background: radial-gradient(circle at top left, #091b2f 0%, #041021 45%, #020710 100%);
+        color: rgba(230, 239, 255, 0.9);
         overflow: hidden;
     }
     .pension-luxe::before,
@@ -17,23 +17,23 @@
         content: "";
         position: absolute;
         border-radius: 50%;
-        filter: blur(52px);
-        opacity: 0.6;
+        filter: blur(12px);
+        opacity: 0.48;
         pointer-events: none;
     }
     .pension-luxe::before {
-        width: 600px;
-        height: 600px;
+        width: 560px;
+        height: 560px;
         top: -220px;
-        left: -200px;
-        background: radial-gradient(circle, rgba(231, 88, 26, 0.35) 0%, rgba(231, 88, 26, 0) 72%);
+        right: -160px;
+        background: radial-gradient(circle, rgba(231, 88, 26, 0.28) 0%, rgba(231, 88, 26, 0) 70%);
     }
     .pension-luxe::after {
         width: 520px;
         height: 520px;
-        bottom: -240px;
-        right: -160px;
-        background: radial-gradient(circle, rgba(200, 136, 8, 0.32) 0%, rgba(200, 136, 8, 0) 75%);
+        bottom: -200px;
+        left: -160px;
+        background: radial-gradient(circle, rgba(80, 148, 255, 0.28) 0%, rgba(80, 148, 255, 0) 70%);
     }
     .pension-shell {
         position: relative;
@@ -50,14 +50,14 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.5rem 1.4rem;
+        padding: 0.55rem 1.3rem;
         border-radius: 999px;
-        border: 1px solid rgba(231, 88, 26, 0.42);
-        background: rgba(58, 20, 10, 0.72);
+        border: 1px solid rgba(231, 88, 26, 0.45);
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.22), rgba(231, 88, 26, 0));
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-size: 0.75rem;
-        color: #f5a855;
+        color: #ffeadd;
         margin-bottom: 1.6rem;
     }
     .pension-hero h1 {
@@ -71,7 +71,7 @@
         margin: 0 auto 0.9rem;
         font-size: 1.08rem;
         line-height: 1.8;
-        color: rgba(233, 237, 255, 0.75);
+        color: rgba(230, 239, 255, 0.78);
     }
     .pension-metrics {
         display: grid;
@@ -80,9 +80,9 @@
         margin-top: 2.4rem;
     }
     .pension-metric {
-        background: rgba(58, 20, 10, 0.75);
+        background: rgba(10, 31, 28, 0.75);
         border-radius: 20px;
-        border: 1px solid rgba(231, 88, 26, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         padding: 1.5rem 1.3rem;
         text-align: center;
         box-shadow: 0 30px 50px rgba(26, 15, 7, 0.45);
@@ -90,11 +90,11 @@
     .pension-metric strong {
         display: block;
         font-size: 1.9rem;
-        color: #f5a855;
+        color: #ffffff;
     }
     .pension-metric span {
         font-size: 0.92rem;
-        color: rgba(233, 237, 255, 0.68);
+        color: rgba(230, 239, 255, 0.68);
     }
     .pension-grid {
         display: grid;
@@ -106,15 +106,15 @@
         position: relative;
         padding: 2.3rem;
         border-radius: 26px;
-        background: linear-gradient(205deg, rgba(255, 255, 255, 0.08), rgba(58, 20, 10, 0.65));
-        border: 1px solid rgba(231, 88, 26, 0.12);
+        background: linear-gradient(200deg, rgba(255, 255, 255, 0.06), rgba(7, 28, 48, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 34px 48px rgba(0, 0, 0, 0.38);
     }
     .pension-card h2 {
         font-size: 0.95rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #f5a855;
+        color: #ffbf99;
         margin-bottom: 1rem;
     }
     .pension-card h3 {
@@ -125,7 +125,7 @@
     }
     .pension-card p,
     .pension-card li {
-        color: rgba(233, 237, 255, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.75;
     }
     .pension-card ul {
@@ -139,8 +139,8 @@
         margin-bottom: 3rem;
     }
     .pension-scenario {
-        background: rgba(58, 20, 10, 0.6);
-        border: 1px solid rgba(231, 88, 26, 0.15);
+        background: rgba(13, 41, 38, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         padding: 1.9rem;
         box-shadow: 0 30px 50px rgba(26, 15, 7, 0.5);
@@ -148,22 +148,22 @@
     .pension-scenario strong {
         display: block;
         font-size: 1.15rem;
-        color: #f5a855;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .pension-process {
         margin: 3.8rem 0 3.5rem;
         padding: 2.9rem 2.4rem;
         border-radius: 28px;
-        background: rgba(58, 20, 10, 0.82);
-        border: 1px solid rgba(231, 88, 26, 0.12);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 36px 60px rgba(0, 0, 0, 0.4);
     }
     .pension-process h2 {
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 0.85rem;
-        color: rgba(245, 168, 85, 0.65);
+        color: rgba(231, 88, 26, 0.62);
         margin-bottom: 2rem;
     }
     .pension-steps {
@@ -183,8 +183,8 @@
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: rgba(245, 168, 85, 0.2);
-        color: #f5a855;
+        background: rgba(231, 88, 26, 0.22);
+        color: #ffbf99;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -197,7 +197,7 @@
         margin-bottom: 0.35rem;
     }
     .pension-step-text {
-        color: rgba(233, 237, 255, 0.72);
+        color: rgba(230, 239, 255, 0.72);
         line-height: 1.6;
     }
     .pension-proof {
@@ -210,7 +210,7 @@
         padding: 2rem;
         border-radius: 24px;
         background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(231, 88, 26, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 28px 48px rgba(0, 0, 0, 0.38);
     }
     .pension-proof-card h3 {
@@ -220,15 +220,15 @@
         margin-bottom: 0.7rem;
     }
     .pension-proof-card p {
-        color: rgba(233, 237, 255, 0.75);
+        color: rgba(230, 239, 255, 0.75);
         line-height: 1.65;
     }
     .pension-legal {
         margin: 3.6rem 0;
         padding: 3rem 2.4rem;
         border-radius: 28px;
-        background: rgba(58, 20, 10, 0.8);
-        border: 1px solid rgba(231, 88, 26, 0.2);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 36px 58px rgba(0, 0, 0, 0.42);
     }
     .pension-legal-intro {
@@ -242,7 +242,7 @@
         margin-bottom: 1rem;
     }
     .pension-legal-intro p {
-        color: rgba(233, 237, 255, 0.8);
+        color: rgba(230, 239, 255, 0.8);
         line-height: 1.75;
     }
     .pension-legal-grid {
@@ -255,40 +255,40 @@
         padding: 2.1rem;
         border-radius: 24px;
         background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(231, 88, 26, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 28px 48px rgba(0, 0, 0, 0.35);
     }
     .pension-legal-card h3 {
         font-size: 1.3rem;
         font-weight: 620;
-        color: #f5a855;
+        color: #ffbf99;
         margin-bottom: 0.8rem;
     }
     .pension-legal-card p {
-        color: rgba(233, 237, 255, 0.8);
+        color: rgba(230, 239, 255, 0.8);
         line-height: 1.7;
         margin-bottom: 1rem;
     }
     .pension-legal-list {
         padding-left: 1.1rem;
         margin: 0;
-        color: rgba(233, 237, 255, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.65;
     }
     .pension-legal-footnote {
         padding: 1.9rem 2rem;
         border-radius: 22px;
-        background: rgba(245, 168, 85, 0.14);
-        border: 1px solid rgba(245, 168, 85, 0.32);
-        color: rgba(233, 237, 255, 0.85);
+        background: rgba(231, 88, 26, 0.1);
+        border: 1px solid rgba(231, 88, 26, 0.28);
+        color: rgba(230, 239, 255, 0.85);
         line-height: 1.7;
     }
     .pension-comp {
         margin: 3.4rem 0;
         padding: 3rem 2.4rem;
         border-radius: 28px;
-        background: rgba(58, 20, 10, 0.78);
-        border: 1px solid rgba(231, 88, 26, 0.18);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 34px 56px rgba(0, 0, 0, 0.4);
     }
     .pension-comp-header {
@@ -302,7 +302,7 @@
         margin-bottom: 0.9rem;
     }
     .pension-comp-header p {
-        color: rgba(233, 237, 255, 0.8);
+        color: rgba(230, 239, 255, 0.8);
         line-height: 1.75;
     }
     .pension-comp-grid {
@@ -314,33 +314,33 @@
         padding: 2.1rem;
         border-radius: 24px;
         background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(231, 88, 26, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 28px 46px rgba(0, 0, 0, 0.36);
     }
     .pension-comp-card h3 {
         font-size: 1.25rem;
         font-weight: 610;
-        color: #f5a855;
+        color: #ffbf99;
         margin-bottom: 0.7rem;
     }
     .pension-comp-card p {
-        color: rgba(233, 237, 255, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.65;
         margin-bottom: 0.9rem;
     }
     .pension-comp-list {
         padding-left: 1.1rem;
         margin: 0;
-        color: rgba(233, 237, 255, 0.78);
+        color: rgba(230, 239, 255, 0.78);
         line-height: 1.6;
     }
     .pension-comp-footnote {
         margin-top: 2.4rem;
         padding: 1.9rem 2rem;
         border-radius: 22px;
-        background: rgba(58, 20, 10, 0.68);
-        border: 1px solid rgba(245, 168, 85, 0.22);
-        color: rgba(233, 237, 255, 0.84);
+        background: rgba(231, 88, 26, 0.1);
+        border: 1px solid rgba(231, 88, 26, 0.28);
+        color: rgba(230, 239, 255, 0.84);
         line-height: 1.7;
     }
         color: #ffffff;
@@ -350,8 +350,8 @@
         margin: 3.3rem 0;
         padding: 2.6rem 2.2rem;
         border-radius: 26px;
-        background: rgba(58, 20, 10, 0.6);
-        border: 1px solid rgba(231, 88, 26, 0.16);
+        background: rgba(13, 41, 38, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 32px 52px rgba(0, 0, 0, 0.4);
     }
     .pension-signet-grid {
@@ -360,16 +360,16 @@
         gap: 1.6rem;
     }
     .pension-signet-item {
-        background: rgba(58, 20, 10, 0.7);
+        background: rgba(13, 41, 38, 0.7);
         border-radius: 20px;
         padding: 1.8rem;
-        border: 1px solid rgba(231, 88, 26, 0.1);
-        color: rgba(233, 237, 255, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(230, 239, 255, 0.78);
     }
     .pension-signet-item h3 {
         font-size: 1.15rem;
         font-weight: 600;
-        color: #f5a855;
+        color: #ffbf99;
         margin-bottom: 0.6rem;
     }
     .pension-cta {
@@ -379,8 +379,8 @@
         align-items: center;
         padding: 2.6rem 2.3rem;
         border-radius: 28px;
-        background: linear-gradient(145deg, rgba(245, 168, 85, 0.16), rgba(58, 20, 10, 0.7));
-        border: 1px solid rgba(231, 88, 26, 0.18);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(7, 36, 62, 0.6));
+        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 34px 54px rgba(0, 0, 0, 0.42);
     }
     .pension-cta h3 {
@@ -390,7 +390,7 @@
         margin-bottom: 0.6rem;
     }
     .pension-cta p {
-        color: rgba(233, 237, 255, 0.75);
+        color: rgba(230, 239, 255, 0.75);
         margin-bottom: 0;
     }
     .pension-cta-actions {
@@ -404,8 +404,8 @@
         gap: 0.6rem;
         padding: 0.85rem 1.9rem;
         border-radius: 999px;
-        background: linear-gradient(125deg, #f5a855, #e7581a);
-        color: #1a0f07;
+        background: linear-gradient(120deg, #e7581a, #c08808);
+        color: #fff;
         font-weight: 600;
         letter-spacing: 0.05em;
         text-decoration: none;
@@ -417,13 +417,13 @@
         gap: 0.6rem;
         padding: 0.85rem 1.6rem;
         border-radius: 999px;
-        border: 1px solid rgba(231, 88, 26, 0.22);
-        background: rgba(58, 20, 10, 0.5);
-        color: #f5a855;
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        background: rgba(231, 88, 26, 0.08);
+        color: #ffbf99;
         text-decoration: none;
     }
     .pension-btn-primary:hover {
-        color: #0b1425;
+        color: #fff;
     }
     .pension-btn-secondary:hover {
         color: #ffffff;
