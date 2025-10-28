@@ -12,6 +12,9 @@
                     radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.08), transparent 55%),
                     linear-gradient(160deg, #001a2f 0%, #012341 45%, #001220 100%);
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .cabinet-canvas::before,
     .cabinet-canvas::after {
@@ -37,6 +40,9 @@
         position: relative;
         z-index: 1;
         color: rgba(245, 249, 255, 0.9);
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
     }
     .cabinet-hero {
         text-align: center;
@@ -71,9 +77,56 @@
     }
     .cabinet-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 2.2rem;
         margin-bottom: 3.2rem;
+        place-items: center;
+        width: 100%;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) {
+        grid-column: 2;
+        width: 380px;
+        height: 380px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+        padding: 2.5rem 1.8rem !important;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) h2 {
+        order: -3;
+        margin-bottom: 0.6rem;
+        font-size: 0.9rem;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) h3 {
+        order: -2;
+        margin-bottom: 1.2rem;
+        font-size: 1.4rem;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) .cabinet-text {
+        order: -1;
+        padding: 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) .cabinet-text ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) .cabinet-text li {
+        margin-bottom: 0.5rem;
+        color: rgba(229, 239, 255, 0.85);
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) .cabinet-text a {
+        color: #ffb47d;
+        text-decoration: none;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) .cabinet-highlight {
+        display: none;
     }
     .cabinet-module {
         position: relative;
@@ -84,6 +137,13 @@
         box-shadow: 0 28px 45px rgba(0, 0, 0, 0.28);
         backdrop-filter: blur(8px);
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .cabinet-grid .cabinet-module:nth-child(4) {
+        padding: 2.5rem 1.8rem !important;
     }
     .cabinet-module::after {
         content: '';
@@ -102,6 +162,7 @@
         text-transform: uppercase;
         color: #92b5ff;
         margin-bottom: 0.9rem;
+        text-align: center;
     }
     .cabinet-module h3 {
         font-size: 1.8rem;
@@ -156,47 +217,61 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .cabinet-cta {
-        margin-top: 3rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.8rem;
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 2rem;
         background: linear-gradient(200deg, rgba(255, 255, 255, 0.07), rgba(0, 28, 47, 0.35));
         border-radius: 26px;
         border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 2.6rem;
+        padding: 3.2rem 2.6rem;
         box-shadow: 0 28px 45px rgba(0, 0, 0, 0.28);
         backdrop-filter: blur(8px);
     }
     .cabinet-cta-info h3 {
-        font-size: 1.85rem;
-        font-weight: 600;
+        font-size: 2rem;
+        font-weight: 620;
         color: #ffffff;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
     }
     .cabinet-cta-info p {
         color: rgba(229, 239, 255, 0.85);
+        max-width: 700px;
+        margin: 0 auto;
     }
     .cabinet-cta-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 1.2rem;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .cabinet-cta-calendar {
+        flex-basis: 100%;
+        justify-content: center;
     }
     .cabinet-cta-link {
         display: inline-flex;
         align-items: center;
         gap: 0.7rem;
-        padding: 0.85rem 1.6rem;
+        padding: 0.95rem 1.9rem;
         border-radius: 999px;
         background: linear-gradient(120deg, #e7581a, #c08808);
         color: #fff;
         font-weight: 600;
         letter-spacing: 0.06em;
         text-decoration: none;
+        box-shadow: 0 12px 28px rgba(231, 88, 26, 0.28);
+        transition: all 0.3s ease;
     }
     .cabinet-cta-link:hover {
         color: #fff;
-        box-shadow: 0 20px 34px rgba(231, 88, 26, 0.34);
+        box-shadow: 0 20px 40px rgba(231, 88, 26, 0.4);
+        transform: translateY(-2px);
     }
     .cabinet-cta-secondary {
         display: inline-flex;
@@ -227,12 +302,28 @@
     .footer-section .footer-legal a {
         color: #0f2036 !important;
     }
+    @media (max-width: 991.98px) {
+        .cabinet-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .cabinet-grid .cabinet-module:nth-child(4) {
+            grid-column: 1 / -1;
+            width: 320px;
+            height: 320px;
+        }
+    }
     @media (max-width: 575.98px) {
         .cabinet-hero h1 {
             font-size: 2.4rem;
         }
         .cabinet-grid {
+            grid-template-columns: 1fr;
             gap: 1.7rem;
+        }
+        .cabinet-grid .cabinet-module:nth-child(4) {
+            grid-column: 1;
+            width: 280px;
+            height: 280px;
         }
         .cabinet-module {
             padding: 2rem;
@@ -249,84 +340,84 @@
     <div class="container cabinet-shell">
         <header class="cabinet-hero">
             <span class="cabinet-badge">Cabinet BENSOPS</span>
-            <h1>Nous révélons la vérité, vous reprenez l’avantage</h1>
-            <p>Derrière chaque enquête se cache une histoire humaine. Notre dirigeant, diplômé en investigations privées, sécurité des biens et des personnes, a uni ses expertises de terrain et de data analyst pour créer un cabinet capable d’allier filature, intelligence numérique et stratégie juridique.</p>
-            <p>Implanté entre Marseille et Paris, le cabinet intervient en France et à l’international en s’appuyant sur un réseau de partenaires reconnus.</p>
+            <h1>Nous révélons la vérité, vous reprenez l'avantage</h1>
+            <p>Derrière chaque enquête se cache une histoire humaine. Notre dirigeant, diplômé en investigations privées, sécurité des biens et des personnes, a uni ses expertises de terrain et de data analyst pour créer un cabinet capable d'allier filature, intelligence numérique et stratégie juridique.</p>
+            <p>Aux côtés des <strong>particuliers</strong> (divorces, héritages, fraudes), <strong>entreprises</strong> (concurrence, fraude interne, cybercriminalité) et <strong>avocats</strong>, nous intervenons en France et à l'international en s'appuyant sur un réseau de partenaires reconnus.</p>
         </header>
 
         <div class="cabinet-grid">
             <article class="cabinet-module">
-                <h2>Vision</h2>
-                <h3>Une approche globale des enquêtes</h3>
+                <h2>Approche</h2>
+                <h3>Filature, données & stratégie juridique</h3>
                 <div class="cabinet-text">
-                    <p>Chaque dossier débute par une écoute approfondie, une analyse rigoureuse et la définition d’une stratégie proportionnée. Nous alternons missions de terrain, investigation numérique et accompagnement juridique pour protéger vos intérêts.</p>
+                    <p>Trois piliers complémentaires : <br>Le terrain pour la filature et la surveillance,</br><br> L'intelligence numérique pour les traces et les données,</br><br> La stratégie juridique pour transformer les preuves en arguments devant un tribunal.</br></br> Chaque mission débute par une écoute approfondie du client, puis la définition d'une stratégie proportionnée et légale.</p>
                     <div class="cabinet-highlight">
-                        <em>« Chaque mission est unique, chaque histoire compte. »</em>
+                        <em>« En tant qu’enquêteur, je dis souvent que le client détient 80 % des réponses. L’enquête, c’est l’art de les faire surgir par la pratique, l’écoute et la méthode.»</em>
                     </div>
                 </div>
             </article>
 
-            <article class="cabinet-module" id="services">
+                        <article class="cabinet-module" id="services">
                 <h2>Services</h2>
-                <h3>Domaines d’intervention</h3>
+                <h3>Enquêtes ciblées et productibles</h3>
                 <div class="cabinet-text">
                     <ul class="cabinet-list">
-                        <li>Enquêtes civiles et familiales</li>
-                        <li>Enquêtes pénales et appui aux avocats</li>
-                        <li>Enquêtes commerciales & concurrence</li>
-                        <li>Cyber-enquêtes & e-réputation</li>
-                        <li>Conseil, audits et accompagnement juridique</li>
+                        <li><strong>Droit civil & familial :</strong> Vérifications de moralité, enquêtes de solvabilité, recherche de biens dissimulés</li>
+                        <li><strong>Droit commercial :</strong> Concurrence déloyale, fraude interne, contrefaçon, violations de clauses</li>
+                        <li><strong>Appui aux avocats :</strong> Collecte de preuves productibles, recherche de témoins, constitution de dossiers judiciaires</li>
+                        <li><strong>Investigations numériques :</strong> Traçabilité en ligne, cyberfraude, e-réputation, OSINT</li>
+                        <li><strong>Conseil sûreté :</strong> Audit de vulnérabilités, gestion de crise, plans de protection</li>
                     </ul>
                 </div>
                 <div class="cabinet-stats">
                     <div class="cabinet-stat">
-                        <strong>6+</strong>
-                        <span>années d’expertise cumulée</span>
+                        <strong>24h</strong>
+                        <span>Rapport de situation initial</span>
                     </div>
                     <div class="cabinet-stat">
-                        <strong>24h</strong>
-                        <span>pour un premier rapport de situation</span>
+                        <strong>100%</strong>
+                        <span>Admissibilité juridique</span>
                     </div>
                 </div>
             </article>
 
             <article class="cabinet-module">
                 <h2>Équipe</h2>
-                <h3>Compétences réunies</h3>
+                <h3>Pluridisciplinaire & agréée CNAPS</h3>
                 <div class="cabinet-text">
                     <ul class="cabinet-list">
-                        <li>Détectives privés agréés CNAPS</li>
-                        <li>Juristes spécialisés en procédures civiles & pénales</li>
-                        <li>Experts cybersécurité et analystes data</li>
-                        <li>Consultants sûreté & gestion de crise</li>
-                        <li>Partenaires avocats, huissiers et experts judiciaires</li>
+                        <li><strong>Fondateur :</strong> Détective privé agréé CNAPS, diplômé en investigations et sécurité des biens/personnes</li>
+                        <li><strong>Détectives terrain :</strong> Spécialistes en filature, surveillance et investigations classiques</li>
+                        <li><strong>Experts numériques :</strong> Analystes data, cybersécurité et OSINT pour les traces en ligne</li>
+                        <li><strong>Juristes :</strong> Conseil en droit de la preuve, procédures civiles et admissibilité devant les tribunaux</li>
+                        <li><strong>Réseau :</strong> Avocats, commissaires de justice (huissiers) et experts judiciaires partenaires</li>
                     </ul>
                 </div>
                 <div class="cabinet-callouts">
                     <div class="cabinet-callout">
-                        <strong>Impartialité</strong><br>
-                        Investigations menées dans le respect strict du cadre légal français.
+                        <strong>Agréé & régalien</strong><br>
+                        Agréments CNAPS à jour, Autorisations préfectorales, <br>Cartes professionnelles validées.
                     </div>
                     <div class="cabinet-callout">
-                        <strong>Confidentialité</strong><br>
-                        Traitement sécurisé des informations et rapport circonstancié.
+                        <strong>Discrétion & loyauté</strong><br>
+                        Secret professionnel absolu,<br> Rapports circonstanciés, <br> Respect strict du cadre légal.
                     </div>
                 </div>
             </article>
 
             <article class="cabinet-module">
-                <h2>Implantation</h2>
                 <h3>Disponibilité & contact</h3>
                 <div class="cabinet-text">
                     <ul class="cabinet-list">
                         <li><strong>Adresse :</strong> Marseille / Paris</li>
                         <li><strong>Téléphone :</strong> <a href="tel:0465574176" class="cabinet-cta-secondary"><i class="fas fa-phone"></i> 04.65.57.41.76</a></li>
                         <li><strong>Email :</strong> <a href="mailto:sne@bensops.com" class="cabinet-cta-secondary"><i class="fas fa-envelope"></i> sne@bensops.com</a></li>
-                        <li><strong>Horaires :</strong> Lundi – Dimanche<br><strong>9h00 – 21h00</strong></li>
+                        <li><strong>Horaires :</strong> 7j/7 • 9h00 – 21h00</li>
+                        <li><strong>Rendez-vous :</strong> <a href="{{ path('calendar') }}" class="cabinet-cta-secondary"><i class="fas fa-calendar-alt"></i> Programmer</a></li>
                     </ul>
                 </div>
                 <div class="cabinet-highlight">
-                    <p>Premier échange gratuit et confidentiel pour cadrer vos objectifs et définir la stratégie d’intervention.</p>
+                    <p>Premier échange gratuit et confidentiel pour cadrer vos objectifs et définir la stratégie d'intervention.</p>
                 </div>
             </article>
         </div>
@@ -334,18 +425,18 @@
         <div class="cabinet-cta">
             <div class="cabinet-cta-info">
                 <h3>Confiez-nous votre dossier sensible</h3>
-                <p class="cabinet-text">Nos détectives analysent vos besoins, sécurisent les preuves et vous accompagnent jusqu’à la restitution juridique. Discutons de votre situation, où que vous soyez.</p>
+                <p class="cabinet-text">Nos détectives analysent vos besoins, sécurisent les preuves et vous accompagnent jusqu’à la restitution juridique. <br>Discutons de votre situation, où que vous soyez.</br></p>
             </div>
             <div class="cabinet-cta-actions">
                 <a href="mailto:sne@bensops.com" class="cabinet-cta-link">
                     <i class="fas fa-envelope"></i>
                     Écrire au cabinet
                 </a>
-                <a href="tel:0465574176" class="cabinet-cta-secondary">
+                <a href="tel:0465574176" class="cabinet-cta-link cabinet-cta-phone">
                     <i class="fas fa-phone"></i>
                     Ligne directe
                 </a>
-                <a href="{{ path('calendar') }}" class="cabinet-cta-secondary">
+                <a href="{{ path('calendar') }}" class="cabinet-cta-link cabinet-cta-calendar">
                     <i class="fas fa-calendar-alt"></i>
                     Programmer un rendez-vous
                 </a>

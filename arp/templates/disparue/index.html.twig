@@ -255,7 +255,7 @@
     }
     .disparue-legal-intro {
         max-width: 860px;
-        margin-bottom: 2.8rem;
+        margin: 0 auto 2.8rem;
         text-align: center;
     }
     .disparue-legal-intro h2 {
@@ -268,6 +268,7 @@
     .disparue-legal-intro p {
         color: rgba(230, 239, 255, 0.82);
         line-height: 1.8;
+        margin: 0 auto;
         margin: 0 auto;
     }
     .disparue-legal-metrics {
@@ -326,6 +327,14 @@
         line-height: 1.72;
         margin-bottom: 1rem;
     }
+    .disparue-legal-card a {
+        color: #ffbf99;
+        text-decoration: none;
+        border-bottom: 1px solid #ffbf99;
+    }
+    .disparue-legal-card a:hover {
+        text-decoration: underline;
+    }
     .disparue-legal-list {
         position: relative;
         padding-left: 0;
@@ -368,11 +377,12 @@
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 1.6rem;
         align-items: center;
-        padding: 2.6rem 2.3rem;
+        padding: 2.6rem 2.3rem 1rem;
         border-radius: 28px;
         background: linear-gradient(145deg, rgba(231, 88, 26, 0.12), rgba(10, 31, 28, 0.6));
         border: 1px solid rgba(231, 88, 26, 0.15);
         box-shadow: 0 34px 56px rgba(0, 0, 0, 0.52);
+        margin-bottom: 0;
     }
     .disparue-cta h3 {
         font-size: 1.9rem;
@@ -419,8 +429,86 @@
     .disparue-btn-secondary:hover {
         color: #ffffff;
     }
+    .disparue-legal-final {
+        margin: 3.6rem auto;
+        padding: 3.2rem 1.5rem;
+        max-width: 1180px;
+        border-radius: 32px;
+        background: radial-gradient(140% 140% at 10% -20%, rgba(231, 88, 26, 0.12) 0%, rgba(10, 31, 28, 0.82) 55%, rgba(5, 15, 20, 0.9) 100%);
+        border: 1px solid rgba(231, 88, 26, 0.18);
+        box-shadow: 0 42px 68px rgba(0, 0, 0, 0.55);
+    }
+    .disparue-legal-final-intro {
+        max-width: 860px;
+        margin: 0 auto 2.8rem;
+        text-align: center;
+    }
+    .disparue-legal-final-intro h2 {
+        font-size: 2.15rem;
+        font-weight: 660;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        letter-spacing: 0.02em;
+        background: linear-gradient(135deg, #ffbf99, #e7581a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .disparue-legal-final-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.9rem;
+        margin-bottom: 2rem;
+    }
+    .disparue-legal-final-card {
+        position: relative;
+        padding: 2.2rem 2.1rem;
+        border-radius: 24px;
+        background: linear-gradient(190deg, rgba(13, 41, 38, 0.95), rgba(10, 31, 28, 0.92));
+        border: 1px solid rgba(231, 88, 26, 0.2);
+        box-shadow: 0 30px 56px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    .disparue-legal-final-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 40px 68px rgba(231, 88, 26, 0.2);
+        border-color: rgba(231, 88, 26, 0.35);
+    }
+    .disparue-legal-final-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        background: linear-gradient(120deg, rgba(231, 88, 26, 0.12), rgba(192, 136, 8, 0.08));
+        opacity: 0.4;
+        pointer-events: none;
+    }
+    .disparue-legal-final-card h3 {
+        position: relative;
+        font-size: 1.28rem;
+        font-weight: 650;
+        background: linear-gradient(135deg, #ffbf99, #e7581a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.9rem;
+        letter-spacing: 0.01em;
+    }
+    .disparue-legal-final-card p {
+        position: relative;
+        color: rgba(230, 239, 255, 0.8);
+        line-height: 1.72;
+        margin-bottom: 1rem;
+    }
+    .disparue-legal-final-card p:last-child {
+        margin-bottom: 0;
+    }
+    .disparue-legal-final-card strong {
+        color: #ffbf99;
+    }
     .footer-section {
-        background: transparent !important;
+        background: #f5f5f5 !important;
         color: #021b2f !important;
     }
     .footer-section .footer-legal,
@@ -496,35 +584,35 @@
 
         <div class="disparue-grid">
             <article class="disparue-card">
-                <h2>Stratégie</h2>
-                <h3>Analyse du scénario de disparition</h3>
-                <p>Nous établissons les hypothèses prioritaires :</p>
+                <h2>Analyse</h2>
+                <h3>Analyse urgente du scénario de disparition</h3>
+                <p>Nous établissons les hypothèses prioritaires avec rigoreur :</p>
                 <ul>
-                    <li>Fuite volontaire, enlèvement, accident, escroquerie ou manipulation.</li>
-                    <li>Cartographie des derniers mouvements : téléphonie, paiements, réseaux sociaux.</li>
-                    <li>Analyse des relations, conflits, menaces et zones d’influence.</li>
+                    <li><strong>Scénarios :</strong> Fuite volontaire, enlèvement, accident, usurpation, manipulation ou fuite de crise.</li>
+                    <li><strong>Mouvements :</strong> Cartographie derniers déplacements via téléphonie, paiements, réseaux sociaux géolocalisés.</li>
+                    <li><strong>Contexte :</strong> Analyse relations, conflits non déclarés, menaces, zones d'influence probables.</li>
                 </ul>
             </article>
 
             <article class="disparue-card">
-                <h2>Dispositifs</h2>
-                <h3>Task-force dédiée 24/7</h3>
-                <p>Nos moyens combinent :</p>
+                <h2>Investigation</h2>
+                <h3>Task-force pluridisciplinaire 24/7</h3>
+                <p>Nos moyens combinent terrain et numérique en synchronisation parfaite :</p>
                 <ul>
-                    <li>Équipes terrain (filatures, surveillance, interviews), drones autorisés, moyens nautiques.</li>
-                    <li>Analystes OSINT, géolocalisation, exploitation de caméras urbaines et données publiques.</li>
-                    <li>Coordination avec forces de l’ordre, consulats, compagnies aériennes et hôpitaux.</li>
+                    <li><strong>Terrain :</strong> Équipes filatures, surveillance intensive, interviews discrètes, moyens nautiques autorisés.</li>
+                    <li><strong>Numérique :</strong> Analystes OSINT, géolocalisation triangulée, exploitation caméras urbaines et données publiques.</li>
+                    <li><strong>Coordination :</strong> Forces ordre, consulats, compagnies aériennes, hôpitaux, banques données internationales.</li>
                 </ul>
             </article>
 
             <article class="disparue-card">
-                <h2>Restitution</h2>
-                <h3>Cellule de crise et reporting continu</h3>
-                <p>Vous restez informé en temps réel :</p>
+                <h2>Rapport</h2>
+                <h3>Cellule de crise & reporting continu 24/7</h3>
+                <p>Vous restez informé en continu et sécurisé :</p>
                 <ul>
-                    <li>Briefings quotidiens, rapport de situation sécurisé, cartographie dynamique.</li>
-                    <li>Recommandations d’action, assistance juridique, communication de crise.</li>
-                    <li>Accompagnement jusqu’au retour de la personne ou la clôture officielle.</li>
+                    <li><strong>Briefings :</strong> Rapports quotidiens, synthèses situation chiffrées, cartographie dynamique actualisée.</li>
+                    <li><strong>Stratégie :</strong> Recommandations action temps réel, assistance juridique, gestion communication crise.</li>
+                    <li><strong>Suivi :</strong> Accompagnement continu jusqu'au retour personne recherchée ou clôture officielle.</li>
                 </ul>
             </article>
         </div>
@@ -547,11 +635,10 @@
         <section class="disparue-legal" aria-label="Cadre juridique BENSOPS">
             <div class="disparue-legal-intro">
                 <h2>Recherche de personnes : expertise juridique BENSOPS</h2>
-                <p>Qu’il s’agisse d’un proche parti volontairement, d’un mineur vulnérable ou d’un débiteur introuvable, nos détectives privés délivrent un taux de réussite de 90&nbsp;% avec facturation uniquement en cas de résultat positif. Nous couplons intelligence humaine, technologie et maîtrise du cadre légal français et international.</p>
+                <p>Qu'il s'agisse d'un proche parti volontairement, d'un mineur vulnérable ou d'un débiteur introuvable, nos détectives privés délivrent un taux de réussite de 90&nbsp;%. Nous couplons intelligence humaine, technologie et maîtrise du cadre légal français et international.</p>
             </div>
             <div class="disparue-legal-metrics">
                 <span class="disparue-legal-metric">90&nbsp;% de dossiers résolus</span>
-                <span class="disparue-legal-metric">Facturation au succès</span>
                 <span class="disparue-legal-metric">Réseau terrain dans 18 pays</span>
             </div>
             <div class="disparue-legal-grid">
@@ -566,7 +653,7 @@
                 </article>
                 <article class="disparue-legal-card">
                     <h3>Disparition et libertés individuelles</h3>
-                    <p>La liberté d’aller et venir (article 4 DDHC) autorise chacun à s’effacer. Les forces de l’ordre ne s’engagent qu’en cas de disparition inquiétante ou de mineur. Objectiver cette inquiétude devient alors décisif.</p>
+                    <p>La liberté d'aller et venir (<a href="https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/declaration-des-droits-de-l-homme-et-du-citoyen-de-1789" target="_blank" rel="noopener">article 4 DDHC</a>) autorise chacun à s'effacer. Les forces de l'ordre ne s'engagent qu'en cas de disparition inquiétante ou de mineur. Objectiver cette inquiétude devient alors décisif.</p>
                     <p>Nos analystes qualifient le dossier (vulnérabilité, rupture de contact, menaces, antécédents médicaux) afin de convaincre les autorités ou de légitimer une intervention privée.</p>
                 </article>
                 <article class="disparue-legal-card">
@@ -580,8 +667,8 @@
                 </article>
                 <article class="disparue-legal-card">
                     <h3>Absence prolongée & statut civil</h3>
-                    <p>Quand la personne reste introuvable, nous orchestrons les démarches : présomption d’absence auprès du juge des contentieux, puis déclaration d’absence après dix ans (article 122 Code civil) pour enclencher succession et gestion patrimoniale.</p>
-                    <p>Nos juristes sélectionnent l’administrateur, sécurisent les biens et prévoient les modalités de restitution si la personne réapparaît.</p>
+                    <p>Quand la personne reste introuvable, nous orchestrons les démarches : présomption d'absence auprès du juge des contentieux, puis déclaration d'absence après dix ans (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039366918/2022-03-23" target="_blank" rel="noopener">article 122 Code civil</a>) pour enclencher succession et gestion patrimoniale.</p>
+                    <p>Nos juristes sélectionnent l'administrateur, sécurisent les biens et prévoient les modalités de restitution si la personne réapparaît.</p>
                 </article>
                 <article class="disparue-legal-card">
                     <h3>Disparition à l’international</h3>
@@ -590,8 +677,8 @@
                 </article>
                 <article class="disparue-legal-card">
                     <h3>Confidentialité et vie privée</h3>
-                    <p>L’article 9 du Code civil exige l’accord de la personne retrouvée avant toute transmission de coordonnées. Nous gérons cette séquence avec diplomatie et préparons le scénario de communication aux proches.</p>
-                    <p>Une fois la personne localisée, nous informons les autorités pour clore officiellement l’enquête et neutraliser tout risque juridique.</p>
+                    <p>L'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006419288/2020-09-01" target="_blank" rel="noopener">article 9 du Code civil</a> exige l'accord de la personne retrouvée avant toute transmission de coordonnées. Nous gérons cette séquence avec diplomatie et préparons le scénario de communication aux proches.</p>
+                    <p>Une fois la personne localisée, nous informons les autorités pour clore officiellement l'enquête et neutraliser tout risque juridique.</p>
                 </article>
             </div>
             <div class="disparue-legal-footnote">
@@ -602,77 +689,97 @@
         <section class="disparue-signet" aria-label="Nos garanties">
             <div class="disparue-signet-grid">
                 <div class="disparue-signet-item">
-                    <h3>Réactivité extrême</h3>
-                    <p>Hotline 24/7, directeur de crise dédié, déploiement simultané de plusieurs équipes.</p>
+                    <h3>Excellence & Urgence vitale</h3>
+                    <p>Hotline 24/7 immédiate, directeur crise personnel, déploiement équipes simultanées terrain.</p>
                 </div>
                 <div class="disparue-signet-item">
-                    <h3>Cadre légal</h3>
-                    <p>Respect du droit français et international, coordination officielle et procédures CNAPS.</p>
+                    <h3>Pluridisciplinaire & Légal</h3>
+                    <p>Respect droit français/international, coordination forces ordre, procédures CNAPS certifiées.</p>
                 </div>
                 <div class="disparue-signet-item">
-                    <h3>Discrétion & soutien</h3>
-                    <p>Communication maîtrisée, cellule psychologique, accompagnement des proches.</p>
+                    <h3>Réactivité & Réseau global 24/7</h3>
+                    <p>Détectives 18 pays, partenaires consulaires & ONG, couverture internationale totale.</p>
                 </div>
             </div>
         </section>
 
         <section class="disparue-process" aria-label="Méthodologie">
-            <h2>Cadre d'intervention</h2>
+            <h2>Notre méthodologie BENSOPS</h2>
             <div class="disparue-steps">
-                <div class="disparue-step">
+                                <div class="disparue-step">
                     <div class="disparue-step-index">01</div>
                     <div>
-                        <div class="disparue-step-title">Alerte & collecte</div>
-                        <div class="disparue-step-text">Brief express, collecte des preuves existantes, ouverture de l’espace de crise sécurisé.</div>
+                        <div class="disparue-step-title">Analyse urgente</div>
+                        <div class="disparue-step-text">Brief express, collecte preuves existantes, ouverture espace crise chiffré et sécurisé 24/7.</div>
                     </div>
                 </div>
                 <div class="disparue-step">
                     <div class="disparue-step-index">02</div>
                     <div>
-                        <div class="disparue-step-title">Déploiement</div>
-                        <div class="disparue-step-text">Activation des équipes terrain, exploitation data, diffusion de signalements ciblés.</div>
+                        <div class="disparue-step-title">Investigation intensive</div>
+                        <div class="disparue-step-text">Activation équipes terrain simultanées, exploitation data temps réel, diffusion signalements ciblés.</div>
                     </div>
                 </div>
                 <div class="disparue-step">
                     <div class="disparue-step-index">03</div>
                     <div>
                         <div class="disparue-step-title">Tracking & recoupements</div>
-                        <div class="disparue-step-text">Veille 24/7, recoupement de pistes, interventions en coordination avec les autorités.</div>
+                        <div class="disparue-step-text">Veille permanente 24/7, recoupement pistes multicanales, interventions coordination autorités.</div>
                     </div>
                 </div>
                 <div class="disparue-step">
                     <div class="disparue-step-index">04</div>
                     <div>
                         <div class="disparue-step-title">Résolution & suivi</div>
-                        <div class="disparue-step-text">Retour à la famille, assistance juridique, accompagnement psychologique post-crise.</div>
+                        <div class="disparue-step-text">Retour personne recherchée, assistance juridique clôture, accompagnement psychologique post-crise.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="disparue-proof" aria-label="Études de cas">
-            <article class="disparue-proof-card">
-                <h3>Fugue résolue en 36&nbsp;h</h3>
-                <p>Analyse réseaux sociaux, localisation d’un squat, intervention concertée avec la police : retour en sécurité.</p>
-            </article>
-            <article class="disparue-proof-card">
-                <h3>Disparition internationale</h3>
-                <p>Coordination consulaire, tracking bancaire, repérage dans un établissement médical en Espagne.</p>
-            </article>
-            <article class="disparue-proof-card">
-                <h3>Enlèvement déjoué</h3>
-                <p>Veille téléphonique, triangulation et intervention des forces spéciales sur site rural.</p>
-            </article>
+        <section class="disparue-legal-final" aria-label="Cadre juridique des recherches">
+            <div class="disparue-shell">
+                <div class="disparue-legal-final-intro">
+                    <h2>Cadre juridique : recherche de personnes et <span style="white-space: nowrap;">parents biologiques</span></h2>
+                </div>
+                <div class="disparue-legal-final-grid">
+                    <article class="disparue-legal-final-card">
+                        <h3>Recherche de personnes et parents biologiques</h3>
+                        <p>Le respect de la vie privée de la personne recherchée est un élément primordial à prendre en considération. La communication des coordonnées de la personne recherchée sera possible avec l'accord préalable de celle-ci.</p>
+                        <p>Dans le cas contraire, nous avons la possibilité de lui remettre un courrier à votre nom.</p>
+                    </article>
+                    <article class="disparue-legal-final-card">
+                        <h3>Héritier et ayant droit : Cour de Cassation</h3>
+                        <p><strong>Chambre Criminelle de la Cour de Cassation - Arrêt du 26 septembre 2006 :</strong></p>
+                        <p>« Toute société exerçant des activités de recherche généalogique, impliquant des recherches privées, doit impérativement obtenir une autorisation administrative du Ministère de l'Intérieur et ce quelle que soit l'appellation professionnelle retenue ».</p>
+                    </article>
+                    <article class="disparue-legal-final-card">
+                        <h3>Héritier et ayant droit : Loi 2006-728</h3>
+                        <p><strong>Article 36 de la Loi 2006-728 du 23 Juin 2006 :</strong></p>
+                        <p>« Le mandat peut être donné par toute personne qui a un intérêt direct et légitime à l'identification des héritiers ou au règlement de la succession ».</p>
+                    </article>
+                </div>
+            </div>
         </section>
 
         <section class="disparue-cta" aria-label="Contact">
             <div>
-                <h3>Contactez notre cellule d’urgence immédiatement</h3>
-                <p>Hotline 24/7, prise en charge immédiate, coordination avec les autorités.</p>
+                <h3>Contactez-nous immédiatement</h3>
+                <p>Choisissez le canal qui vous convient pour débuter votre enquête. Nous garantissons une réponse rapide et professionnelle.</p>
             </div>
             <div class="disparue-cta-actions">
-                <a class="disparue-btn-primary" href="tel:0465574176">Hotline immédiate : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
-                <a class="disparue-btn-secondary" href="{{ path('app_contact') }}">Ouvrir un dossier en ligne</a>
+                <a class="disparue-btn-primary" href="mailto:sne@bensops.com">
+                    <i class="fas fa-envelope"></i>
+                    Écrire au cabinet
+                </a>
+                <a class="disparue-btn-primary" href="tel:0465574176">
+                    <i class="fas fa-phone"></i>
+                    Ligne directe
+                </a>
+                <a class="disparue-btn-primary" href="{{ path('calendar') }}">
+                    <i class="fas fa-calendar-alt"></i>
+                    Programmer un rendez-vous
+                </a>
             </div>
         </section>
     </div>

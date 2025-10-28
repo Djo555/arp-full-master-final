@@ -226,6 +226,53 @@
         color: rgba(230, 239, 255, 0.76);
         line-height: 1.6;
     }
+    .personnel-legal {
+        margin: 3.4rem 0;
+        padding: 2.8rem 2.4rem;
+        border-radius: 30px;
+        background: linear-gradient(165deg, rgba(13, 41, 38, 0.88), rgba(13, 41, 38, 0.64));
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        box-shadow: 0 38px 64px rgba(0, 0, 0, 0.55);
+    }
+    .personnel-legal-intro {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 2.6rem;
+    }
+    .personnel-legal-intro h2 {
+        font-size: 2.05rem;
+        font-weight: 620;
+        color: #ffffff;
+    }
+    .personnel-legal-intro p {
+        color: rgba(230, 239, 255, 0.8);
+        max-width: 900px;
+        line-height: 1.7;
+    }
+    .personnel-legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+    }
+    .personnel-legal-card {
+        padding: 1.9rem;
+        border-radius: 24px;
+        background: rgba(13, 41, 38, 0.82);
+        border: 1px solid rgba(231, 88, 26, 0.24);
+        box-shadow: 0 30px 54px rgba(0, 0, 0, 0.5);
+    }
+    .personnel-legal-card h3 {
+        font-size: 1.12rem;
+        font-weight: 600;
+        color: #ffbf99;
+        margin-bottom: 0.6rem;
+    }
+    .personnel-legal-card p {
+        color: rgba(230, 239, 255, 0.78);
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
     .personnel-proof {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -239,7 +286,7 @@
         border: 1px solid rgba(231, 88, 26, 0.24);
         box-shadow: 0 30px 52px rgba(0, 0, 0, 0.5);
     }
-    .personnel-proof-card h3 {
+    .personnel-legal-card h3 {
         font-size: 1.18rem;
         font-weight: 600;
         color: #ffbf99;
@@ -268,8 +315,14 @@
     }
     .personnel-cta-actions {
         display: flex;
-        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .personnel-cta-actions a:nth-child(3) {
+        min-width: 280px;
+        flex: 0 1 auto;
     }
     .personnel-btn-primary {
         display: inline-flex;
@@ -352,19 +405,19 @@
 {% block body %}
 <section class="personnel-luxe">
     <div class="personnel-shell">
-        <header class="personnel-hero">
+                <header class="personnel-hero">
             <span class="badge">Protection interne</span>
-            <h1>Investigations ciblées sur les comportements à risque du personnel</h1>
-            <p>Lorsqu’un cadre, un collaborateur clé ou une équipe soulève des doutes, nous intervenons avec la rigueur d’agences internationales reconnues pour établir des faits indiscutables.</p>
-            <p>Notre dispositif associe intelligence humaine, analyses digitales et procédures disciplinaires pour sécuriser votre gouvernance.</p>
+            <h1>Investigations ciblées sur les comportements à risque et les vols internes</h1>
+            <p>Lorsqu'un cadre, un collaborateur clé ou une équipe soulève des doutes (détournement d'actifs, trafic, vol de secrets commerciaux), nous intervenons avec la rigueur d'agences internationales pour établir des faits indiscutables.</p>
+            <p>Notre dispositif associe intelligence humaine, analyses digitales et procédures disciplinaires pour sécuriser votre gouvernance et stopper les pertes financières.</p>
             <div class="personnel-metrics">
+                <div class="personnel-metric">
+                    <strong>35&nbsp;%</strong>
+                    <span>Des vols internes restent non-détectés par les entreprises</span>
+                </div>
                 <div class="personnel-metric">
                     <strong>95&nbsp;%</strong>
                     <span>Des dossiers concluent à une décision RH éclairée</span>
-                </div>
-                <div class="personnel-metric">
-                    <strong>24/7</strong>
-                    <span>Cellule de suivi confidentielle et sécurisée</span>
                 </div>
                 <div class="personnel-metric">
                     <strong>48&nbsp;h</strong>
@@ -376,84 +429,54 @@
         <div class="personnel-grid">
             <article class="personnel-card">
                 <h2>Analyse</h2>
-                <h3>Screening comportemental</h3>
-                <p>Approche multicritères :</p>
-                <ul>
-                    <li>Accès SI, logs, emails (dans le cadre légal), anomalies d’usage.</li>
-                    <li>Historique disciplinaire, entretiens ciblés, rumeurs internes.</li>
-                    <li>Indice de conflits d’intérêts, double activité, corruption potentielle.</li>
-                </ul>
+                <h3>Screening comportemental multidimensionnel</h3>
+                <p>Accès SI audit, logs horaires, emails contexte légal, historique RH. Détection anomalies usage, conflits d'intérêts, double activité.</p>
             </article>
 
             <article class="personnel-card">
                 <h2>Investigation</h2>
-                <h3>Dispositifs terrain & digitaux</h3>
-                <p>Actions discrètes :</p>
-                <ul>
-                    <li>Filatures, observations in situ, audit environnement de travail.</li>
-                    <li>Analyse OSINT, réseaux sociaux, dark web pour repérage fuites.</li>
-                    <li>Tests d’intégrité, opération client mystère interne.</li>
-                </ul>
+                <h3>Dispositifs terrain & numériques coordonnés</h3>
+                <p>Filatures ciblées, observations in situ, analyse OSINT transactions, réseaux sociaux monitoring, tests intégrité comportement.</p>
             </article>
 
             <article class="personnel-card">
-                <h2>Résolution</h2>
-                <h3>Accompagnement RH & juridique</h3>
-                <p>Livrables premium :</p>
-                <ul>
-                    <li>Rapport horodaté, pièces jointes exploitables, témoignages.</li>
-                    <li>Stratégie disciplinaire, procédures prud’homales, pénales.</li>
-                    <li>Plan de remédiation : renforcement contrôle interne, prévention.</li>
-                </ul>
+                <h2>Rapport</h2>
+                <h3>Dossier probatoire & exécution</h3>
+                <p>Rapport horodaté notarié, pièces exploitables justice, témoignages certifiés. Stratégie disciplinaire & plan remédiation.</p>
             </article>
         </div>
-
-        <section class="personnel-scenarios" aria-label="Cas traités">
-            <article class="personnel-scenario">
-                <strong>Cadre dirigeant</strong>
-                <p>Identification d’une collusion fournisseur, sanction & sécurisation processus achats.</p>
-            </article>
-            <article class="personnel-scenario">
-                <strong>Réseau de vente</strong>
-                <p>Preuves de détournement de stocks, licenciement collectif et plaintes déposées.</p>
-            </article>
-            <article class="personnel-scenario">
-                <strong>Whistleblowing</strong>
-                <p>Enquête interne sous contrôle avocat, crédibilisation du signalement et correction.</p>
-            </article>
-        </section>
 
         <section class="personnel-assurance" aria-label="Nos garanties">
             <div class="personnel-assurance-grid">
                 <div class="personnel-assurance-item">
                     <h3>Confidentialité totale</h3>
-                    <p>Process cloisonné, accès limité, restitution chiffrée.</p>
+                    <p>Process cloisonné, accès ultra-limité direction, restitution sécurisée, CNAPS validée.</p>
                 </div>
                 <div class="personnel-assurance-item">
-                    <h3>Cadre légal maîtrisé</h3>
-                    <p>Respect Code du travail, CNAPS, RGPD, consultation avocat dédié.</p>
+                    <h3>Conformité légale</h3>
+                    <p>Respect Code travail strict, RGPD, consultation avocat validation, exploitabilité juridique garantie.</p>
                 </div>
                 <div class="personnel-assurance-item">
-                    <h3>Approche humaine</h3>
-                    <p>Gestion sensible, prévention risques psychosociaux, accompagnement des managers.</p>
+                    <h3>Réactivité 24/7</h3>
+                    <p>Gestion sensible contexte, accompagnement managers, support immédiat urgence.</p>
                 </div>
             </div>
         </section>
 
         <section class="personnel-process" aria-label="Méthodologie">
-            <h2>Cadre d'intervention</h2>
+            <h2>Notre méthodologie BENSOPS</h2>
             <div class="personnel-steps">
                 <div class="personnel-step">
                     <div class="personnel-step-index">01</div>
                     <div>
-                        <div class="personnel-step-title">Brief sécurisé</div>
-                        <div class="personnel-step-text">NDA, recueil des faits, cadrage avec service juridique.</div>
+                        <div class="personnel-step-title">Analyse stratégique</div>
+                        <div class="personnel-step-text">NDAs sécurisés, recueil faits complets, cadrage strict service juridique.</div>
                     </div>
                 </div>
                 <div class="personnel-step">
                     <div class="personnel-step-index">02</div>
                     <div>
-                        <div class="personnel-step-title">Collecte & veille</div>
+                        <div class="personnel-step-title">Investigation data</div>
                         <div class="personnel-step-text">Analyse documentaire, interviews ciblées, détection signaux faibles.</div>
                     </div>
                 </div>
@@ -461,42 +484,66 @@
                     <div class="personnel-step-index">03</div>
                     <div>
                         <div class="personnel-step-title">Opérations terrain</div>
-                        <div class="personnel-step-text">Surveillance discrète, tests intégrité, recoupement preuves.</div>
+                        <div class="personnel-step-text">Surveillance discrète légale, tests intégrité, recoupement preuves multiples.</div>
                     </div>
                 </div>
                 <div class="personnel-step">
                     <div class="personnel-step-index">04</div>
                     <div>
-                        <div class="personnel-step-title">Restitution & actions</div>
-                        <div class="personnel-step-text">Rapport exécutif, accompagnement disciplinaire et judiciaire.</div>
+                        <div class="personnel-step-title">Restitution & exécution</div>
+                        <div class="personnel-step-text">Rapport certifié, accompagnement disciplinaire, support judiciaire complet.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="personnel-proof" aria-label="Études de cas">
-            <article class="personnel-proof-card">
-                <h3>Banque privée</h3>
-                <p>Détection d’une fraude interne 1,4&nbsp;M€, renforcement KYC et rotation équipes.</p>
-            </article>
-            <article class="personnel-proof-card">
-                <h3>Industrie pharma</h3>
-                <p>Équipe R&D suspecte blanchie, climat social rétabli, charte déontologique revue.</p>
-            </article>
-            <article class="personnel-proof-card">
-                <h3>Logistique</h3>
-                <p>Réseau de revente repéré, arrestations en flagrance, pertes stoppées.</p>
-            </article>
+        <section class="personnel-legal" aria-label="Cadre juridique des vols internes">
+            <div class="personnel-legal-intro">
+                <h2>Cadre juridique : investigations licites et recevabilité en justice</h2>
+                <p>Face aux vols en entreprise (marchandises, matières premières, liquidités, abus de biens sociaux), les forces de l'ordre sont débordées et classent souvent les plaintes sans suite. Seul le détective privé est habilité à mener investigations discrètes reconnues par la jurisprudence. Nos rapports établissent preuves recevables devant les juridictions.</p>
+            </div>
+            <div class="personnel-legal-grid">
+                <article class="personnel-legal-card">
+                    <h3>Droit du détective privé (Cass. 2016)</h3>
+                    <p><strong>Cour de cassation, chambre commerciale, 6 décembre 2016 :</strong> Le détective privé est le seul professionnel habilité à agir « sans faire état de sa qualité ni révéler l'objet de sa mission ». Seul cadre légal pour investigations discrètes.</p>
+                </article>
+                <article class="personnel-legal-card">
+                    <h3>Constat flagrant délit (Cass. Soc. 2007)</h3>
+                    <p>Un constat d'huissier initié par la filature d'un détective privé est jugé licite comme moyen de preuve. Nos rapports, coordonnés avec officier de police judiciaire et huissier, sont recevables en justice pénale.</p>
+                </article>
+                <article class="personnel-legal-card">
+                    <h3>Infiltration en entreprise (Megnin-Bernard 2011)</h3>
+                    <p>La cour de cassation a reconnu l'infiltration licite pour confondre un salarié voleur : 50 000€ confisqué. Jurisprudence confirmée : infiltration agréée CNAPS = preuve incontestable.</p>
+                </article>
+                <article class="personnel-legal-card">
+                    <h3>Récupération frais d'enquête (Alençon 2010)</h3>
+                    <p>L'employé coupable condamné à rembourser l'employeur pour frais et honoraires du détective. Votre investissement enquête est couvert par jugement.</p>
+                </article>
+                <article class="personnel-legal-card">
+                    <h3>Double peine fiscale : prévention par enquête</h3>
+                    <p>Les vols causent marges incohérentes déclenchant contrôles fiscaux. Enquête précoce = détection vol + ajustements comptables avant audit, réduction risque fiscal.</p>
+                </article>
+            </div>
         </section>
 
         <section class="personnel-cta" aria-label="Contact">
             <div>
                 <h3>Confiez-nous votre enquête interne confidentielle</h3>
-                <p>Liaison directe avec direction juridique, restitution sous 5 jours ouvrés.</p>
+                <p>Choisissez le canal qui vous convient pour débuter votre enquête. Nous garantissons une réponse rapide et professionnelle.</p>
             </div>
             <div class="personnel-cta-actions">
-                <a class="personnel-btn-primary" href="tel:0465574176">Hotline conformité : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
-                <a class="personnel-btn-secondary" href="{{ path('app_contact') }}">Programmer un brief confidentiel</a>
+                <a class="personnel-btn-primary" href="mailto:sne@bensops.com">
+                    <i class="fas fa-envelope"></i>
+                    Écrire au cabinet
+                </a>
+                <a class="personnel-btn-primary" href="tel:0465574176">
+                    <i class="fas fa-phone"></i>
+                    Ligne directe
+                </a>
+                <a class="personnel-btn-primary" href="{{ path('calendar') }}">
+                    <i class="fas fa-calendar-alt"></i>
+                    Programmer un rendez-vous
+                </a>
             </div>
         </section>
     </div>

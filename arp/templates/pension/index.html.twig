@@ -98,9 +98,14 @@
     }
     .pension-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         margin-bottom: 3.4rem;
+    }
+    .pension-grid .pension-card:nth-child(4) {
+        grid-column: 2;
+        justify-self: center;
+        max-width: 380px;
     }
     .pension-card {
         position: relative;
@@ -247,7 +252,7 @@
     }
     .pension-legal-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.8rem;
         margin-bottom: 2.6rem;
     }
@@ -307,7 +312,7 @@
     }
     .pension-comp-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.7rem;
     }
     .pension-comp-card {
@@ -486,7 +491,7 @@
 <section class="pension-luxe">
     <div class="pension-shell">
         <header class="pension-hero">
-            <span class="badge">Accompagnement financier</span>
+            <span class="badge">Assurer le bien-être de l’enfant</span>
             <h1>Enquêtes premium sur pension alimentaire et prestation compensatoire</h1>
             <p>Dans la signature BENSOPS, chaque litige de pension alimentaire est traité comme un dossier de finance privée : nous restaurons la vérité patrimoniale quand les impayés, reports ou montants symboliques fragilisent votre famille.</p>
             <p>Nos directeurs d’enquêtes coordonnent analyses bancaires, observations lifestyle et partenariats juridiques pour livrer un dossier irréprochable devant le juge aux affaires familiales.</p>
@@ -508,35 +513,35 @@
 
         <div class="pension-grid">
             <article class="pension-card">
-                <h2>Stratégie</h2>
+                <h2>Analyse</h2>
                 <h3>Cartographie patrimoniale exhaustive</h3>
-                <p>Nous reconstituons la capacité contributive réelle du parent débiteur comme le ferait un family office :</p>
+                <p>Nous reconstituons la véritable capacité contributive du parent débiteur comme un audit patrimonial complet :</p>
                 <ul>
-                    <li>Lecture des comptes bancaires, flux récurrents et dépenses cachées comparés aux déclarations fiscales.</li>
-                    <li>Cartographie des sociétés écrans, holdings familiales, mandats occultes et portefeuilles crypto.</li>
-                    <li>Veille immobilière et patrimoniale sur résidences, véhicules de prestige, œuvres et actifs mobiles.</li>
+                    <li><strong>Finances :</strong> Comptes bancaires, flux récurrents, dépenses incompatibles avec déclarations fiscales.</li>
+                    <li><strong>Patrimoine :</strong> Sociétés écrans, holdings, mandats occultes, crypto, résidences multiples.</li>
+                    <li><strong>Lifestyle :</strong> Veille immobilière, véhicules de prestige, œuvres, placements mobiliers.</li>
                 </ul>
             </article>
 
             <article class="pension-card">
-                <h2>Dispositifs</h2>
+                <h2>Investigation</h2>
                 <h3>Enquêtes financières et terrain synchronisées</h3>
-                <p>Une task-force pluridisciplinaire BENSOPS coordonne :</p>
+                <p>Une task-force pluridisciplinaire BENSOPS coordonne terrain et numérique :</p>
                 <ul>
-                    <li>Filatures lifestyle, observations de dépenses, preuves horodatées des habitudes de consommation.</li>
-                    <li>Cross-check OSINT, data mining, exploitation de réseaux professionnels et immobiliers.</li>
-                    <li>Collecte d’attestations, constats et pièces comptables démontrant la dissimulation volontaire.</li>
+                    <li><strong>Terrain :</strong> Filatures lifestyle, observations de dépenses, preuves horodatées des habitudes.</li>
+                    <li><strong>Numérique :</strong> Cross-check OSINT, data mining, réseaux professionnels et immobiliers.</li>
+                    <li><strong>Preuves :</strong> Attestations, constats, pièces comptables démontrant la dissimulation volontaire.</li>
                 </ul>
             </article>
 
             <article class="pension-card">
-                <h2>Restitution</h2>
-                <h3>Argumentaire probatoire et négociation</h3>
-                <p>Nous remettons un dossier prêt à plaider, calibré pour la négociation ou l’exécution forcée :</p>
+                <h2>Rapport</h2>
+                <h3>Argumentaire probatoire et stratégie de négociation</h3>
+                <p>Nous livrons un dossier prêt à plaider, calibré pour la négociation ou l'exécution forcée :</p>
                 <ul>
-                    <li>Rapports chiffrés, tableaux comparatifs et annexes certifiées illustrant l’écart entre déclarations et train de vie.</li>
-                    <li>Briefings avocat, éléments de langage pour l’audience, projection financière sur les besoins de l’enfant.</li>
-                    <li>Suivi post-jugement : monitoring des virements, activation rapide des saisies, coordination huissier.</li>
+                    <li><strong>Format :</strong> Rapports chiffrés, tableaux comparatifs, annexes certifiées illustrant les écarts.</li>
+                    <li><strong>Juridique :</strong> Briefing avocat, éléments de langage audience, projection financière besoins enfant.</li>
+                    <li><strong>Suivi :</strong> Monitoring post-jugement, alertes impayés, activation saisies, coordination huissier.</li>
                 </ul>
             </article>
         </div>
@@ -561,30 +566,34 @@
                 <h2>Cadre juridique maîtrisé par BENSOPS</h2>
                 <p>Nos analystes financiers et juridiques orchestrent la matière textuelle pour que chaque rapport BENSOPS épouse le langage du juge aux affaires familiales. Nous consolidons les preuves de ressources avec les obligations prévues par le Code civil afin d’obtenir une décision équilibrée et durable.</p>
             </div>
-            <div class="pension-legal-grid">
+                        <div class="pension-legal-grid">
+                <article class="pension-legal-card">
+                    <h3>Pension alimentaire : définition large (Art. 205-207 CC)</h3>
+                    <p><strong>Articles 205 à 207 du Code civil :</strong> La pension alimentaire n'est pas stricto sensu réservée au divorce car tout époux, ascendant, descendant ou allié peut solliciter une pension alimentaire. Elle répond à une obligation d'entraide familiale large, au-delà des seules obligations enfant/parent.</p>
+                </article>
                 <article class="pension-legal-card">
                     <h3>Définition et obligation alimentaire</h3>
-                    <p>La pension alimentaire demeure une contribution globale à l’entretien et l’éducation des enfants, mariés ou non. Les articles 371-2 et 373-2-2 imposent à chaque parent de participer selon ses ressources et les besoins réels de l’enfant, sans distinction depuis la loi du 4 mars 2002.</p>
-                    <p>Nos équipes valorisent chaque poste – logement, santé, scolarité, activités d’exception – pour traduire l’exigence de maintien de niveau de vie qui caractérise les familles accompagnées par BENSOPS.</p>
+                    <p>La pension alimentaire demeure une contribution globale à l'entretien et l'éducation des enfants, mariés ou non. Les articles 371-2 et 373-2-2 imposent à chaque parent de participer selon ses ressources et les besoins réels de l'enfant, sans distinction depuis la loi du 4 mars 2002.</p>
+                    <p>Nos équipes valorisent chaque poste – logement, santé, scolarité, activités d'exception – pour traduire l'exigence de maintien de niveau de vie qui caractérise les familles accompagnées par BENSOPS.</p>
                 </article>
                 <article class="pension-legal-card">
                     <h3>Calcul, indexation et revalorisation</h3>
-                    <p>En l’absence d’accord, le juge fixe la contribution selon revenus, charges et besoins. Le barème indicatif du ministère peut guider la décision sans s’imposer.</p>
+                    <p>En l'absence d'accord, le juge fixe la contribution selon revenus, charges et besoins. Le barème indicatif du ministère peut guider la décision sans s'imposer.</p>
                     <p>Nous documentons revenus additionnels, concubinage, charges réelles ou frais exceptionnels, puis structurons les pièces et formulaires destinés au tribunal pour enclencher revalorisation, diminution ou recouvrement.</p>
-                    <p>Un monitoring annuel de l’indexation sur l’indice des prix nous permet d’activer en amont les demandes d’ajustement.</p>
+                    <p>Un monitoring annuel de l'indexation sur l'indice des prix nous permet d'activer en amont les demandes d'ajustement.</p>
                 </article>
                 <article class="pension-legal-card">
-                    <h3>Durée, extension et fin de l’obligation</h3>
-                    <p>La contribution subsiste tant que l’enfant demeure en formation ou dépendant financièrement, même majeur. Le juge peut néanmoins fixer une échéance — âge limite ou fin d’études — et la jurisprudence admet la cessation en cas d’absence de recherches d’emploi sérieuses.</p>
+                    <h3>Durée, extension et fin de l'obligation</h3>
+                    <p>La contribution subsiste tant que l'enfant demeure en formation ou dépendant financièrement, même majeur. Le juge peut néanmoins fixer une échéance — âge limite ou fin d'études — et la jurisprudence admet la cessation en cas d'absence de recherches d'emploi sérieuses.</p>
                     <ul class="pension-legal-list">
-                        <li>Pension possible au profit d’un époux durant la séparation de corps ou la procédure de divorce.</li>
-                        <li>Contribution élargie à l’époux survivant lorsque la succession doit assurer son niveau de vie.</li>
-                        <li>Revue périodique du dispositif pour éviter un versement ad vitam et planifier la sortie lorsque l’autonomie est acquise.</li>
+                        <li>Pension possible au profit d'un époux durant la séparation de corps ou la procédure de divorce.</li>
+                        <li>Contribution élargie à l'époux survivant lorsque la succession doit assurer son niveau de vie.</li>
+                        <li>Revue périodique du dispositif pour éviter un versement ad vitam et planifier la sortie lorsque l'autonomie est acquise.</li>
                     </ul>
                 </article>
             </div>
             <div class="pension-legal-footnote">
-                <strong>Recouvrement et sanctions :</strong> deux mensualités impayées caractérisent l’abandon de famille (article 227-3 du Code pénal) avec peine allant jusqu’à 2 ans d’emprisonnement et 15&nbsp;000&nbsp;€. BENSOPS chiffre les frais d’enquête pour en obtenir le remboursement sur le fondement de l’article 700 du Code de procédure civile.
+                <strong>Recouvrement et sanctions :</strong> deux mensualités impayées caractérisent l'abandon de famille (article 227-3 du Code pénal) avec peine allant jusqu'à 2 ans d'emprisonnement et 15&nbsp;000&nbsp;€. BENSOPS chiffre les frais d'enquête pour en obtenir le remboursement sur le fondement de l'article 700 du Code de procédure civile.
             </div>
         </section>
 
@@ -639,77 +648,72 @@
         <section class="pension-signet" aria-label="Nos garanties">
             <div class="pension-signet-grid">
                 <div class="pension-signet-item">
-                    <h3>Conformité CNAPS & RGPD</h3>
-                    <p>Traçabilité intégrale des preuves, hébergement chiffré, procédures légales validées par nos juristes partenaires.</p>
+                    <h3>Excellence & Conformité légale</h3>
+                    <p>Traçabilité intégrale des preuves, hébergement chiffré selon RGPD, procédures validées par nos juristes partenaires et agréés CNAPS.</p>
                 </div>
                 <div class="pension-signet-item">
-                    <h3>Comité financier</h3>
-                    <p>Réunions hebdomadaires avec votre avocat fiscaliste, votre expert-comptable ou family office pour ajuster la stratégie.</p>
+                    <h3>Task-force pluridisciplinaire</h3>
+                    <p>Directeurs d'enquêtes, analystes financiers, experts-comptables et avocats en coordination permanente pour stratégie cohérente et résultats probants.</p>
                 </div>
                 <div class="pension-signet-item">
-                    <h3>Veille internationale</h3>
-                    <p>Réseau de détectives agréés en Europe et au Moyen-Orient, capacité à investiguer comptes offshore ou placements immobiliers.</p>
+                    <h3>Réactivité permanente 24/7</h3>
+                    <p>Alertes temps réel sur mouvements bancaires, activation immédiate sur filatures urgentes, coordination huissier-avocat en mode crise.</p>
                 </div>
             </div>
         </section>
 
         <section class="pension-process" aria-label="Méthodologie">
-            <h2>Cadre d'intervention</h2>
+            <h2>Notre méthodologie BENSOPS</h2>
             <div class="pension-steps">
                 <div class="pension-step">
                     <div class="pension-step-index">01</div>
                     <div>
-                        <div class="pension-step-title">Audit confidentiel</div>
-                        <div class="pension-step-text">Brief sécurisé, lecture des décisions existantes, définition de la cible financière à documenter.</div>
+                        <div class="pension-step-title">Analyse stratégique</div>
+                        <div class="pension-step-text">Audit confidentiel de vos dossiers existants, cartographie de la stratégie patrimoniale adverse, identification des cibles financières à documenter.</div>
                     </div>
                 </div>
                 <div class="pension-step">
                     <div class="pension-step-index">02</div>
                     <div>
-                        <div class="pension-step-title">Investigations croisées</div>
-                        <div class="pension-step-text">Recoupement terrain / digital, extraction de preuves financières, veille lifestyle en temps réel.</div>
+                        <div class="pension-step-title">Investigation intensifiée</div>
+                        <div class="pension-step-text">Recoupement terrain et numérique en temps réel, extraction de preuves financières, filatures lifestyle en coordination avec analyses OSINT approfondies.</div>
                     </div>
                 </div>
                 <div class="pension-step">
                     <div class="pension-step-index">03</div>
                     <div>
-                        <div class="pension-step-title">Reporting probatoire</div>
-                        <div class="pension-step-text">Dossier chiffré remis sous 15 jours, annexes exploitables en justice, stratégie de négociation ou contentieux.</div>
+                        <div class="pension-step-title">Restitution probatoire</div>
+                        <div class="pension-step-text">Dossier chiffré remis sous 15 jours, annexes horodatées exploitables en justice, stratégie négociation ou contentieux calibrée pour le juge aux affaires familiales.</div>
                     </div>
                 </div>
                 <div class="pension-step">
                     <div class="pension-step-index">04</div>
                     <div>
-                        <div class="pension-step-title">Suivi exécutif</div>
-                        <div class="pension-step-text">Monitoring post décision, alertes en cas d’impayés, assistance aux procédures de saisie.</div>
+                        <div class="pension-step-title">Suivi post-décision</div>
+                        <div class="pension-step-text">Monitoring bancaire et lifestyle post-jugement, alertes impayés automatisées, activation rapide des saisies en coordination avec votre avocat et huissier.</div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="pension-proof" aria-label="Études de cas">
-            <article class="pension-proof-card">
-                <h3>Prestation compensatoire réévaluée</h3>
-                <p>Découverte d’une société écran et d’actifs crypto non déclarés. Le juge augmente la prestation de 45&nbsp;% en faveur de notre cliente.</p>
-            </article>
-            <article class="pension-proof-card">
-                <h3>Arrérages récupérés</h3>
-                <p>Coordination huissier / banque : saisie sur salaire et recouvrement intégral des impayés en moins de deux mois.</p>
-            </article>
-            <article class="pension-proof-card">
-                <h3>Train de vie invalidé</h3>
-                <p>Filatures lifestyle, preuves de voyages privés et location de yachts. La pension demandée est divisée par deux pour notre client.</p>
-            </article>
-        </section>
-
+        
         <section class="pension-cta" aria-label="Contact">
             <div>
                 <h3>Faites valoir la vérité financière</h3>
-                <p>Entretien confidentiel avec un directeur d’enquêtes sous 24&nbsp;h. Honoraires transparents, mandat sur-mesure.</p>
+                <p>Choisissez le canal qui vous convient pour débuter votre enquête. Nous garantissons une réponse rapide et professionnelle.</p>
             </div>
             <div class="pension-cta-actions">
-                <a class="pension-btn-primary" href="{{ path('app_contact') }}">Réserver un audit patrimonial</a>
-                <a class="pension-btn-secondary" href="tel:0465574176">Hotline dédiée : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
+                <a class="pension-btn-primary" href="mailto:sne@bensops.com">
+                    <i class="fas fa-envelope"></i>
+                    Écrire au cabinet
+                </a>
+                <a class="pension-btn-primary" href="tel:0465574176">
+                    <i class="fas fa-phone"></i>
+                    Ligne directe
+                </a>
+                <a class="pension-btn-primary" href="{{ path('calendar') }}">
+                    <i class="fas fa-calendar-alt"></i>
+                    Programmer un rendez-vous
+                </a>
             </div>
         </section>
     </div>

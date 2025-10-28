@@ -342,8 +342,14 @@
     }
     .maladie-cta-actions {
         display: flex;
-        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .maladie-cta-actions a:nth-child(3) {
+        min-width: 280px;
+        flex: 0 1 auto;
     }
     .maladie-btn-primary {
         display: inline-flex;
@@ -456,118 +462,88 @@
 
         <div class="maladie-grid">
             <article class="maladie-card">
-                <h2>Diagnostic</h2>
-                <h3>Audit RH & médico-légal</h3>
-                <p>Analyse croisée :</p>
+                <h2>Analyse</h2>
+                <h3>Audit RH & médico-légal complet</h3>
+                <p>Analyse croisée multidisciplinaire :</p>
                 <ul>
-                    <li>Historique des arrêts, motifs, rythmes et pics saisonniers.</li>
-                    <li>Conformité des certificats, doctor shopping, incohérences temporelles.</li>
-                    <li>Consultation médecin expert, avis sur aptitude et restrictions.</li>
+                    <li><strong>RH :</strong> Historique arrêts, motifs invoqués, rythmes patterns, pics anomalies saisonniers.</li>
+                    <li><strong>Médical :</strong> Conformité certificats, doctor shopping repérage, incohérences temporelles détectées.</li>
+                    <li><strong>Expert :</strong> Consultation médecin conseil, avis aptitude réelle, restrictions professionnelles validées.</li>
                 </ul>
             </article>
 
             <article class="maladie-card">
-                <h2>Vérifications</h2>
-                <h3>Surveillance ciblée & terrain</h3>
-                <p>Dispositif discret :</p>
+                <h2>Investigation</h2>
+                <h3>Surveillance ciblée & terrain légalisée</h3>
+                <p>Dispositif discret strictement cadré :</p>
                 <ul>
-                    <li>Filatures autorisées, captation photo/vidéo légale, respect vie privée.</li>
-                    <li>Contrôles domiciliaires, vérification des obligations de présence.</li>
-                    <li>Investigations activité parallèle, travail dissimulé, sport compétitif.</li>
+                    <li><strong>Terrain :</strong> Filatures autorisées, captation photo/vidéo légale, respect strict vie privée.</li>
+                    <li><strong>Vérifications :</strong> Contrôles domiciliaires légaux, obligations présence confirmées, absences documentées.</li>
+                    <li><strong>Preuves :</strong> Activité parallèle détectée, travail dissimulé confirmé, sport compétitif horodaté.</li>
                 </ul>
             </article>
 
             <article class="maladie-card">
-                <h2>Restitution</h2>
-                <h3>Dossier probant</h3>
-                <p>Livrables exécutifs :</p>
+                <h2>Rapport</h2>
+                <h3>Dossier probant & juridiquement exploitable</h3>
+                <p>Livrables décisionnels :</p>
                 <ul>
-                    <li>Rapport chiffré, chronologie, annexes médias horodatées.</li>
-                    <li>Préconisations juridiques : mise à pied, rupture, action CPAM.</li>
-                    <li>Accompagnement lors de l’entretien disciplinaire ou prud’homal.</li>
+                    <li><strong>Synthèse :</strong> Rapport chiffré, chronologie complète, annexes médias horodatées certifiées.</li>
+                    <li><strong>Juridique :</strong> Préconisations légales précises : mise à pied, rupture, action CPAM/URSSAF.</li>
+                    <li><strong>Exécution :</strong> Accompagnement entretien disciplinaire, support défense prud'homale, suivi outcomes.</li>
                 </ul>
             </article>
         </div>
 
-        <section class="maladie-scenarios" aria-label="Cas traités">
-            <article class="maladie-scenario">
-                <strong>Multi-arrêts récurrents</strong>
-                <p>Cartographie d’un schéma de fraude organisé impliquant trois salariés, remboursement CPAM obtenu.</p>
-            </article>
-            <article class="maladie-scenario">
-                <strong>Arrêt de complaisance</strong>
-                <p>Collecte de preuves d’activité sportive rémunérée en période d’arrêt, licenciement validé.</p>
-            </article>
-            <article class="maladie-scenario">
-                <strong>États de stress invoqués</strong>
-                <p>Experts cliniciens + observations terrain pour objectiver la réalité du trouble, réintégration adaptée.</p>
-            </article>
-        </section>
-
         <section class="maladie-assurance" aria-label="Nos garanties">
             <div class="maladie-assurance-grid">
                 <div class="maladie-assurance-item">
-                    <h3>Respect légal absolu</h3>
-                    <p>Mandats écrits, charte RGPD, traçabilité CNIL, procédures CNAPS.</p>
+                    <h3>Excellence & Respect légal absolu</h3>
+                    <p>Mandats écrits certifiés, charte RGPD stricte, traçabilité CNIL garantie, procédures CNAPS validées.</p>
                 </div>
                 <div class="maladie-assurance-item">
-                    <h3>Discrétion renforcée</h3>
-                    <p>Agents spécialisés santé, aucun contact direct avec le salarié.</p>
+                    <h3>Pluridisciplinaire & discrétion</h3>
+                    <p>Agents santé spécialisés, médecins conseils reconnus, aucun contact direct salarié, confidentialité blindée.</p>
                 </div>
                 <div class="maladie-assurance-item">
-                    <h3>Restitution exploitable</h3>
-                    <p>Rapport juridiquement recevable, support lors des contentieux.</p>
+                    <h3>Réactivité & exploitabilité</h3>
+                    <p>Rapport juridiquement recevable, support contentieux, accompagnement entretien disciplinaire complet.</p>
                 </div>
             </div>
         </section>
 
         <section class="maladie-process" aria-label="Méthodologie">
-            <h2>Cadre d'intervention</h2>
+            <h2>Notre méthodologie BENSOPS</h2>
             <div class="maladie-steps">
                 <div class="maladie-step">
                     <div class="maladie-step-index">01</div>
                     <div>
-                        <div class="maladie-step-title">Brief & conformité</div>
-                        <div class="maladie-step-text">Analyse des faits, validation juridique, signature mandat et NDA.</div>
+                        <div class="maladie-step-title">Analyse stratégique</div>
+                        <div class="maladie-step-text">Analyse des faits contexte, validation juridique stricte, signature mandat et NDA.</div>
                     </div>
                 </div>
                 <div class="maladie-step">
                     <div class="maladie-step-index">02</div>
                     <div>
-                        <div class="maladie-step-title">Audit data & médical</div>
-                        <div class="maladie-step-text">Collecte dossiers RH, consultation médecin expert agréé.</div>
+                        <div class="maladie-step-title">Investigation data & médical</div>
+                        <div class="maladie-step-text">Collecte dossiers RH horodatés, consultation médecin expert agréé indépendant.</div>
                     </div>
                 </div>
                 <div class="maladie-step">
                     <div class="maladie-step-index">03</div>
                     <div>
-                        <div class="maladie-step-title">Investigation terrain</div>
-                        <div class="maladie-step-text">Observation discrète, preuves matérielles, datation.</div>
+                        <div class="maladie-step-title">Observation intensive</div>
+                        <div class="maladie-step-text">Surveillance discrète légale, preuves matérielles horodatées, documentation multisource.</div>
                     </div>
                 </div>
                 <div class="maladie-step">
                     <div class="maladie-step-index">04</div>
                     <div>
-                        <div class="maladie-step-title">Rapport & actions</div>
-                        <div class="maladie-step-text">Remise sécurisée, stratégie disciplinaire, suivi post-mission.</div>
+                        <div class="maladie-step-title">Restitution & suivi</div>
+                        <div class="maladie-step-text">Remise rapport sécurisée, stratégie disciplinaire recommandée, suivi post-mission légal.</div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="maladie-proof" aria-label="Études de cas">
-            <article class="maladie-proof-card">
-                <h3>Site industriel</h3>
-                <p>13 arrêts injustifiés identifiés, économie 420&nbsp;k€ de charges, plan prévention réactualisé.</p>
-            </article>
-            <article class="maladie-proof-card">
-                <h3>Réseau retail</h3>
-                <p>Surveillance d’un manager animant une activité concurrente, rupture anticipée validée.</p>
-            </article>
-            <article class="maladie-proof-card">
-                <h3>Cadre supérieur</h3>
-                <p>Évaluation psychologique objective, réintégration progressive encadrée par le médecin du travail.</p>
-            </article>
         </section>
 
         <section class="maladie-legal" aria-label="Cadre légal des arrêts maladie">
@@ -583,7 +559,8 @@
                 </article>
                 <article class="maladie-legal-card">
                     <h3>Licenciement & désorganisation</h3>
-                    <p>L’article L1132-1 interdit de licencier pour simple maladie. Nous démontons la fraude en établissant la désorganisation de l’entreprise et les preuves factuelles, prémices indispensables à une procédure disciplinaire ou à un licenciement pour faute.</p>
+                    <p><a href="https://www.legifrance.gouv.fr/codes/article/LEGIARTI000006901077" target="_blank" rel="noopener" style="color: #ffbf99; text-decoration: underline;"><strong>Article L1132-1</strong></a> : Interdit la discrimination liée à l'état de santé. Nous établissons la faute grave (fraude, désorganisation) pour justifier une action disciplinaire.</p>
+                    <p><a href="https://www.legifrance.gouv.fr/codes/article/LEGIARTI000006902602" target="_blank" rel="noopener" style="color: #ffbf99; text-decoration: underline;"><strong>Article L1226-9</strong></a> : Limite les ruptures pendant suspension du contrat à faute grave ou cas de force majeure. Nos preuves étayent la faute grave.</p>
                 </article>
                 <article class="maladie-legal-card">
                     <h3>Surveillance autorisée</h3>
@@ -591,7 +568,7 @@
                 </article>
                 <article class="maladie-legal-card">
                     <h3>Obligation de loyauté</h3>
-                    <p>Même sans clause spécifique, l’obligation de loyauté (article L1222-1) subsiste et interdit toute activité concurrente ou travail dissimulé pendant l’arrêt. Nous documentons les écarts, y compris activités acceptées par la jurisprudence, pour éviter les contestations.</p>
+                    <p>Même sans clause spécifique, est une obligation légale qui s'applique à tous les salariés et est fondée sur <a href="https://www.legalplace.fr/guides/obligation-loyaute/" target="_blank" rel="noopener" style="color: #ffbf99; text-decoration: underline;"><strong>l'article L1222-1</strong></a> du Code du travail. Cette obligation implique que le salarié doit agir de bonne faith et ne pas nuire aux intérêts de son employeur. Nous documentons les écarts, y compris activités acceptées par la jurisprudence, pour éviter les contestations.</p>
                 </article>
             </div>
             <p class="maladie-legal-footnote">Nos rapports, complétés si besoin par un contrôle CPAM ou un constat d’huissier, ont déjà été jugés licites (Cass. soc., 6&nbsp;déc. 2007, n°&nbsp;06-43392). Ils servent de base à la suspension des indemnités, aux sanctions disciplinaires ou aux négociations confidentielles avec le salarié.</p>
@@ -600,11 +577,21 @@
         <section class="maladie-cta" aria-label="Contact">
             <div>
                 <h3>Activez la cellule santé & conformité</h3>
-                <p>Réponse sous 1&nbsp;heure, coordination avec votre DRH et juristes internes.</p>
+                <p>Choisissez le canal qui vous convient pour débuter votre enquête. Nous garantissons une réponse rapide et professionnelle.</p>
             </div>
             <div class="maladie-cta-actions">
-                <a class="maladie-btn-primary" href="tel:0465574176">Hotline RH : 04&nbsp;65&nbsp;57&nbsp;41&nbsp;76</a>
-                <a class="maladie-btn-secondary" href="{{ path('app_contact') }}">Programmer un audit express</a>
+                <a class="maladie-btn-primary" href="mailto:sne@bensops.com">
+                    <i class="fas fa-envelope"></i>
+                    Écrire au cabinet
+                </a>
+                <a class="maladie-btn-primary" href="tel:0465574176">
+                    <i class="fas fa-phone"></i>
+                    Ligne directe
+                </a>
+                <a class="maladie-btn-primary" href="{{ path('calendar') }}">
+                    <i class="fas fa-calendar-alt"></i>
+                    Programmer un rendez-vous
+                </a>
             </div>
         </section>
     </div>

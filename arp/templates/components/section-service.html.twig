@@ -1,11 +1,11 @@
 <section class="container my-5" id="description">
-	<h2 class="text-center mb-2 text-uppercase fw-bold">Prestations d'enquête les plus demandées</h2>
+	<h2 class="text-center mb-2 text-uppercase fw-bold">Prestations d'enquêtes les plus demandées</h2>
 	<p class="text-center text-muted mb-4">Services d'investigation fiables et compatibles avec une finalité probatoire — solutions adaptées aux particuliers et aux professionnels.</p>
 
 	<div class="row align-items-center">
 		<!-- Image -->
         	<div class="col-12 col-md-6 mb-4 mb-md-0 text-center">
-			<a href="http://127.0.0.1:8000/cabinet" class="d-inline-block img-card-wrap" aria-label="Accéder à la page Cabinet">
+			<a href="{{ path('app_cabinet')}}"class="d-inline-block img-card-wrap" aria-label="Accéder à la page Cabinet">
 				<img src="{{ asset('build/images/card.jpg') }}" alt="Logo Card" class="img-card" style="max-width: 100%; height: auto;">
 			</a>
         	</div>
@@ -16,7 +16,7 @@
 				<div class="col-12 col-lg-6 mb-3">
 					<ul class="list-unstyled service-list">
 						<li class="service-item p-3 mb-2 rounded">
-							<a href="http://127.0.0.1:8000/mystere" class="text-decoration-none text-reset d-block" aria-label="Client mystère - en savoir plus">
+							<a href="{{ path('app_mystere')}}"class="text-decoration-none text-reset d-block" aria-label="Client mystère - en savoir plus">
 								<div class="d-flex">
 									<div class="flex-shrink-0 me-3 icon-wrap">
 										<!-- icon: mask / mystery -->
@@ -35,7 +35,7 @@
 							</a>
 						</li>
 						<li class="service-item p-3 mb-2 rounded">
-							<a href="http://127.0.0.1:8000/calendar" class="text-decoration-none text-reset d-block" aria-label="Contre-enquête pénale - rendez-vous obligatoire">
+							<a href="{{ path('calendar')}}"class="text-decoration-none text-reset d-block" aria-label="Contre-enquête pénale - rendez-vous obligatoire">
 								<div class="d-flex">
 									<div class="flex-shrink-0 me-3 icon-wrap">
 										<!-- icon: magnifier -->
@@ -52,7 +52,7 @@
 							</a>
 						</li>
 						<li class="service-item p-3 mb-2 rounded">
-							<a href="http://127.0.0.1:8000/divorce" class="text-decoration-none text-reset d-block" aria-label="Adultère - en savoir plus">
+							<a href="{{ path('app_divorce')}}" class="text-decoration-none text-reset d-block" aria-label="Adultère - en savoir plus">
 								<div class="d-flex">
 									<div class="flex-shrink-0 me-3 icon-wrap">
 										<!-- icon: heart -->
@@ -68,7 +68,7 @@
 							</a>
 						</li>
 						<li class="service-item p-3 mb-2 rounded">
-							<a href="http://127.0.0.1:8000/concurrence" class="text-decoration-none text-reset d-block" aria-label="Concurrence déloyale - en savoir plus">
+							<a href="{{ path('app_concurrence')}}" class="text-decoration-none text-reset d-block" aria-label="Concurrence déloyale - en savoir plus">
 								<div class="d-flex">
 									<div class="flex-shrink-0 me-3 icon-wrap">
 										<!-- icon: scales / justice -->
@@ -93,7 +93,7 @@
 				<div class="col-12 col-lg-6 mb-3">
 					<ul class="list-unstyled service-list">
 						<li class="service-item p-3 mb-2 rounded">
-							<a href="http://127.0.0.1:8000/calendar" class="text-decoration-none text-reset d-block" aria-label="Fraude à l'assurance - rendez-vous obligatoire">
+							<a href="{{ path('calendar')}}" class="text-decoration-none text-reset d-block" aria-label="Fraude à l'assurance - rendez-vous obligatoire">
 								<div class="d-flex">
 									<div class="flex-shrink-0 me-3 icon-wrap">
 										<!-- icon: shield-check (fraud) -->
@@ -110,7 +110,7 @@
 							</a>
 						</li>
 						<li class="service-item p-3 mb-2 rounded">
-							<a href="http://127.0.0.1:8000/maladie" class="text-decoration-none text-reset d-block" aria-label="Arrêt maladie abusif - en savoir plus">
+							<a href="{{ path('app_maladie')}}" class="text-decoration-none text-reset d-block" aria-label="Arrêt maladie abusif - en savoir plus">
 								<div class="d-flex">
 									<div class="flex-shrink-0 me-3 icon-wrap">
 										<!-- icon: medical / brief cross -->
@@ -128,7 +128,7 @@
 							</a>
 						</li>
 							<li class="service-item p-3 mb-2 rounded">
-								<a href="http://127.0.0.1:8000/personnel" class="text-decoration-none text-reset d-block" aria-label="Suspicion du personnel - en savoir plus">
+								<a href="{{ path('app_personnel')}}" class="text-decoration-none text-reset d-block" aria-label="Suspicion du personnel - en savoir plus">
 									<div class="d-flex">
 											<div class="flex-shrink-0 me-3 icon-wrap">
 												<!-- icon: person -->
@@ -145,7 +145,7 @@
 								</a>
 							</li>
 							<li class="service-item p-3 mb-2 rounded">
-								<a href="http://127.0.0.1:8000/antecedent" class="text-decoration-none text-reset d-block" aria-label="Analyse des antécédents - en savoir plus">
+								<a href="{{ path('app_antecedent')}}" class="text-decoration-none text-reset d-block" aria-label="Analyse des antécédents - en savoir plus">
 									<div class="d-flex">
 											<div class="flex-shrink-0 me-3 icon-wrap">
 												<!-- icon: file/text -->
